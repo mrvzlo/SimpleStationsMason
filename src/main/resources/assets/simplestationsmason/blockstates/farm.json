@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "simplestationsmason:block/farm" },
+    "facing=south": { "model": "simplestationsmason:block/farm", "y": 180 },
+    "facing=east": { "model": "simplestationsmason:block/farm", "y": 90 },
+    "facing=west": { "model": "simplestationsmason:block/farm", "y": 270 }
+  }
+}

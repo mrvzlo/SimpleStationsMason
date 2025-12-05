@@ -1,0 +1,8 @@
+{
+  "parent": "simplestationsmason:custom/farm",
+  "textures": {
+    "all": "simplestationsmason:block/farm",
+    "1": "simplestationsmason:block/farm"
+  },
+  "render_type": "transparent"
+}
