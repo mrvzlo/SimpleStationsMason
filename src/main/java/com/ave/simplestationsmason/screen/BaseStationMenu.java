@@ -2,8 +2,7 @@ package com.ave.simplestationsmason.screen;
 
 import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
-import com.ave.simplestationsmason.blockentity.ModContainer;
-import com.ave.simplestationsmason.blockentity.handlers.WaterTank;
+import com.ave.simplestationsmason.blockentity.StationContainer;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -20,89 +19,63 @@ import net.neoforged.neoforge.items.SlotItemHandler;
 
 public abstract class BaseStationMenu extends AbstractContainerMenu {
     public final Level level;
-    public final ModContainer blockEntity;
+    public final StationContainer blockEntity;
 
     public BaseStationMenu(int containerId, Inventory inventory, FriendlyByteBuf data, MenuType menu) {
         this(containerId, inventory,
-                (ModContainer) inventory.player.level().getBlockEntity(data.readBlockPos()), menu);
+                (StationContainer) inventory.player.level().getBlockEntity(data.readBlockPos()), menu);
     }
 
-    public BaseStationMenu(int containerId, Inventory inventory, ModContainer be, MenuType menu) {
+    public BaseStationMenu(int containerId, Inventory inventory, StationContainer be, MenuType menu) {
         super(menu, containerId);
         level = inventory.player.level();
         blockEntity = be;
 
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
-        addSlot(new SlotItemHandler(blockEntity.inventory, ModContainer.OUTPUT_SLOT, UIBlocks.OUT_SLOT.left,
+        addSlot(new SlotItemHandler(blockEntity.inventory, StationContainer.OUTPUT_SLOT, UIBlocks.OUT_SLOT.left,
                 UIBlocks.OUT_SLOT.top));
-        addSlot(new SlotItemHandler(blockEntity.inventory, ModContainer.FLUID_SLOT, UIBlocks.WATER_SLOT.left,
-                UIBlocks.WATER_SLOT.top));
-        addSlot(new SlotItemHandler(blockEntity.inventory, ModContainer.TYPE_SLOT, UIBlocks.FILTER_SLOT.left,
+        addSlot(new SlotItemHandler(blockEntity.inventory, StationContainer.TYPE_SLOT, UIBlocks.FILTER_SLOT.left,
                 UIBlocks.FILTER_SLOT.top));
-        addSlot(new SlotItemHandler(blockEntity.inventory, ModContainer.FERTI_SLOT, UIBlocks.FERTI_SLOT.left,
-                UIBlocks.FERTI_SLOT.top));
-        addSlot(new SlotItemHandler(blockEntity.inventory, ModContainer.REDSTONE_SLOT, UIBlocks.RED_SLOT.left,
-                UIBlocks.RED_SLOT.top));
+        addSlot(new SlotItemHandler(blockEntity.inventory, StationContainer.FUEL_SLOT, UIBlocks.FUEL_SLOT.left,
+                UIBlocks.FUEL_SLOT.top));
 
-        if (blockEntity instanceof BaseStationBlockEntity miner)
-            addDataSlots(miner);
+        if (blockEntity instanceof BaseStationBlockEntity station)
+            addDataSlots(station);
     }
 
-    private void addDataSlots(BaseStationBlockEntity miner) {
+    private void addDataSlots(BaseStationBlockEntity station) {
         addDataSlot(new DataSlot() {
             @Override
             public int get() {
-                return miner.fertilizer;
+                return (int) station.progress;
             }
 
             @Override
             public void set(int value) {
-                miner.fertilizer = value;
+                station.progress = value;
             }
         });
         addDataSlot(new DataSlot() {
             @Override
             public int get() {
-                return miner.tank.getFluidAmount();
+                return station.working ? 1 : 0;
             }
 
             @Override
             public void set(int value) {
-                miner.tank = WaterTank.create(value);
+                station.working = value != 0;
             }
         });
         addDataSlot(new DataSlot() {
             @Override
             public int get() {
-                return (int) miner.progress;
+                return station.fuel.getEnergyStored();
             }
 
             @Override
             public void set(int value) {
-                miner.progress = value;
-            }
-        });
-        addDataSlot(new DataSlot() {
-            @Override
-            public int get() {
-                return miner.working ? 1 : 0;
-            }
-
-            @Override
-            public void set(int value) {
-                miner.working = value != 0;
-            }
-        });
-        addDataSlot(new DataSlot() {
-            @Override
-            public int get() {
-                return miner.fuel.getEnergyStored();
-            }
-
-            @Override
-            public void set(int value) {
-                miner.fuel = new EnergyStorage(Config.POWER_MAX.get(), 0, 0, value);
+                station.fuel = new EnergyStorage(Config.POWER_MAX.get(), 0, 0, value);
             }
         });
     }
@@ -116,7 +89,7 @@ public abstract class BaseStationMenu extends AbstractContainerMenu {
         int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
         int VANILLA_FIRST_SLOT_INDEX = 0;
         int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-        int TE_INVENTORY_SLOT_COUNT = 5;
+        int TE_INVENTORY_SLOT_COUNT = 3;
 
         Slot sourceSlot = slots.get(pIndex);
         if (sourceSlot == null || !sourceSlot.hasItem())

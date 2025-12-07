@@ -1,9 +1,8 @@
 package com.ave.simplestationsmason.blockentity;
 
-import com.ave.simplestationsmason.blockentity.enums.CropGroup;
 import com.ave.simplestationsmason.blockentity.handlers.InputItemHandler;
 import com.ave.simplestationsmason.blockentity.handlers.OutputItemHandler;
-import com.ave.simplestationsmason.blockentity.handlers.SidedItemHandler;
+import com.ave.simplestationsmason.blockentity.handlers.BaseSidedItemHandler;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -21,23 +20,16 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.items.IItemHandler;
 
-public abstract class ModContainer extends BlockEntity implements MenuProvider {
-    public final SidedItemHandler inventory;
+public abstract class StationContainer extends BlockEntity implements MenuProvider {
+    public BaseSidedItemHandler inventory;
     public static final int OUTPUT_SLOT = 0;
-    public static final int FLUID_SLOT = 1;
+    public static final int FUEL_SLOT = 1;
     public static final int TYPE_SLOT = 2;
-    public static final int FERTI_SLOT = 3;
-    public static final int REDSTONE_SLOT = 4;
+    public static final int COLOR_SLOT = 3;
+    public static final int SECOND_TYPE_SLOT = 4;
 
-    public ModContainer(BlockEntityType<BlockEntity> entity, BlockPos pos, BlockState state, int size,
-            CropGroup group) {
+    public StationContainer(BlockEntityType<BlockEntity> entity, BlockPos pos, BlockState state) {
         super(entity, pos, state);
-        inventory = new SidedItemHandler(size, group) {
-            @Override
-            protected void onContentsChanged(int slot) {
-                setChanged();
-            }
-        };
     }
 
     public static void registerCaps(RegisterCapabilitiesEvent event) {

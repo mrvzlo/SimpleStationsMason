@@ -7,9 +7,9 @@ import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
 import net.minecraft.world.item.ItemStack;
 
 public class InputItemHandler implements IItemHandler {
-    private final SidedItemHandler parent;
+    private final BaseSidedItemHandler parent;
 
-    public InputItemHandler(SidedItemHandler parent) {
+    public InputItemHandler(BaseSidedItemHandler parent) {
         this.parent = parent;
     }
 

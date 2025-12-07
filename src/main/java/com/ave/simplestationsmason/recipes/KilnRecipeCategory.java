@@ -1,20 +1,14 @@
 package com.ave.simplestationsmason.recipes;
 
-import java.util.List;
-
 import org.jetbrains.annotations.Nullable;
 
 import com.ave.simplestationsmason.SimpleStationsMason;
-import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
 import com.ave.simplestationsmason.registrations.ModBlocks;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
-import com.google.common.collect.Lists;
-
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
-import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
@@ -26,13 +20,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
-public class FarmRecipeCategory implements IRecipeCategory<SimpleRecipe> {
-        private static final String Path = "farm";
+public class KilnRecipeCategory implements IRecipeCategory<SimpleRecipe> {
+        private static final String Path = "kiln";
 
         public final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(SimpleStationsMason.MODID, Path);
         private final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
                         SimpleStationsMason.MODID,
-                        "textures/gui/farm_jei.png");
+                        "textures/gui/kiln_jei.png");
 
         public IGuiHelper guiHelper;
         public static RecipeType<SimpleRecipe> REGULAR = RecipeType.create(SimpleStationsMason.MODID, Path,
@@ -40,7 +34,7 @@ public class FarmRecipeCategory implements IRecipeCategory<SimpleRecipe> {
 
         private final IDrawableStatic bg;
 
-        public FarmRecipeCategory(IGuiHelper guiHelper) {
+        public KilnRecipeCategory(IGuiHelper guiHelper) {
                 this.guiHelper = guiHelper;
                 bg = guiHelper.createDrawable(TEXTURE, 0, 0, 176, 80);
         }
@@ -52,41 +46,27 @@ public class FarmRecipeCategory implements IRecipeCategory<SimpleRecipe> {
 
         @Override
         public Component getTitle() {
-                return Component.translatable("screen.simplestationsmason.farm_recipes");
+                return Component.translatable("screen.simplestationsmason.kiln_recipes");
         }
 
         @Override
         public @Nullable IDrawable getIcon() {
                 return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
-                                new ItemStack(ModBlocks.FARMER_BLOCK_ITEM.get()));
+                                new ItemStack(ModBlocks.EXCAVATOR_BLOCK_ITEM.get()));
         }
 
         @Override
         public void setRecipe(IRecipeLayoutBuilder builder, SimpleRecipe recipe, IFocusGroup focuses) {
-                builder.addSlot(RecipeIngredientRole.INPUT, UIBlocks.RED_SLOT.left, UIBlocks.RED_SLOT.top)
+                builder.addSlot(RecipeIngredientRole.INPUT, UIBlocks.FUEL_SLOT.left, UIBlocks.FUEL_SLOT.top)
                                 .addIngredients(Ingredient.of(Items.REDSTONE));
-                builder.addSlot(RecipeIngredientRole.INPUT, UIBlocks.FERTI_SLOT.left, UIBlocks.FERTI_SLOT.top)
-                                .addIngredients(Ingredient.of(Items.BONE_MEAL));
-                builder.addSlot(RecipeIngredientRole.INPUT, UIBlocks.WATER_SLOT.left, UIBlocks.WATER_SLOT.top)
-                                .addIngredients(Ingredient.of(Items.WATER_BUCKET));
                 builder.addSlot(RecipeIngredientRole.OUTPUT, UIBlocks.OUT_SLOT.left, UIBlocks.OUT_SLOT.top)
-                                .addItemStack(recipe.outputType);
+                                .addItemStack(recipe.product);
                 builder.addSlot(RecipeIngredientRole.CATALYST, UIBlocks.FILTER_SLOT.left, UIBlocks.FILTER_SLOT.top)
-                                .addIngredients(Ingredient.of(recipe.filter.getItem()));
+                                .addIngredients(Ingredient.of(recipe.source.getItem()));
         }
 
         @Override
         public IDrawable getBackground() {
                 return bg;
-        }
-
-        @Override
-        public List<Component> getTooltipStrings(SimpleRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX,
-                        double mouseY) {
-                List<Component> list = Lists.newArrayList();
-                if (UIBlocks.WATER_BAR.isHovered(mouseX, mouseY))
-                        list.add(Component.literal(ExcavatorBlockEntity.WaterUsage + " mB"));
-
-                return list;
         }
 }

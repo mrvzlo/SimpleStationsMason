@@ -1,7 +1,6 @@
 package com.ave.simplestationsmason.blockentity.partblock;
 
 import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
-import com.ave.simplestationsmason.blockentity.enums.CropType;
 import com.ave.simplestationsmason.blockentity.handlers.InputItemHandler;
 import com.ave.simplestationsmason.blockentity.handlers.OutputItemHandler;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
@@ -18,7 +17,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.energy.EnergyStorage;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
 
 public class PartBlockEntity extends BlockEntity {
@@ -37,10 +35,8 @@ public class PartBlockEntity extends BlockEntity {
         level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
     }
 
-    public CropType getCropType() {
-        if (this.getController(this) == null)
-            return CropType.Unknown;
-        return this.getController(this).type;
+    public int getStationType() {
+        return (this.getController(this) == null) ? 0 : this.getController(this).type;
     }
 
     public BlockPos getControllerPos() {
@@ -63,10 +59,6 @@ public class PartBlockEntity extends BlockEntity {
 
     public EnergyStorage getEnergyStorage(PartBlockEntity be) {
         return this.getController(be).fuel;
-    }
-
-    public FluidTank getWaterStorage(PartBlockEntity be) {
-        return this.getController(be).tank;
     }
 
     private BaseStationBlockEntity getController(PartBlockEntity be) {

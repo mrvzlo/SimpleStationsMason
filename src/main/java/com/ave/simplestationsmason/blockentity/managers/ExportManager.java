@@ -10,12 +10,12 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 public class ExportManager {
-    public static void pushOutput(BaseStationBlockEntity miner) {
-        ItemStack stack = miner.inventory.getStackInSlot(BaseStationBlockEntity.OUTPUT_SLOT);
+    public static void pushOutput(BaseStationBlockEntity station) {
+        ItemStack stack = station.inventory.getStackInSlot(BaseStationBlockEntity.OUTPUT_SLOT);
         if (stack.isEmpty())
             return;
 
-        BlockPos belowPos = miner.getBlockPos().below();
+        BlockPos belowPos = station.getBlockPos().below();
         IItemHandler handler = null;
 
         for (int dz = -1; dz <= 1; dz++)
@@ -23,7 +23,7 @@ public class ExportManager {
                 if (handler != null)
                     break;
                 var pos = belowPos.offset(dx, 0, dz);
-                handler = Capabilities.ItemHandler.BLOCK.getCapability(miner.getLevel(), pos, null, null,
+                handler = Capabilities.ItemHandler.BLOCK.getCapability(station.getLevel(), pos, null, null,
                         Direction.UP);
             }
 
@@ -31,6 +31,6 @@ public class ExportManager {
             return;
 
         ItemStack remaining = ItemHandlerHelper.insertItem(handler, stack, false);
-        miner.inventory.setStackInSlot(BaseStationBlockEntity.OUTPUT_SLOT, remaining);
+        station.inventory.setStackInSlot(BaseStationBlockEntity.OUTPUT_SLOT, remaining);
     }
 }

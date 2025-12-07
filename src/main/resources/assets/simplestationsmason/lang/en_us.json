@@ -1,9 +1,6 @@
 {
-  "itemGroup.simplestations": "Simple Farming Stations",
-  "block.simplestationsmason.farm": "Farming station",
-  "block.simplestationsmason.dark_farm": "Mycology station",
-  "block.simplestationsmason.tree_farm": "Woodcutting station",
-  "block.simplestationsmason.forage_farm": "Foraging station",
+  "itemGroup.simplestations.mason": "Simple Masonry Stations",
+  "block.simplestationsmason.excavator": "Excavation station",
   "item.simplestationsmason.sprinkler": "Sprinkler",
 
   "simplestationsmason.configuration.title": "Configs",
@@ -28,13 +25,7 @@
   "simplestationsmason.configuration.power_mult.tooltip": "Productivity bonus applied when redstone is available.\nDefault: +2.0 (200%)",
 
   "screen.simplestationsmason.farmer": "Farming station",
-  "screen.simplestationsmason.dark_farmer": "Mycology station",
-  "screen.simplestationsmason.tree_farmer": "Woodcutting station",
-  "screen.simplestationsmason.forage_farmer": "Foraging station",
   "screen.simplestationsmason.farm_recipes": "Farmer recipes",
-  "screen.simplestationsmason.dark_farm_recipes": "Mycology recipes",
-  "screen.simplestationsmason.tree_farm_recipes": "Woodcutter recipes",
-  "screen.simplestationsmason.forage_farm_recipes": "Forager recipes",
   "screen.simplestationsmason.power": "Energy",
   "screen.simplestationsmason.water": "Water",
   "screen.simplestationsmason.lava": "Lava",

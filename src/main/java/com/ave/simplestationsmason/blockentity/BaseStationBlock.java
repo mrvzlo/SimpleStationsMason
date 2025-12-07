@@ -14,6 +14,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -22,6 +24,7 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 
@@ -31,6 +34,7 @@ import com.ave.simplestationsmason.registrations.ModBlocks;
 public abstract class BaseStationBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private final DeferredBlock<Block> block;
+    private static final VoxelShape SHAPE = Block.box(-16.0, 0.0, -16.0, 32.0, 16.0, 32.0);
 
     public BaseStationBlock(Properties props, DeferredBlock<Block> block) {
         super(props);
@@ -42,6 +46,11 @@ public abstract class BaseStationBlock extends Block implements EntityBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SHAPE;
     }
 
     @Override
@@ -115,10 +124,10 @@ public abstract class BaseStationBlock extends Block implements EntityBlock {
             return;
 
         var controller = level.getBlockEntity(pos);
-        if (controller instanceof BaseStationBlockEntity miner) {
+        if (controller instanceof BaseStationBlockEntity station) {
             Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(),
                     new ItemStack(block, 1));
-            Containers.dropContents(level, pos, miner.inventory.getAsList());
+            Containers.dropContents(level, pos, station.inventory.getAsList());
         }
         super.onRemove(state, level, pos, newState, moving);
 

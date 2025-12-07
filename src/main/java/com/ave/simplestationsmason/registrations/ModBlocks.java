@@ -8,6 +8,7 @@ import com.ave.simplestationsmason.blockentity.partblock.PartBlock;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -18,7 +19,7 @@ public class ModBlocks {
         public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(SimpleStationsMason.MODID);
         public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(SimpleStationsMason.MODID);
 
-        public static final DeferredBlock<Block> EXCAVATOR_BLOCK = BLOCKS.register("farm",
+        public static final DeferredBlock<Block> EXCAVATOR_BLOCK = BLOCKS.register("excavator",
                         () -> new ExcavatorBlock(BlockBehaviour.Properties.of()
                                         .strength(0.1F).lightLevel((state) -> 15).noOcclusion()));
 
@@ -26,17 +27,28 @@ public class ModBlocks {
                         () -> new PartBlock(BlockBehaviour.Properties.of()
                                         .strength(0.1F).lightLevel((state) -> 15).noOcclusion()));
 
-        public static final DeferredItem<BlockItem> FARMER_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("farm",
+        public static final DeferredItem<BlockItem> EXCAVATOR_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("excavator",
                         EXCAVATOR_BLOCK);
 
         public static final DeferredItem<Item> SPRINKLER = ITEMS.registerItem("sprinkler", Item::new,
                         new Item.Properties());
 
-        private static final String[] CROPS = { "wheat", "beet", "carrot", "potato", "melon", "pumpkin",
-                        "brown_mushroom", "red_mushroom",
-                        "n_wart", "chorus", };
+        public static final Item[] EXCAVATABLE = new Item[] {
+                        Items.CLAY,
+                        Items.DIRT,
+                        Items.GRAVEL,
+                        Items.RED_SAND,
+                        Items.SAND,
+                        Items.SNOW_BLOCK
+        };
+        private static final String[] EXCAVATABLE_TYPES = { "clay", "dirt", "gravel", "red_sand", "sand", "snow" };
+        public static final DeferredBlock<Block>[] EXCAVATABLE_BLOCKS = Arrays.stream(EXCAVATABLE_TYPES)
+                        .map(x -> BLOCKS.register("ex_" + x, () -> new Block(BlockBehaviour.Properties.of())))
+                        .toArray(DeferredBlock[]::new);
 
-        public static final DeferredBlock<Block>[] CROP_BLOCKS = Arrays.stream(CROPS)
+        private static final String[] BUILD_TYPES = { "glass", "concrete", "bricks", "terracota" };
+
+        public static final DeferredBlock<Block>[] BUILD_BLOCKS = Arrays.stream(BUILD_TYPES)
                         .map(x -> BLOCKS.register(x, () -> new Block(BlockBehaviour.Properties.of())))
                         .toArray(DeferredBlock[]::new);
 }

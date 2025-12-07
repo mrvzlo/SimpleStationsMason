@@ -52,6 +52,6 @@ public class SimpleStationsMasonClient {
 
     @SubscribeEvent // on the mod event bus only on the physical client
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(ModBlockEntities.PART_ENTITY.get(), StationRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.EXCAVATOR_ENTITY.get(), StationRenderer::new);
     }
 }

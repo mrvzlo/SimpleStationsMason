@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "simplestationsmason:block/excavator" },
+    "facing=south": { "model": "simplestationsmason:block/excavator", "y": 180 },
+    "facing=east": { "model": "simplestationsmason:block/excavator", "y": 90 },
+    "facing=west": { "model": "simplestationsmason:block/excavator", "y": 270 }
+  }
+}

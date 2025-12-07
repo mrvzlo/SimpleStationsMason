@@ -1,0 +1,7 @@
+{
+  "parent": "simplestationsmason:custom/excavatable",
+  "textures": {
+    "0": "minecraft:block/snow"
+  },
+  "render_type": "transparent"
+}

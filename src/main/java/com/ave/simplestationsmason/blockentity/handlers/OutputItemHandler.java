@@ -6,9 +6,9 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.IItemHandler;
 
 public class OutputItemHandler implements IItemHandler {
-    private final SidedItemHandler parent;
+    private final BaseSidedItemHandler parent;
 
-    public OutputItemHandler(SidedItemHandler parent) {
+    public OutputItemHandler(BaseSidedItemHandler parent) {
         this.parent = parent;
     }
 

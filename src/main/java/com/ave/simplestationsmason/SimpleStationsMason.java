@@ -34,11 +34,11 @@ public class SimpleStationsMason {
 
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS
                         .register("example_tab", () -> CreativeModeTab.builder()
-                                        .title(Component.translatable("itemGroup.simplestations"))
+                                        .title(Component.translatable("itemGroup.simplestations.mason"))
                                         .withTabsBefore(CreativeModeTabs.COMBAT)
-                                        .icon(() -> ModBlocks.FARMER_BLOCK_ITEM.get().getDefaultInstance())
+                                        .icon(() -> ModBlocks.EXCAVATOR_BLOCK_ITEM.get().getDefaultInstance())
                                         .displayItems((parameters, output) -> {
-                                                output.accept(ModBlocks.FARMER_BLOCK_ITEM.get());
+                                                output.accept(ModBlocks.EXCAVATOR_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.SPRINKLER.get());
                                         }).build());
 
@@ -58,7 +58,7 @@ public class SimpleStationsMason {
         // Add the example block item to the building blocks tab
         private void addCreative(BuildCreativeModeTabContentsEvent event) {
                 if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
-                        event.accept(ModBlocks.FARMER_BLOCK_ITEM);
+                        event.accept(ModBlocks.EXCAVATOR_BLOCK_ITEM);
         }
 
         private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -68,13 +68,6 @@ public class SimpleStationsMason {
                 event.registerBlock(
                                 Capabilities.EnergyStorage.BLOCK, (level, pos, state, be,
                                                 side) -> ((PartBlockEntity) be).getEnergyStorage((PartBlockEntity) be),
-                                ModBlocks.PART.get());
-                event.registerBlock(Capabilities.FluidHandler.BLOCK,
-                                (level, pos, state, be, side) -> ((BaseStationBlockEntity) be).tank,
-                                ModBlocks.EXCAVATOR_BLOCK.get());
-                event.registerBlock(
-                                Capabilities.FluidHandler.BLOCK, (level, pos, state, be,
-                                                side) -> ((PartBlockEntity) be).getWaterStorage((PartBlockEntity) be),
                                 ModBlocks.PART.get());
         }
 }

@@ -1,6 +1,6 @@
 package com.ave.simplestationsmason.screen;
 
-import com.ave.simplestationsmason.blockentity.ModContainer;
+import com.ave.simplestationsmason.blockentity.StationContainer;
 import com.ave.simplestationsmason.registrations.ModBlocks;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -13,7 +13,7 @@ public class ExcavatorMenu extends BaseStationMenu {
         super(containerId, inventory, data, ModMenuTypes.EXCAVATOR_MENU.get());
     }
 
-    public ExcavatorMenu(int containerId, Inventory inventory, ModContainer be) {
+    public ExcavatorMenu(int containerId, Inventory inventory, StationContainer be) {
         super(containerId, inventory, be, ModMenuTypes.EXCAVATOR_MENU.get());
     }
 
