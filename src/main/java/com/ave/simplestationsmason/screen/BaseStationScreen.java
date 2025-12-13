@@ -77,7 +77,7 @@ public abstract class BaseStationScreen extends AbstractContainerScreen<BaseStat
         float powerPart = (float) station.fuel.getEnergyStored() / Config.POWER_MAX.get();
         UIBlocks.POWER_BAR.drawProgressToTop(graphics, x, y, powerPart, 0xAABB2211);
         if (station.fuel.getEnergyStored() == 0)
-            UIBlocks.POWER_BAR.drawBorder(graphics, x, y, borderColor);
+            UIBlocks.FUEL_SLOT.drawBorder(graphics, x, y, borderColor);
 
     }
 

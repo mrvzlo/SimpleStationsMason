@@ -2,15 +2,13 @@ package com.ave.simplestationsmason.blockentity;
 
 import javax.annotation.Nullable;
 
-import com.ave.simplestationsmason.registrations.ModBlocks;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ExcavatorBlock extends BaseStationBlock {
     public ExcavatorBlock(Properties props) {
-        super(props, ModBlocks.EXCAVATOR_BLOCK);
+        super(props);
     }
 
     @Nullable

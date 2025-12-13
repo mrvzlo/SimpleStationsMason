@@ -16,7 +16,7 @@ public class ExcavatorScreen extends BaseStationScreen {
 
     @Override
     public Component getTitle() {
-        return Component.translatable("screen.simplestationsmason.mason");
+        return Component.translatable("screen.simplestationsmason.excavator");
     }
 
     @Override

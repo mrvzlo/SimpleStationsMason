@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:dirt"
+    },
+    "H": {
+      "item": "minecraft:stone_hoe"
+    },
+    "L": {
+      "item": "minecraft:lantern"
+    },
+    "R": {
+      "item": "simplestationsmason:wheel"
+    },
+    "S": {
+      "item": "minecraft:stone_shovel"
+    }
+  },
+  "pattern": [
+    "DHD",
+    "LRL",
+    "DSD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "simplestationsmason:excavator"
+  }
+}

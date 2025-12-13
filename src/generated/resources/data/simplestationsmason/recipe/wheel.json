@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "D": {
+      "item": "minecraft:dispenser"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "RBR",
+    "HDH",
+    "RBR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "simplestationsmason:wheel"
+  }
+}

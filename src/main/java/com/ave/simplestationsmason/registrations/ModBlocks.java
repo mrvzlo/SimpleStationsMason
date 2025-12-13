@@ -1,10 +1,12 @@
 package com.ave.simplestationsmason.registrations;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.blockentity.ExcavatorBlock;
 import com.ave.simplestationsmason.blockentity.partblock.PartBlock;
+import com.ave.simplestationsmason.dyes.DyeDustItem;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -21,17 +23,16 @@ public class ModBlocks {
 
         public static final DeferredBlock<Block> EXCAVATOR_BLOCK = BLOCKS.register("excavator",
                         () -> new ExcavatorBlock(BlockBehaviour.Properties.of()
-                                        .strength(0.1F).lightLevel((state) -> 15).noOcclusion()));
+                                        .strength(0.1F).lightLevel((state) -> 11).noOcclusion()));
 
         public static final DeferredBlock<Block> PART = BLOCKS.register("part",
                         () -> new PartBlock(BlockBehaviour.Properties.of()
-                                        .strength(0.1F).lightLevel((state) -> 15).noOcclusion()));
+                                        .strength(0.1F).lightLevel((state) -> 11).noOcclusion()));
 
         public static final DeferredItem<BlockItem> EXCAVATOR_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("excavator",
                         EXCAVATOR_BLOCK);
 
-        public static final DeferredItem<Item> SPRINKLER = ITEMS.registerItem("sprinkler", Item::new,
-                        new Item.Properties());
+        public static final DeferredItem<Item> WHEEL = ITEMS.registerItem("wheel", Item::new, new Item.Properties());
 
         public static final Item[] EXCAVATABLE = new Item[] {
                         Items.CLAY,
@@ -51,4 +52,14 @@ public class ModBlocks {
         public static final DeferredBlock<Block>[] BUILD_BLOCKS = Arrays.stream(BUILD_TYPES)
                         .map(x -> BLOCKS.register(x, () -> new Block(BlockBehaviour.Properties.of())))
                         .toArray(DeferredBlock[]::new);
+
+        public static final String[] COLOR_NAMES = { "white", "orange", "magenta", "light_blue", "yellow", "lime",
+                        "pink", "gray", "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black" };
+
+        public static final DeferredItem<Item>[] COLOR_DUST_ITEMS = IntStream.range(0, COLOR_NAMES.length)
+                        .mapToObj(i -> ITEMS.registerItem(
+                                        "dust_" + COLOR_NAMES[i],
+                                        props -> new DyeDustItem(i, props),
+                                        new Item.Properties().stacksTo(64)))
+                        .toArray(DeferredItem[]::new);
 }
