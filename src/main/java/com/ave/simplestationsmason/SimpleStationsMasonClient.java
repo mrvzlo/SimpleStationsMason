@@ -1,13 +1,14 @@
 package com.ave.simplestationsmason;
 
 import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
-import com.ave.simplestationsmason.blockentity.FurnaceBlockEntity;
+import com.ave.simplestationsmason.blockentity.KilnBlockEntity;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import com.ave.simplestationsmason.blockentity.partblock.PartBlockEntity;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
 import com.ave.simplestationsmason.renderer.ExcavatorRenderer;
 import com.ave.simplestationsmason.screen.ModMenuTypes;
 import com.ave.simplestationsmason.screen.ExcavatorScreen;
+import com.ave.simplestationsmason.screen.KilnScreen;
 import com.ave.simplestationsmason.screen.MixerScreen;
 
 import net.neoforged.api.distmarker.Dist;
@@ -46,13 +47,14 @@ public class SimpleStationsMasonClient {
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenuTypes.EXCAVATOR_MENU.get(), ExcavatorScreen::new);
         event.register(ModMenuTypes.MIXER_MENU.get(), MixerScreen::new);
+        event.register(ModMenuTypes.KILN_MENU.get(), KilnScreen::new);
     }
 
     @SubscribeEvent
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         ExcavatorBlockEntity.registerCaps(event);
         MixerBlockEntity.registerCaps(event);
-        FurnaceBlockEntity.registerCaps(event);
+        KilnBlockEntity.registerCaps(event);
         PartBlockEntity.registerCaps(event);
     }
 

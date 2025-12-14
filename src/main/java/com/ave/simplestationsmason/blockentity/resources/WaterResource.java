@@ -36,10 +36,10 @@ public class WaterResource implements StationResource {
     }
 
     public void substract() {
-        storage.drain(getUsage());
+        storage.drain(getRequired());
     }
 
-    public int getUsage() {
+    public int getRequired() {
         return usage;
     }
 

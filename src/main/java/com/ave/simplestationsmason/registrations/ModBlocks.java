@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.blockentity.ExcavatorBlock;
-import com.ave.simplestationsmason.blockentity.FurnaceBlock;
+import com.ave.simplestationsmason.blockentity.KilnBlock;
 import com.ave.simplestationsmason.blockentity.MixerBlock;
 import com.ave.simplestationsmason.blockentity.partblock.PartBlock;
 import com.ave.simplestationsmason.dyes.DyeDustItem;
@@ -31,8 +31,8 @@ public class ModBlocks {
                         () -> new MixerBlock(BlockBehaviour.Properties.of()
                                         .strength(0.1F).lightLevel((state) -> 11).noOcclusion()));
 
-        public static final DeferredBlock<Block> FURNACE_BLOCK = BLOCKS.register("furnace",
-                        () -> new FurnaceBlock(BlockBehaviour.Properties.of()
+        public static final DeferredBlock<Block> KILN_BLOCK = BLOCKS.register("furnace",
+                        () -> new KilnBlock(BlockBehaviour.Properties.of()
                                         .strength(0.1F).lightLevel((state) -> 11).noOcclusion()));
 
         public static final DeferredBlock<Block> PART = BLOCKS.register("part",
@@ -45,8 +45,8 @@ public class ModBlocks {
         public static final DeferredItem<BlockItem> MIXER_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("mixer",
                         MIXER_BLOCK);
 
-        public static final DeferredItem<BlockItem> FURNACE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("furnace",
-                        FURNACE_BLOCK);
+        public static final DeferredItem<BlockItem> KILN_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("furnace",
+                        KILN_BLOCK);
 
         public static final DeferredItem<Item> WHEEL = ITEMS.registerItem("wheel", Item::new, new Item.Properties());
 

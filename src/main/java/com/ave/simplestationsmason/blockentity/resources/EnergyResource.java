@@ -45,7 +45,7 @@ public class EnergyResource implements StationResource {
         storage.extractEnergy(usage, false);
     }
 
-    public int getUsage() {
+    public int getRequired() {
         return usage;
     }
 

@@ -4,5 +4,5 @@
     "all": "simplestationsmason:block/mixer",
     "1": "simplestationsmason:block/mixer"
   },
-  "render_type": "transparent"
+  "render_type": "cutout"
 }

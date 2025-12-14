@@ -4,5 +4,5 @@
     "all": "simplestationsmason:block/furnace",
     "1": "simplestationsmason:block/furnace"
   },
-  "render_type": "transparent"
+  "render_type": "cutout"
 }

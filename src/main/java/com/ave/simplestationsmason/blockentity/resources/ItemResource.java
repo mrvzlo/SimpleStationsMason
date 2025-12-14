@@ -50,7 +50,7 @@ public class ItemResource implements StationResource {
         getSlot().shrink(usage);
     }
 
-    public int getUsage() {
+    public int getRequired() {
         return usage;
     }
 

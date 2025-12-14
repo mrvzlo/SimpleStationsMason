@@ -30,24 +30,24 @@ public abstract class BaseStationScreen extends AbstractContainerScreen<BaseStat
         if (!(menu.blockEntity instanceof BaseStationBlockEntity station))
             return;
 
-        int x = getStartX();
-        int y = getStartY();
-
-        if (UIBlocks.POWER_BAR.isHovered(mouseX - x, mouseY - y)) {
-            String powerPart = NumToString.parse(station.fuelValue, "RF / ")
-                    + NumToString.parse(Config.POWER_MAX.get(), "RF");
-            List<Component> powerText = Arrays.asList(
-                    Component.translatable("screen.simplestationsmason.power"),
-                    Component.literal(powerPart));
-            gfx.renderComponentTooltip(font, powerText, mouseX, mouseY);
-        }
-
-        if (station.progress > 0 && UIBlocks.PROGRESS_BAR.isHovered(mouseX - x, mouseY - y)) {
+        if (station.progress > 0 && UIBlocks.PROGRESS_BAR.isHovered(mouseX - getStartX(), mouseY - getStartY())) {
             int progressPart = (int) Math.ceil(100 * station.progress / station.getMaxProgress());
             gfx.renderTooltip(font, Component.literal(progressPart + "%"), mouseX, mouseY);
         }
 
+        renderPowerTooltip(gfx, mouseX, mouseY, station);
         renderMoreTooltips(gfx, mouseX, mouseY, station);
+    }
+
+    protected void renderPowerTooltip(GuiGraphics gfx, int mouseX, int mouseY, BaseStationBlockEntity station) {
+        if (!UIBlocks.POWER_BAR.isHovered(mouseX - getStartX(), mouseY - getStartY()))
+            return;
+        String powerPart = NumToString.parse(station.fuelValue, "RF / ")
+                + NumToString.parse(Config.POWER_MAX.get(), "RF");
+        List<Component> powerText = Arrays.asList(
+                Component.translatable("screen.simplestationsmason.power"),
+                Component.literal(powerPart));
+        gfx.renderComponentTooltip(font, powerText, mouseX, mouseY);
     }
 
     protected abstract void renderMoreTooltips(GuiGraphics gfx, int mouseX, int mouseY, BaseStationBlockEntity station);
@@ -72,11 +72,14 @@ public abstract class BaseStationScreen extends AbstractContainerScreen<BaseStat
         float progressPart = station.progress / station.getMaxProgress();
         UIBlocks.PROGRESS_BAR.drawProgressToRight(graphics, x, y, progressPart, 0xFFCCFEDD);
 
+        renderPowerBar(graphics, station, x, y);
+    }
+
+    protected void renderPowerBar(GuiGraphics graphics, BaseStationBlockEntity station, int x, int y) {
         float powerPart = (float) station.fuelValue / Config.POWER_MAX.get();
         UIBlocks.POWER_BAR.drawProgressToTop(graphics, x, y, powerPart, 0xAABB2211);
         if (station.fuelValue == 0)
             UIBlocks.FUEL_SLOT.drawBorder(graphics, x, y, getWarningColor());
-
     }
 
     protected int getWarningColor() {

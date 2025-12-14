@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 import org.slf4j.Logger;
 
-import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
+import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
+import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import com.ave.simplestationsmason.blockentity.partblock.PartBlockEntity;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
 import com.ave.simplestationsmason.registrations.ModBlocks;
@@ -41,7 +42,7 @@ public class SimpleStationsMason {
                                         .displayItems((parameters, output) -> {
                                                 output.accept(ModBlocks.EXCAVATOR_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.MIXER_BLOCK_ITEM.get());
-                                                output.accept(ModBlocks.FURNACE_BLOCK_ITEM.get());
+                                                output.accept(ModBlocks.KILN_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.WHEEL.get());
                                                 Arrays.stream(ModBlocks.COLOR_DUST_ITEMS)
                                                                 .forEach(x -> output.accept(x.get()));
@@ -67,8 +68,11 @@ public class SimpleStationsMason {
 
         private void registerCapabilities(RegisterCapabilitiesEvent event) {
                 event.registerBlock(Capabilities.EnergyStorage.BLOCK,
-                                (level, pos, state, be, side) -> ((BaseStationBlockEntity) be).getEnergyStorage(),
+                                (level, pos, state, be, side) -> ((ExcavatorBlockEntity) be).getEnergyStorage(),
                                 ModBlocks.EXCAVATOR_BLOCK.get());
+                event.registerBlock(Capabilities.EnergyStorage.BLOCK,
+                                (level, pos, state, be, side) -> ((MixerBlockEntity) be).getEnergyStorage(),
+                                ModBlocks.MIXER_BLOCK.get());
                 event.registerBlock(
                                 Capabilities.EnergyStorage.BLOCK, (level, pos, state, be,
                                                 side) -> ((PartBlockEntity) be).getEnergyStorage((PartBlockEntity) be),

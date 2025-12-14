@@ -8,7 +8,7 @@ public interface StationResource {
 
     int getMax();
 
-    int getUsage();
+    int getRequired();
 
     int getIncrement(Item item);
 
@@ -39,6 +39,6 @@ public interface StationResource {
     void load(CompoundTag tag);
 
     default boolean isEnough() {
-        return get() >= getUsage();
+        return get() >= getRequired();
     }
 }

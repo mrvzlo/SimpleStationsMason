@@ -13,11 +13,8 @@ public class ExcavatorInputHandler extends BaseSidedItemHandler {
 
     @Override
     public boolean isItemValid(int slot, ItemStack stack) {
-        if (slot == ExcavatorBlockEntity.OUTPUT_SLOT)
-            return false;
-
         if (slot == ExcavatorBlockEntity.TYPE_SLOT)
-            return Arrays.stream(ModBlocks.EXCAVATABLE).anyMatch(stack.getItem()::equals);
+            return Arrays.stream(ModBlocks.EXCAVATABLE).anyMatch(stack::is);
 
         return super.isItemValid(slot, stack);
     }

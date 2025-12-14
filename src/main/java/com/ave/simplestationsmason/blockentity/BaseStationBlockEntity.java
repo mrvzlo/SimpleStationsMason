@@ -78,8 +78,10 @@ public abstract class BaseStationBlockEntity extends StationContainer {
     }
 
     public IEnergyStorage getEnergyStorage() {
-        var resource = (EnergyResource) resources.get(BaseStationBlockEntity.FUEL_SLOT);
-        return resource.storage;
+        var resource = resources.get(BaseStationBlockEntity.FUEL_SLOT);
+        if (resource instanceof EnergyResource energy)
+            return energy.storage;
+        return null;
     }
 
     private void checkNewType() {

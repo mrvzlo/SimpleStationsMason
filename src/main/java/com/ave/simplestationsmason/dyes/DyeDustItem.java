@@ -50,4 +50,23 @@ public class DyeDustItem extends Item {
             return VanillaBlocks.CONCRETE[id];
         return null;
     }
+
+    public Item getTransform(Item clicked) {
+        if (id < VanillaBlocks.GLASSES.length
+                && Arrays.stream(VanillaBlocks.GLASSES).anyMatch(x -> x.asItem().equals(clicked)))
+            return VanillaBlocks.GLASSES[id].asItem();
+        if (id < VanillaBlocks.GLASS_PANES.length
+                && Arrays.stream(VanillaBlocks.GLASS_PANES).anyMatch(x -> x.asItem().equals(clicked)))
+            return VanillaBlocks.GLASS_PANES[id].asItem();
+        if (id < VanillaBlocks.TERRACOTA.length
+                && Arrays.stream(VanillaBlocks.TERRACOTA).anyMatch(x -> x.asItem().equals(clicked)))
+            return VanillaBlocks.TERRACOTA[id].asItem();
+        if (id < VanillaBlocks.CONCRETE.length
+                && Arrays.stream(VanillaBlocks.CONCRETE).anyMatch(x -> x.asItem().equals(clicked)))
+            return VanillaBlocks.CONCRETE[id].asItem();
+        if (id < VanillaBlocks.CONCRETE.length
+                && Arrays.stream(VanillaBlocks.GLAZED_TERRACOTA).anyMatch(x -> x.asItem().equals(clicked)))
+            return VanillaBlocks.GLAZED_TERRACOTA[id].asItem();
+        return null;
+    }
 }
