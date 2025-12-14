@@ -2,7 +2,7 @@
   "parent": "simplestationsmason:custom/wheel",
   "textures": {
     "0": "simplestationsmason:block/excavator",
-    "1": "simplestationsmason:block/empty"
+    "1": "minecraft:block/sand"
   },
   "render_type": "transparent"
 }

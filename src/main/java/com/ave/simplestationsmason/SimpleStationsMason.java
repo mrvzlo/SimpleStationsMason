@@ -8,7 +8,6 @@ import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
 import com.ave.simplestationsmason.blockentity.partblock.PartBlockEntity;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
 import com.ave.simplestationsmason.registrations.ModBlocks;
-import com.ave.simplestationsmason.registrations.ModSounds;
 import com.ave.simplestationsmason.screen.ModMenuTypes;
 import com.mojang.logging.LogUtils;
 
@@ -41,6 +40,8 @@ public class SimpleStationsMason {
                                         .icon(() -> ModBlocks.EXCAVATOR_BLOCK_ITEM.get().getDefaultInstance())
                                         .displayItems((parameters, output) -> {
                                                 output.accept(ModBlocks.EXCAVATOR_BLOCK_ITEM.get());
+                                                output.accept(ModBlocks.MIXER_BLOCK_ITEM.get());
+                                                output.accept(ModBlocks.FURNACE_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.WHEEL.get());
                                                 Arrays.stream(ModBlocks.COLOR_DUST_ITEMS)
                                                                 .forEach(x -> output.accept(x.get()));
@@ -53,7 +54,6 @@ public class SimpleStationsMason {
                 CREATIVE_MODE_TABS.register(modEventBus);
                 ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
                 ModMenuTypes.register(modEventBus);
-                ModSounds.SOUND_EVENTS.register(modEventBus);
 
                 modEventBus.addListener(this::addCreative);
                 modEventBus.addListener(this::registerCapabilities);
@@ -67,7 +67,7 @@ public class SimpleStationsMason {
 
         private void registerCapabilities(RegisterCapabilitiesEvent event) {
                 event.registerBlock(Capabilities.EnergyStorage.BLOCK,
-                                (level, pos, state, be, side) -> ((BaseStationBlockEntity) be).fuel,
+                                (level, pos, state, be, side) -> ((BaseStationBlockEntity) be).getEnergyStorage(),
                                 ModBlocks.EXCAVATOR_BLOCK.get());
                 event.registerBlock(
                                 Capabilities.EnergyStorage.BLOCK, (level, pos, state, be,

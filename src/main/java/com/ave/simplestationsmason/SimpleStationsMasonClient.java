@@ -1,11 +1,14 @@
 package com.ave.simplestationsmason;
 
 import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
+import com.ave.simplestationsmason.blockentity.FurnaceBlockEntity;
+import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import com.ave.simplestationsmason.blockentity.partblock.PartBlockEntity;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
-import com.ave.simplestationsmason.renderer.StationRenderer;
+import com.ave.simplestationsmason.renderer.ExcavatorRenderer;
 import com.ave.simplestationsmason.screen.ModMenuTypes;
 import com.ave.simplestationsmason.screen.ExcavatorScreen;
+import com.ave.simplestationsmason.screen.MixerScreen;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -42,16 +45,19 @@ public class SimpleStationsMasonClient {
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenuTypes.EXCAVATOR_MENU.get(), ExcavatorScreen::new);
+        event.register(ModMenuTypes.MIXER_MENU.get(), MixerScreen::new);
     }
 
     @SubscribeEvent
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         ExcavatorBlockEntity.registerCaps(event);
+        MixerBlockEntity.registerCaps(event);
+        FurnaceBlockEntity.registerCaps(event);
         PartBlockEntity.registerCaps(event);
     }
 
     @SubscribeEvent // on the mod event bus only on the physical client
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(ModBlockEntities.EXCAVATOR_ENTITY.get(), StationRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.EXCAVATOR_ENTITY.get(), ExcavatorRenderer::new);
     }
 }

@@ -1,30 +1,37 @@
 package com.ave.simplestationsmason.blockentity;
 
-import com.ave.simplestationsmason.Config;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.ave.simplestationsmason.blockentity.managers.ExportManager;
-import com.ave.simplestationsmason.registrations.ModSounds;
+import com.ave.simplestationsmason.blockentity.managers.WorkManager;
+import com.ave.simplestationsmason.blockentity.resources.EnergyResource;
+import com.ave.simplestationsmason.blockentity.resources.StationResource;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.item.Item;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.energy.EnergyStorage;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 
 public abstract class BaseStationBlockEntity extends StationContainer {
-    public EnergyStorage fuel = new EnergyStorage(Config.POWER_MAX.get());
+    public static final int FUEL_SLOT = 0;
+    public static final int OUTPUT_SLOT = 1;
 
+    public final Map<Integer, StationResource> resources = new HashMap<Integer, StationResource>();
     public int type = -1;
     public float progress = 0;
     public boolean working = false;
 
-    protected int powerUsage = 1;
-    protected int speed = 1;
-    public int fluidUsage;
+    public int speed = 1;
+    public int soundCooldown = 0;
+
+    public ItemStack toProduce;
+    public int fuelValue = 0;
 
     public BaseStationBlockEntity(BlockEntityType entity, BlockPos pos, BlockState state) {
         super(entity, pos, state);
@@ -34,81 +41,45 @@ public abstract class BaseStationBlockEntity extends StationContainer {
         if (level.isClientSide)
             return;
 
-        if (progress >= Config.MAX_PROGRESS.get())
-            progress -= Config.MAX_PROGRESS.get();
+        if (progress >= getMaxProgress())
+            progress -= getMaxProgress();
 
         checkNewType();
-        checkResource(FUEL_SLOT, Items.COAL_BLOCK, Config.POWER_PER_RED.get(), Config.POWER_MAX.get(),
-                ResourceType.POWER);
+        for (var entry : resources.entrySet())
+            checkResource(entry.getKey(), entry.getValue());
 
-        var slot = inventory.getStackInSlot(OUTPUT_SLOT);
-        working = getWorking(slot);
+        working = WorkManager.getWorkingState(this);
         ExportManager.pushOutput(this);
+        fuelValue = resources.get(BaseStationBlockEntity.FUEL_SLOT).get();
 
         if (!working)
             return;
 
-        progress += speed;
-        fuel.extractEnergy(powerUsage, false);
+        WorkManager.performWorkTick(this);
 
-        playSound();
-
-        if (progress < Config.MAX_PROGRESS.get())
+        if (progress < getMaxProgress())
             return;
 
-        var toAdd = new ItemStack(getProduct());
-        toAdd.setCount(slot.getCount() + 1);
-        inventory.setStackInSlot(OUTPUT_SLOT, toAdd);
-        setChanged();
+        WorkManager.performWorkEnd(this);
     }
 
-    private boolean getWorking(ItemStack slot) {
-        if (type == -1)
-            return false;
-        if (fuel.getEnergyStored() < powerUsage)
-            return false;
-        if (slot.getCount() == 0)
-            return true;
-        if (slot.getCount() + 1 > slot.getMaxStackSize())
-            return false;
-        return slot.getItem().equals(getProduct());
-    }
-
-    private void checkResource(int slot, Item blockItem, int increment, int maxCapacity, ResourceType type) {
+    private void checkResource(int slot, StationResource resource) {
         var stack = inventory.getStackInSlot(slot);
-
-        if (blockItem != null && stack.getItem().equals(blockItem))
-            increment *= 9;
-
-        if (stack.isEmpty() || getResourceValue(type) + increment > maxCapacity)
+        if (stack.isEmpty())
             return;
 
-        stack.shrink(1);
-        inventory.setStackInSlot(slot, stack);
-        addResource(type, increment);
-    }
-
-    private void addResource(ResourceType type, int amount) {
-        switch (type) {
-            case POWER -> fuel.receiveEnergy(amount, false);
-        }
-    }
-
-    public int soundCooldown = 0;
-
-    private void playSound() {
-        if (soundCooldown > 0) {
-            soundCooldown--;
+        if (!resource.tryIncrement(stack.getItem()))
             return;
-        }
-        soundCooldown += 20;
-        level.playSound(null, getBlockPos(), ModSounds.WORK_SOUND.get(), SoundSource.BLOCKS);
+
+        if (stack.getItem().equals(Items.WATER_BUCKET) || stack.getItem().equals(Items.LAVA_BUCKET))
+            inventory.setStackInSlot(slot, new ItemStack(Items.BUCKET));
+        else
+            stack.shrink(1);
     }
 
-    private int getResourceValue(ResourceType type) {
-        return switch (type) {
-            case POWER -> fuel.getEnergyStored();
-        };
+    public IEnergyStorage getEnergyStorage() {
+        var resource = (EnergyResource) resources.get(BaseStationBlockEntity.FUEL_SLOT);
+        return resource.storage;
     }
 
     private void checkNewType() {
@@ -137,26 +108,23 @@ public abstract class BaseStationBlockEntity extends StationContainer {
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         type = tag.getInt("type");
-        fuel = new EnergyStorage(Config.POWER_MAX.get(), Config.POWER_MAX.get(), Config.POWER_MAX.get(),
-                tag.getInt("fuel"));
         progress = tag.getFloat("progress");
+        for (var res : resources.values())
+            res.load(tag);
     }
 
     private void saveAll(CompoundTag tag) {
-        tag.putInt("fuel", fuel.getEnergyStored());
         tag.putFloat("progress", progress);
         tag.putInt("type", type);
+        for (var res : resources.values())
+            res.save(tag);
     }
 
-    protected Item getProduct() {
-        return null;
-    }
+    public abstract int getMaxProgress();
 
-    protected int getCurrentType() {
-        return 0;
-    }
+    public abstract SoundEvent getWorkSound();
 
-    private enum ResourceType {
-        POWER
-    }
+    public abstract ItemStack getProduct();
+
+    protected abstract int getCurrentType();
 }

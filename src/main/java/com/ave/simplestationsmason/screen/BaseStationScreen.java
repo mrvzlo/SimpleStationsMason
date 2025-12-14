@@ -30,11 +30,11 @@ public abstract class BaseStationScreen extends AbstractContainerScreen<BaseStat
         if (!(menu.blockEntity instanceof BaseStationBlockEntity station))
             return;
 
-        int startX = (width - imageWidth) / 2;
-        int startY = (height - imageHeight) / 2;
+        int x = getStartX();
+        int y = getStartY();
 
-        if (UIBlocks.POWER_BAR.isHovered(mouseX - startX, mouseY - startY)) {
-            String powerPart = NumToString.parse(station.fuel.getEnergyStored(), "RF / ")
+        if (UIBlocks.POWER_BAR.isHovered(mouseX - x, mouseY - y)) {
+            String powerPart = NumToString.parse(station.fuelValue, "RF / ")
                     + NumToString.parse(Config.POWER_MAX.get(), "RF");
             List<Component> powerText = Arrays.asList(
                     Component.translatable("screen.simplestationsmason.power"),
@@ -42,23 +42,23 @@ public abstract class BaseStationScreen extends AbstractContainerScreen<BaseStat
             gfx.renderComponentTooltip(font, powerText, mouseX, mouseY);
         }
 
-        if (station.progress > 0 && UIBlocks.PROGRESS_BAR.isHovered(mouseX - startX, mouseY - startY)) {
-            int progressPart = (int) Math.ceil(100 * station.progress / Config.MAX_PROGRESS.get());
+        if (station.progress > 0 && UIBlocks.PROGRESS_BAR.isHovered(mouseX - x, mouseY - y)) {
+            int progressPart = (int) Math.ceil(100 * station.progress / station.getMaxProgress());
             gfx.renderTooltip(font, Component.literal(progressPart + "%"), mouseX, mouseY);
         }
 
-        if (station.type < 0 && UIBlocks.FILTER_SLOT.isHovered(mouseX - startX, mouseY - startY)) {
-            gfx.renderTooltip(font, Component.translatable("screen.simplestationsmason.filter"), mouseX, mouseY);
-        }
+        renderMoreTooltips(gfx, mouseX, mouseY, station);
     }
+
+    protected abstract void renderMoreTooltips(GuiGraphics gfx, int mouseX, int mouseY, BaseStationBlockEntity station);
 
     @Override
     protected void renderBg(GuiGraphics graphics, float tick, int mx, int my) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, getTexture());
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
+        int x = getStartX();
+        int y = getStartY();
         graphics.blit(getTexture(), x, y, 0, 0, imageWidth, imageHeight, imageWidth,
                 imageHeight);
 
@@ -69,31 +69,28 @@ public abstract class BaseStationScreen extends AbstractContainerScreen<BaseStat
         if (!(menu.blockEntity instanceof BaseStationBlockEntity station))
             return;
 
-        int tickAlpha = 96 + (int) (63 * Math.sin(System.currentTimeMillis() / 400.0));
-        int borderColor = (tickAlpha << 24) | 0xFF0000;
-        float progressPart = station.progress / Config.MAX_PROGRESS.get();
+        float progressPart = station.progress / station.getMaxProgress();
         UIBlocks.PROGRESS_BAR.drawProgressToRight(graphics, x, y, progressPart, 0xFFCCFEDD);
 
-        float powerPart = (float) station.fuel.getEnergyStored() / Config.POWER_MAX.get();
+        float powerPart = (float) station.fuelValue / Config.POWER_MAX.get();
         UIBlocks.POWER_BAR.drawProgressToTop(graphics, x, y, powerPart, 0xAABB2211);
-        if (station.fuel.getEnergyStored() == 0)
-            UIBlocks.FUEL_SLOT.drawBorder(graphics, x, y, borderColor);
+        if (station.fuelValue == 0)
+            UIBlocks.FUEL_SLOT.drawBorder(graphics, x, y, getWarningColor());
 
     }
 
-    public int getFertColor() {
-        return 0;
+    protected int getWarningColor() {
+        var tickAlpha = 96 + (int) (63 * Math.sin(System.currentTimeMillis() / 400.0));
+        return (tickAlpha << 24) | 0xFF0000;
     }
 
-    public int getFluidColor() {
-        return 0xAA222299;
+    public abstract ResourceLocation getTexture();
+
+    protected int getStartX() {
+        return (width - imageWidth) / 2;
     }
 
-    public ResourceLocation getTexture() {
-        return null;
-    }
-
-    protected Component getFluidName() {
-        return Component.translatable("screen.simplestationsmason.water");
+    protected int getStartY() {
+        return (height - imageHeight) / 2;
     }
 }

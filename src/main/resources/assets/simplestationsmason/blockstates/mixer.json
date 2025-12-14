@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "simplestationsmason:block/mixer", "y": 180 },
+    "facing=south": { "model": "simplestationsmason:block/mixer" },
+    "facing=east": { "model": "simplestationsmason:block/mixer", "y": 270 },
+    "facing=west": { "model": "simplestationsmason:block/mixer", "y": 90 }
+  }
+}

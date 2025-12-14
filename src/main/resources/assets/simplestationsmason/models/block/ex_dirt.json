@@ -1,7 +1,0 @@
-{
-  "parent": "simplestationsmason:custom/excavatable",
-  "textures": {
-    "0": "minecraft:block/dirt"
-  },
-  "render_type": "transparent"
-}

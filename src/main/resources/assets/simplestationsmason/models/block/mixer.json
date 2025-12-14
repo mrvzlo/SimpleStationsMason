@@ -1,0 +1,8 @@
+{
+  "parent": "simplestationsmason:custom/mixer",
+  "textures": {
+    "all": "simplestationsmason:block/mixer",
+    "1": "simplestationsmason:block/mixer"
+  },
+  "render_type": "transparent"
+}

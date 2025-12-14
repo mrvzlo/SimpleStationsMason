@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.energy.EnergyStorage;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.IItemHandler;
 
 public class PartBlockEntity extends BlockEntity {
@@ -51,14 +51,20 @@ public class PartBlockEntity extends BlockEntity {
     }
 
     public IItemHandler getItemHandler(Direction side, PartBlockEntity be) {
-        var inventory = this.getController(be).inventory;
+        var controller = this.getController(be);
+        if (controller == null)
+            return null;
+        var inventory = controller.inventory;
         if (side == Direction.DOWN)
             return new OutputItemHandler(inventory);
         return new InputItemHandler(inventory);
     }
 
-    public EnergyStorage getEnergyStorage(PartBlockEntity be) {
-        return this.getController(be).fuel;
+    public IEnergyStorage getEnergyStorage(PartBlockEntity be) {
+        var controller = this.getController(be);
+        if (controller == null)
+            return null;
+        return controller.getEnergyStorage();
     }
 
     private BaseStationBlockEntity getController(PartBlockEntity be) {

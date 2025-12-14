@@ -1,0 +1,8 @@
+{
+  "parent": "simplestationsmason:custom/furnace",
+  "textures": {
+    "all": "simplestationsmason:block/furnace",
+    "1": "simplestationsmason:block/furnace"
+  },
+  "render_type": "transparent"
+}
