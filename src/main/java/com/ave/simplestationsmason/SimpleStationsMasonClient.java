@@ -6,6 +6,7 @@ import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import com.ave.simplestationsmason.blockentity.partblock.PartBlockEntity;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
 import com.ave.simplestationsmason.renderer.ExcavatorRenderer;
+import com.ave.simplestationsmason.renderer.KilnRenderer;
 import com.ave.simplestationsmason.screen.ModMenuTypes;
 import com.ave.simplestationsmason.screen.ExcavatorScreen;
 import com.ave.simplestationsmason.screen.KilnScreen;
@@ -61,5 +62,6 @@ public class SimpleStationsMasonClient {
     @SubscribeEvent // on the mod event bus only on the physical client
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.EXCAVATOR_ENTITY.get(), ExcavatorRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.KILN_ENTITY.get(), KilnRenderer::new);
     }
 }

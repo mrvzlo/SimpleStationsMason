@@ -2,6 +2,9 @@ package com.ave.simplestationsmason.blockentity;
 
 import com.ave.simplestationsmason.blockentity.handlers.InputItemHandler;
 import com.ave.simplestationsmason.blockentity.handlers.OutputItemHandler;
+
+import java.util.Random;
+
 import com.ave.simplestationsmason.blockentity.handlers.BaseSidedItemHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,6 +22,7 @@ import net.neoforged.neoforge.items.IItemHandler;
 
 public abstract class StationContainer extends BlockEntity implements MenuProvider {
     public BaseSidedItemHandler inventory;
+    protected static final Random RNG = new Random();
 
     public StationContainer(BlockEntityType<BlockEntity> entity, BlockPos pos, BlockState state) {
         super(entity, pos, state);

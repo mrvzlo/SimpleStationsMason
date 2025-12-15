@@ -1,0 +1,10 @@
+{
+  "parent": "simplestationsmason:custom/blasting",
+  "textures": {
+    "1": "minecraft:block/blue_stained_glass",
+    "2": "minecraft:block/green_stained_glass",
+    "3": "minecraft:block/red_stained_glass",
+    "4": "minecraft:block/sand"
+  },
+  "render_type": "transparent"
+}

@@ -62,4 +62,8 @@ public class ModBlocks {
                         .map(x -> ITEMS.registerItem("ex_" + x, Item::new, new Item.Properties()))
                         .toArray(DeferredItem[]::new);
 
+        private static final String[] BLASTING_TYPES = { "brick", "glass", "glazed", "terracota" };
+        public static final DeferredItem<Item>[] BLASTING_BLOCKS = Arrays.stream(BLASTING_TYPES)
+                        .map(x -> ITEMS.registerItem("blast_" + x, Item::new, new Item.Properties()))
+                        .toArray(DeferredItem[]::new);
 }

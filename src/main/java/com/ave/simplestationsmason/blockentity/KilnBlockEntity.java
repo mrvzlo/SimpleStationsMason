@@ -11,6 +11,8 @@ import com.ave.simplestationsmason.registrations.VanillaBlocks;
 import com.ave.simplestationsmason.screen.KilnMenu;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
@@ -27,6 +29,7 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
     public static final int TYPE_SLOT = 2;
     public static final int COLOR_SLOT = 3;
     public boolean hasColor = false;
+    private int particleCooldown = 0;
 
     public KilnBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.KILN_ENTITY.get(), pos, state);
@@ -43,8 +46,10 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
 
     @Override
     public void tick() {
-        if (level.isClientSide)
+        if (level.isClientSide) {
+            addParticle();
             return;
+        }
 
         hasColor = !inventory.getStackInSlot(COLOR_SLOT).isEmpty();
         super.tick();
@@ -121,5 +126,27 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.KILN_ENTITY.get(),
                 (be, direction) -> be.getItemHandler(direction));
+    }
+
+    private void addParticle() {
+        if (progress == 0)
+            return;
+        if (particleCooldown > 0) {
+            particleCooldown--;
+            return;
+        }
+        particleCooldown = 10;
+        var dir = getBlockState().getValue(BaseStationBlock.FACING);
+        double x = getBlockPos().getX() + 0.5 + (RNG.nextDouble() / 2 - 0.25);
+        double y = getBlockPos().getY() + 1;
+        double z = getBlockPos().getZ() + 0.5 + (RNG.nextDouble() / 2 - 0.25);
+
+        if (dir == Direction.NORTH || dir == Direction.SOUTH) {
+            level.addParticle(ParticleTypes.SMOKE, x - 1, y, z, 0, 0.01, 0);
+            level.addParticle(ParticleTypes.SMOKE, x + 1, y, z, 0, 0.01, 0);
+        } else {
+            level.addParticle(ParticleTypes.SMOKE, x, y, z - 1, 0, 0.01, 0);
+            level.addParticle(ParticleTypes.SMOKE, x, y, z + 1, 0, 0.01, 0);
+        }
     }
 }

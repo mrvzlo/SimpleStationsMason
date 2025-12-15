@@ -1,0 +1,10 @@
+{
+  "parent": "simplestationsmason:custom/blasting",
+  "textures": {
+    "1": "minecraft:block/blue_glazed_terracotta",
+    "2": "minecraft:block/green_glazed_terracotta",
+    "3": "minecraft:block/red_glazed_terracotta",
+    "4": "minecraft:block/terracotta"
+  },
+  "render_type": "transparent"
+}

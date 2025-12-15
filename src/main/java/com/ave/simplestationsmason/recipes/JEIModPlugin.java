@@ -57,10 +57,13 @@ public class JEIModPlugin implements IModPlugin {
     private List<SimpleRecipe> getKilnRecipes() {
         List<SimpleRecipe> list = Lists.newArrayList();
         list.add(new SimpleRecipe(new ItemStack(Items.CLAY_BALL), new ItemStack(Items.BRICK)));
+        list.add(new SimpleRecipe(new ItemStack(Items.SAND), new ItemStack(Items.GLASS)));
+        list.add(new SimpleRecipe(new ItemStack(Items.RED_SAND), new ItemStack(Items.GLASS)));
+        list.add(new SimpleRecipe(new ItemStack(Items.CLAY), new ItemStack(Items.TERRACOTTA)));
+
         list.add(new SimpleRecipe(new ItemStack(Items.SAND), Tags.Items.GLASS_BLOCKS_CHEAP));
         list.add(new SimpleRecipe(new ItemStack(Items.RED_SAND), Tags.Items.GLASS_BLOCKS_CHEAP));
         list.add(new SimpleRecipe(new ItemStack(Items.CLAY), ItemTags.TERRACOTTA));
-        list.add(new SimpleRecipe(new ItemStack(Items.TERRACOTTA), Tags.Items.GLAZED_TERRACOTTAS));
         list.add(new SimpleRecipe(ItemTags.TERRACOTTA, Tags.Items.GLAZED_TERRACOTTAS));
         return list;
     }

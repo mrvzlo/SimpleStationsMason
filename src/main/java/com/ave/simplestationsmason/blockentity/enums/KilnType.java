@@ -10,6 +10,7 @@ public enum KilnType implements StringRepresentable {
     Glass2(Items.RED_SAND, Items.GLASS),
     Terracota(Items.CLAY, Items.TERRACOTTA),
     Bricks(Items.CLAY_BALL, Items.BRICK),
+    Glazed0(Items.TERRACOTTA, Items.WHITE_GLAZED_TERRACOTTA),
     Glazed1(Items.WHITE_TERRACOTTA, Items.WHITE_GLAZED_TERRACOTTA),
     Glazed2(Items.ORANGE_TERRACOTTA, Items.ORANGE_GLAZED_TERRACOTTA),
     Glazed3(Items.MAGENTA_TERRACOTTA, Items.MAGENTA_GLAZED_TERRACOTTA),
