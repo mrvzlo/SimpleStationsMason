@@ -1,7 +1,5 @@
 package com.ave.simplestationsmason;
 
-import java.util.Arrays;
-
 import org.slf4j.Logger;
 
 import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
@@ -44,8 +42,6 @@ public class SimpleStationsMason {
                                                 output.accept(ModBlocks.KILN_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.WHEEL.get());
                                                 output.accept(ModBlocks.BUCKET.get());
-                                                Arrays.stream(ModBlocks.COLOR_DUST_ITEMS)
-                                                                .forEach(x -> output.accept(x.get()));
                                         }).build());
 
         public SimpleStationsMason(IEventBus modEventBus, ModContainer modContainer) {

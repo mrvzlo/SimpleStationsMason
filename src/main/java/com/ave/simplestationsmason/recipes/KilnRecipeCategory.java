@@ -17,8 +17,8 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.Tags;
 
 public class KilnRecipeCategory implements IRecipeCategory<SimpleRecipe> {
         private static final String Path = "kiln";
@@ -57,12 +57,21 @@ public class KilnRecipeCategory implements IRecipeCategory<SimpleRecipe> {
 
         @Override
         public void setRecipe(IRecipeLayoutBuilder builder, SimpleRecipe recipe, IFocusGroup focuses) {
-                builder.addSlot(RecipeIngredientRole.INPUT, UIBlocks.FUEL_SLOT.left, UIBlocks.FUEL_SLOT.top)
-                                .addIngredients(Ingredient.of(Items.REDSTONE));
-                builder.addSlot(RecipeIngredientRole.OUTPUT, UIBlocks.OUT_SLOT.left, UIBlocks.OUT_SLOT.top)
-                                .addItemStack(recipe.product);
-                builder.addSlot(RecipeIngredientRole.CATALYST, UIBlocks.FILTER_SLOT.left, UIBlocks.FILTER_SLOT.top)
-                                .addIngredients(Ingredient.of(recipe.source.getItem()));
+                if (recipe.sourceTag != null)
+                        builder.addSlot(RecipeIngredientRole.INPUT, UIBlocks.FILTER_SLOT.left, UIBlocks.FILTER_SLOT.top)
+                                        .addIngredients(Ingredient.of(recipe.sourceTag));
+                else
+                        builder.addSlot(RecipeIngredientRole.INPUT, UIBlocks.FILTER_SLOT.left, UIBlocks.FILTER_SLOT.top)
+                                        .addIngredients(Ingredient.of(recipe.source.getItem()));
+                if (recipe.productTag != null) {
+                        builder.addSlot(RecipeIngredientRole.INPUT, UIBlocks.FILTER3_SLOT.left,
+                                        UIBlocks.FILTER3_SLOT.top)
+                                        .addIngredients(Ingredient.of(Tags.Items.DYES));
+                        builder.addSlot(RecipeIngredientRole.OUTPUT, UIBlocks.OUT_SLOT.left, UIBlocks.OUT_SLOT.top)
+                                        .addIngredients(Ingredient.of(recipe.productTag));
+                } else
+                        builder.addSlot(RecipeIngredientRole.OUTPUT, UIBlocks.OUT_SLOT.left, UIBlocks.OUT_SLOT.top)
+                                        .addIngredients(Ingredient.of(recipe.product));
         }
 
         @Override

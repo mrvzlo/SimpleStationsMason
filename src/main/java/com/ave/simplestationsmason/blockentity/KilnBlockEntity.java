@@ -6,8 +6,8 @@ import com.ave.simplestationsmason.blockentity.handlers.KilnInputHandler;
 import com.ave.simplestationsmason.blockentity.resources.ItemResource;
 import com.ave.simplestationsmason.blockentity.resources.OptionalItemResource;
 import com.ave.simplestationsmason.blockentity.resources.TemperatureResource;
-import com.ave.simplestationsmason.dyes.DyeDustItem;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
+import com.ave.simplestationsmason.registrations.VanillaBlocks;
 import com.ave.simplestationsmason.screen.KilnMenu;
 
 import net.minecraft.core.BlockPos;
@@ -15,10 +15,13 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.common.Tags;
 
 public class KilnBlockEntity extends BaseStationBlockEntity {
     public static final int TYPE_SLOT = 2;
@@ -34,7 +37,7 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
             }
         };
         resources.put(FUEL_SLOT, new TemperatureResource());
-        resources.put(TYPE_SLOT, new ItemResource(inventory, TYPE_SLOT, 1));
+        resources.put(TYPE_SLOT, new ItemResource(inventory, TYPE_SLOT, 8));
         resources.put(COLOR_SLOT, new OptionalItemResource(inventory, COLOR_SLOT, 1));
     }
 
@@ -66,11 +69,11 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
         if (type <= 0)
             return ItemStack.EMPTY;
         var result = KilnType.values()[type].product;
-        var color = inventory.getStackInSlot(COLOR_SLOT).getItem();
-        if (!(color instanceof DyeDustItem dust))
-            return new ItemStack(result);
+        var color = getColor();
+        if (color < 0)
+            return new ItemStack(result, 8);
 
-        return new ItemStack(dust.getTransform(result));
+        return new ItemStack(getBlockToTransform(color, result), 8);
     }
 
     @Override
@@ -79,7 +82,33 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
         if (stack.isEmpty())
             return -1;
         var type = KilnType.findBySource(stack.getItem());
+        // uncolored terracota without dye
+        if (type.equals(KilnType.Glazed0) && inventory.getStackInSlot(COLOR_SLOT).isEmpty())
+            return -1;
         return type.equals(KilnType.Unknown) ? -1 : type.ordinal();
+    }
+
+    private int getColor() {
+        var stack = inventory.getStackInSlot(COLOR_SLOT);
+        if (stack.isEmpty())
+            return -1;
+        var index = 0;
+        for (var i : VanillaBlocks.COLOR_DYES) {
+            if (i.equals(stack.getItem()))
+                return index;
+            index++;
+        }
+        return -1;
+    }
+
+    private Item getBlockToTransform(int index, Item item) {
+        if (item.equals(Items.GLASS))
+            return VanillaBlocks.GLASSES[index].asItem();
+        if (item.equals(Items.TERRACOTTA))
+            return VanillaBlocks.TERRACOTA[index].asItem();
+        if (new ItemStack(item).is(Tags.Items.GLAZED_TERRACOTTAS))
+            return VanillaBlocks.GLAZED_TERRACOTA[index].asItem();
+        return item;
     }
 
     @Override

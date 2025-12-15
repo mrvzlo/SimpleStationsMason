@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "simplestationsmason:item/dust_green"
-  },
-  "render_type": "cutout"
-}

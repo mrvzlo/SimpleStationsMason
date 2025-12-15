@@ -3,18 +3,14 @@ package com.ave.simplestationsmason.datagen;
 import java.util.concurrent.CompletableFuture;
 
 import com.ave.simplestationsmason.registrations.ModBlocks;
-import com.ave.simplestationsmason.registrations.VanillaBlocks;
-
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
-import net.neoforged.neoforge.common.Tags;
 
 public class ModRecipeProvider extends RecipeProvider {
         public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
@@ -71,32 +67,5 @@ public class ModRecipeProvider extends RecipeProvider {
                                 .define('H', Items.HOPPER)
                                 .unlockedBy("has_h", has(Items.HOPPER))
                                 .save(consumer);
-
-                for (var i = 0; i < ModBlocks.COLOR_NAMES.length; i++) {
-                        var dye = VanillaBlocks.COLOR_DYES[i];
-                        var dust = ModBlocks.COLOR_DUST_ITEMS[i].get();
-                        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, dust, 9)
-                                        .requires(dye)
-                                        .unlockedBy("has_dye", has(dye)).save(consumer);
-
-                        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, dye)
-                                        .pattern("AAA").pattern("AAA").pattern("AAA").define('A', dust)
-                                        .unlockedBy("has_dye", has(dye)).save(consumer);
-
-                        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, VanillaBlocks.GLASSES[i])
-                                        .requires(dust)
-                                        .requires(Tags.Items.GLASS_BLOCKS_CHEAP)
-                                        .unlockedBy("has_dust", has(dust)).save(consumer);
-
-                        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, VanillaBlocks.GLASS_PANES[i])
-                                        .requires(dust)
-                                        .requires(Tags.Items.GLASS_PANES)
-                                        .unlockedBy("has_dust", has(dust)).save(consumer);
-
-                        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, VanillaBlocks.TERRACOTA[i])
-                                        .requires(dust)
-                                        .requires(ItemTags.TERRACOTTA)
-                                        .unlockedBy("has_dust", has(dust)).save(consumer);
-                }
         }
 }
