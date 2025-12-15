@@ -23,6 +23,7 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 public class KilnBlockEntity extends BaseStationBlockEntity {
     public static final int TYPE_SLOT = 2;
     public static final int COLOR_SLOT = 3;
+    public boolean hasColor = false;
 
     public KilnBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.KILN_ENTITY.get(), pos, state);
@@ -41,6 +42,8 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
     public void tick() {
         if (level.isClientSide)
             return;
+
+        hasColor = !inventory.getStackInSlot(COLOR_SLOT).isEmpty();
         super.tick();
         if (working)
             return;

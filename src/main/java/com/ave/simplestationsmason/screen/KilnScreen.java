@@ -3,13 +3,10 @@ package com.ave.simplestationsmason.screen;
 import java.util.Arrays;
 import java.util.List;
 
-import org.checkerframework.checker.units.qual.Temperature;
-
-import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
+import com.ave.simplestationsmason.blockentity.KilnBlockEntity;
 import com.ave.simplestationsmason.blockentity.managers.TemperatureManager;
-import com.ave.simplestationsmason.uihelpers.NumToString;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
 
 import net.minecraft.client.gui.GuiGraphics;
@@ -37,7 +34,8 @@ public class KilnScreen extends BaseStationScreen {
     protected void renderMoreTooltips(GuiGraphics gfx, int mouseX, int mouseY, BaseStationBlockEntity station) {
         int x = getStartX();
         int y = getStartY();
-        if (station.type < 0 && UIBlocks.FILTER3_SLOT.isHovered(mouseX - x, mouseY - y)) {
+        var kiln = (KilnBlockEntity) station;
+        if (!kiln.hasColor && UIBlocks.FILTER3_SLOT.isHovered(mouseX - x, mouseY - y)) {
             gfx.renderTooltip(font, Component.translatable("screen.simplestationsmason.color"), mouseX, mouseY);
         }
     }

@@ -49,6 +49,7 @@ public class ModBlocks {
                         KILN_BLOCK);
 
         public static final DeferredItem<Item> WHEEL = ITEMS.registerItem("wheel", Item::new, new Item.Properties());
+        public static final DeferredItem<Item> BUCKET = ITEMS.registerItem("bucket", Item::new, new Item.Properties());
 
         public static final Item[] EXCAVATABLE = new Item[] {
                         Items.CLAY,

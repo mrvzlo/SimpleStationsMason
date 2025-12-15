@@ -22,7 +22,6 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -44,6 +43,7 @@ public class SimpleStationsMason {
                                                 output.accept(ModBlocks.MIXER_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.KILN_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.WHEEL.get());
+                                                output.accept(ModBlocks.BUCKET.get());
                                                 Arrays.stream(ModBlocks.COLOR_DUST_ITEMS)
                                                                 .forEach(x -> output.accept(x.get()));
                                         }).build());
@@ -55,15 +55,7 @@ public class SimpleStationsMason {
                 CREATIVE_MODE_TABS.register(modEventBus);
                 ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
                 ModMenuTypes.register(modEventBus);
-
-                modEventBus.addListener(this::addCreative);
                 modEventBus.addListener(this::registerCapabilities);
-        }
-
-        // Add the example block item to the building blocks tab
-        private void addCreative(BuildCreativeModeTabContentsEvent event) {
-                if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
-                        event.accept(ModBlocks.EXCAVATOR_BLOCK_ITEM);
         }
 
         private void registerCapabilities(RegisterCapabilitiesEvent event) {

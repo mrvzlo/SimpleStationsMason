@@ -2,23 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "item": "minecraft:bucket"
-    },
-    "D": {
-      "item": "minecraft:dispenser"
-    },
-    "H": {
-      "item": "minecraft:hopper"
-    },
-    "R": {
-      "item": "minecraft:redstone"
+    "A": {
+      "item": "simplestationsmason:bucket"
     }
   },
   "pattern": [
-    "RBR",
-    "HDH",
-    "RBR"
+    "AAA",
+    "A A",
+    "AAA"
   ],
   "result": {
     "count": 1,

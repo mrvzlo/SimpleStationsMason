@@ -2,26 +2,26 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "D": {
-      "item": "minecraft:dirt"
+    "C": {
+      "tag": "minecraft:stone_crafting_materials"
     },
     "H": {
-      "item": "minecraft:stone_hoe"
-    },
-    "L": {
-      "item": "minecraft:lantern"
+      "item": "minecraft:hopper"
     },
     "R": {
-      "item": "simplestationsmason:wheel"
+      "item": "minecraft:powered_rail"
     },
     "S": {
-      "item": "minecraft:stone_shovel"
+      "item": "minecraft:redstone"
+    },
+    "W": {
+      "item": "simplestationsmason:wheel"
     }
   },
   "pattern": [
-    "DHD",
-    "LRL",
-    "DSD"
+    "CCC",
+    "WRW",
+    "HSH"
   ],
   "result": {
     "count": 1,
