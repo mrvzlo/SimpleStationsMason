@@ -57,7 +57,7 @@ public class MixerScreen extends BaseStationScreen {
             return;
         float waterPart = (float) station.waterValue / Config.WATER_MAX.get();
         UIBlocks.WATER_BAR.drawProgressToTop(graphics, getStartX(), getStartY(), waterPart, 0xAA222299);
-        if (station.fuelValue == 0)
+        if (station.waterValue == 0)
             UIBlocks.WATER_SLOT.drawBorder(graphics, getStartX(), getStartY(), getWarningColor());
     }
 
