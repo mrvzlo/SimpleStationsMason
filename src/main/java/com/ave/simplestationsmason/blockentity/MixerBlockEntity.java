@@ -42,7 +42,7 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
         resources.put(WATER_SLOT, new WaterResource(Config.WATER_MAX.get(), 100));
         resources.put(SAND_SLOT, new ItemResource(inventory, SAND_SLOT, 16));
         resources.put(GRAVEL_SLOT, new ItemResource(inventory, GRAVEL_SLOT, 16));
-        resources.put(COLOR_SLOT, new ItemResource(inventory, COLOR_SLOT, 1));
+        resources.put(COLOR_SLOT, new ItemResource(inventory, COLOR_SLOT, 2));
     }
 
     @Override

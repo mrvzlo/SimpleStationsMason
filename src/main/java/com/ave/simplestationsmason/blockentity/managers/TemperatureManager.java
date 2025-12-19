@@ -3,6 +3,8 @@ package com.ave.simplestationsmason.blockentity.managers;
 public class TemperatureManager {
     public static final int TotalCoolTime = 90;
     public static final float MaxTemp = 1800;
+    public static final float MaxFeed = 1400;
+    public static final int MinTemp = 1000;
     public static final int MinSegmentCoolTime = 3;
     public static final int SegmentCount = 9;
     private static final float SegmentSize = MaxTemp / SegmentCount;

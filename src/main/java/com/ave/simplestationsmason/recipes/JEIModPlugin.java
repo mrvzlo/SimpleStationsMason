@@ -48,7 +48,7 @@ public class JEIModPlugin implements IModPlugin {
         registration.addRecipes(ExcavatorRecipeCategory.REGULAR, excavatorRecipes);
 
         var mixerRecipes = IntStream.range(0, 16)
-                .mapToObj(x -> new SimpleRecipe(new ItemStack(VanillaBlocks.COLOR_DYES[x]),
+                .mapToObj(x -> new SimpleRecipe(new ItemStack(VanillaBlocks.COLOR_DYES[x], 2),
                         new ItemStack(VanillaBlocks.CONCRETE[x], 32)))
                 .toList();
         registration.addRecipes(MixerRecipeCategory.REGULAR, mixerRecipes);

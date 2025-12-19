@@ -8,18 +8,14 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LightLayer;
 
 public class KilnRenderer implements BlockEntityRenderer<KilnBlockEntity> {
 
@@ -37,14 +33,12 @@ public class KilnRenderer implements BlockEntityRenderer<KilnBlockEntity> {
 
         var rotation = getRotation(direction);
         pose.translate(0.5, 0.5, 0.5);
-        if (rotation > 0) {
+        if (rotation > 0)
             pose.mulPose(Axis.YP.rotationDegrees(rotation));
-        }
 
         var item = getItem(be.type);
         itemRenderer.renderStatic(new ItemStack(item), ItemDisplayContext.FIXED, light, OverlayTexture.NO_OVERLAY, pose,
-                buf,
-                be.getLevel(), 1);
+                buf, be.getLevel(), 1);
         pose.popPose();
     }
 

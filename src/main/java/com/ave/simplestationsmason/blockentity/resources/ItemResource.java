@@ -30,7 +30,7 @@ public class ItemResource implements StationResource {
     }
 
     @Override
-    public boolean tryIncrement(Item item) {
+    public boolean tryIncrement(ItemStack item) {
         return false;
     }
 

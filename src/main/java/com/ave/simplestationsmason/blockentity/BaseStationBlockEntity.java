@@ -65,10 +65,7 @@ public abstract class BaseStationBlockEntity extends StationContainer {
 
     private void checkResource(int slot, StationResource resource) {
         var stack = inventory.getStackInSlot(slot);
-        if (stack.isEmpty())
-            return;
-
-        if (!resource.tryIncrement(stack.getItem()))
+        if (!resource.tryIncrement(stack))
             return;
 
         if (stack.getItem().equals(Items.WATER_BUCKET) || stack.getItem().equals(Items.LAVA_BUCKET))

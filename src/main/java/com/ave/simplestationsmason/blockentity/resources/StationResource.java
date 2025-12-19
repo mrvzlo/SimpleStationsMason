@@ -2,6 +2,7 @@ package com.ave.simplestationsmason.blockentity.resources;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 public interface StationResource {
     int get();
@@ -18,7 +19,10 @@ public interface StationResource {
 
     void substract();
 
-    default boolean tryIncrement(Item item) {
+    default boolean tryIncrement(ItemStack stack) {
+        if (stack.isEmpty())
+            return false;
+        var item = stack.getItem();
         var inc = getIncrement(item);
         if (inc == 0 || !canAdd(inc))
             return false;
