@@ -28,7 +28,6 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
     public static final int COLOR_SLOT = 3;
     public static final int WATER_SLOT = 5;
     public int waterValue = 0;
-    private int particleCooldown = 0;
 
     public MixerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.MIXER_ENTITY.get(), pos, state);
@@ -47,10 +46,6 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
 
     @Override
     public void tick() {
-        if (level.isClientSide) {
-            addParticle();
-            return;
-        }
         waterValue = resources.get(WATER_SLOT).get();
         super.tick();
     }
@@ -66,7 +61,7 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
     }
 
     @Override
-    public ItemStack getProduct() {
+    public ItemStack getProduct(boolean __) {
         var type = getCurrentType();
         if (type < 0)
             return ItemStack.EMPTY;
@@ -92,13 +87,7 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
                 (be, direction) -> be.getItemHandler(direction));
     }
 
-    private void addParticle() {
-        if (progress == 0)
-            return;
-        if (particleCooldown > 0) {
-            particleCooldown--;
-            return;
-        }
+    protected void addParticle() {
         particleCooldown = 10;
         double x = getBlockPos().getX() + 0.5 + (RNG.nextDouble() / 2 - 0.25);
         double y = getBlockPos().getY() + 0.4;

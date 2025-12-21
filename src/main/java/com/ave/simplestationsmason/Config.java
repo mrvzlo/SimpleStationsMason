@@ -16,6 +16,7 @@ public class Config {
         public static ModConfigSpec.IntValue MAX_EXC_PROGRESS;
         public static ModConfigSpec.IntValue MAX_MIX_PROGRESS;
         public static ModConfigSpec.IntValue MAX_KILN_PROGRESS;
+        public static ModConfigSpec.IntValue MAX_SIFTER_PROGRESS;
         public static ModConfigSpec.IntValue WATER_MAX;
         public static ModConfigSpec.IntValue FUEL_PER_COAL;
         public static ModConfigSpec.IntValue POWER_MAX;
@@ -36,6 +37,10 @@ public class Config {
                 MAX_KILN_PROGRESS = BUILDER
                                 .comment("Base kiln working time in ticks\n Default: 120")
                                 .defineInRange("kiln_work_time", 120, 1, 10000);
+                MAX_SIFTER_PROGRESS = BUILDER
+                                .comment("Base sifter working time in ticks\n Default: 1200")
+                                .defineInRange("sifter_work_time", 1200, 1, 10000);
+
                 WATER_MAX = BUILDER
                                 .comment("Max water to store\n Default: 10000")
                                 .defineInRange("water_max", 10000, 1, 30000);

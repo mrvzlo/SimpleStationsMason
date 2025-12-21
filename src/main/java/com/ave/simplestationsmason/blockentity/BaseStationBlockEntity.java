@@ -29,6 +29,7 @@ public abstract class BaseStationBlockEntity extends StationContainer {
 
     public int speed = 1;
     public int soundCooldown = 0;
+    protected int particleCooldown = 0;
 
     public ItemStack toProduce;
     public int fuelValue = 0;
@@ -38,8 +39,11 @@ public abstract class BaseStationBlockEntity extends StationContainer {
     }
 
     public void tick() {
-        if (level.isClientSide)
+        if (level.isClientSide) {
+            if (showParticle())
+                addParticle();
             return;
+        }
 
         if (progress >= getMaxProgress())
             progress -= getMaxProgress();
@@ -119,11 +123,22 @@ public abstract class BaseStationBlockEntity extends StationContainer {
             res.save(tag);
     }
 
+    protected boolean showParticle() {
+        if (progress == 0)
+            return false;
+        if (particleCooldown <= 0)
+            return true;
+        particleCooldown--;
+        return false;
+    }
+
+    protected abstract void addParticle();
+
     public abstract int getMaxProgress();
 
     public abstract SoundEvent getWorkSound();
 
-    public abstract ItemStack getProduct();
+    public abstract ItemStack getProduct(boolean check);
 
     protected abstract int getCurrentType();
 }

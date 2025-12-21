@@ -4,6 +4,7 @@ import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
 import com.ave.simplestationsmason.blockentity.KilnBlockEntity;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
+import com.ave.simplestationsmason.blockentity.SifterBlockEntity;
 import com.ave.simplestationsmason.blockentity.partblock.PartBlockEntity;
 
 import net.minecraft.core.registries.Registries;
@@ -26,6 +27,10 @@ public class ModBlockEntities {
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<KilnBlockEntity>> KILN_ENTITY = BLOCK_ENTITIES
                         .register("kiln", () -> BlockEntityType.Builder
                                         .of(KilnBlockEntity::new, ModBlocks.KILN_BLOCK.get()).build(null));
+
+        public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SifterBlockEntity>> SIFTER_ENTITY = BLOCK_ENTITIES
+                        .register("sifter", () -> BlockEntityType.Builder
+                                        .of(SifterBlockEntity::new, ModBlocks.SIFTER_BLOCK.get()).build(null));
 
         public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PartBlockEntity>> PART_ENTITY = BLOCK_ENTITIES
                         .register("part", () -> BlockEntityType.Builder

@@ -1,0 +1,41 @@
+{
+  "type": "simplestationsmason:sifter",
+  "from": { "item": "minecraft:soul_sand" },
+  "rolls": [
+    {
+      "output": "minecraft:blaze_powder",
+      "count": 1,
+      "chance": 25
+    },
+    {
+      "output": "minecraft:blaze_powder",
+      "count": 2,
+      "chance": 25
+    },
+    {
+      "output": "minecraft:blaze_rod",
+      "count": 1,
+      "chance": 15
+    },
+    {
+      "output": "minecraft:blaze_rod",
+      "count": 2,
+      "chance": 5
+    },
+    {
+      "output": "minecraft:glowstone_dust",
+      "count": 8,
+      "chance": 15
+    },
+    {
+      "output": "minecraft:ghast_tear",
+      "count": 2,
+      "chance": 10
+    },
+    {
+      "output": "minecraft:wither_skeleton_skull",
+      "count": 1,
+      "chance": 5
+    }
+  ]
+}

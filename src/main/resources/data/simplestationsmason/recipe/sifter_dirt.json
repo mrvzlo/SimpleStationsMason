@@ -1,0 +1,36 @@
+{
+  "type": "simplestationsmason:sifter",
+  "from": { "item": "minecraft:dirt" },
+  "rolls": [
+    {
+      "output": "minecraft:rotten_flesh",
+      "count": 2,
+      "chance": 20
+    },
+    {
+      "output": "minecraft:rotten_flesh",
+      "count": 5,
+      "chance": 20
+    },
+    {
+      "output": "minecraft:poisonous_potato",
+      "count": 1,
+      "chance": 15
+    },
+    {
+      "output": "minecraft:bone_meal",
+      "count": 2,
+      "chance": 20
+    },
+    {
+      "output": "minecraft:bone_meal",
+      "count": 5,
+      "chance": 20
+    },
+    {
+      "output": "minecraft:ender_pearl",
+      "count": 1,
+      "chance": 5
+    }
+  ]
+}

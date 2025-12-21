@@ -3,6 +3,7 @@
   "block.simplestationsmason.excavator": "Excavation station",
   "block.simplestationsmason.mixer": "Concrete mixing station",
   "block.simplestationsmason.furnace": "Blasting station",
+  "block.simplestationsmason.sifter": "Sifting station",
   "item.simplestationsmason.wheel": "Bucket wheel",
   "item.simplestationsmason.bucket": "Stone bucket",
 
@@ -12,7 +13,9 @@
   "simplestationsmason.configuration.mix_work_time": "Mixer work time",
   "simplestationsmason.configuration.mix_work_time.tooltip": "Default mixer working time in ticks\n Default: 600 (30 sec)",
   "simplestationsmason.configuration.kiln_work_time": "Blast furnace work time",
-  "simplestationsmason.configuration.kiln_work_time.tooltip": "Default last furnace working time in ticks\n Default: 120 (6 sec)",
+  "simplestationsmason.configuration.kiln_work_time.tooltip": "Default blast furnace working time in ticks\n Default: 120 (6 sec)",
+  "simplestationsmason.configuration.sifter_work_time": "Sifter work time",
+  "simplestationsmason.configuration.sifter_work_time.tooltip": "Default sifter working time in ticks\n Default: 1200 (60 sec)",
 
   "simplestationsmason.configuration.water_max": "Water tank capacity",
   "simplestationsmason.configuration.water_max.tooltip": "Maximum amount of water the machine can store.\nDefault: 10000 mB",
@@ -29,6 +32,8 @@
   "screen.simplestationsmason.mixer_recipes": "Mixer recipes",
   "screen.simplestationsmason.kiln": "Blasting station",
   "screen.simplestationsmason.kiln_recipes": "Blasting recipes",
+  "screen.simplestationsmason.sifter": "Sifter station",
+  "screen.simplestationsmason.sifter_recipes": "Sifting recipes",
   "screen.simplestationsmason.power": "Energy",
   "screen.simplestationsmason.water": "Water",
   "screen.simplestationsmason.temperature": "Temperature",

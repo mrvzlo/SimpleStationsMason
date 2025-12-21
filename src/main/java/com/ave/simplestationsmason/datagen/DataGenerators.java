@@ -19,17 +19,21 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 public class DataGenerators {
     @SubscribeEvent
     private static void gatherData(GatherDataEvent event) {
+        if (!event.includeServer())
+            return;
         DataGenerator generator = event.getGenerator();
         PackOutput out = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookup = event.getLookupProvider();
+        var helper = event.getExistingFileHelper();
+        var blockTags = new ModBlockTagProvider(out, lookup, helper);
+        generator.addProvider(true, blockTags);
+        generator.addProvider(true, new ModItemTagProvider(out, lookup, blockTags, helper));
+        generator.addProvider(event.includeServer(), new ModRecipeProvider(out, lookup));
+        generator.addProvider(true,
+                new LootTableProvider(out, Collections.emptySet(),
+                        List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new,
+                                LootContextParamSets.BLOCK)),
+                        lookup));
 
-        if (event.includeServer()) {
-            generator.addProvider(event.includeServer(), new ModRecipeProvider(out, lookup));
-            generator.addProvider(true,
-                    new LootTableProvider(out, Collections.emptySet(),
-                            List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new,
-                                    LootContextParamSets.BLOCK)),
-                            lookup));
-        }
     }
 }

@@ -1,0 +1,108 @@
+package com.ave.simplestationsmason.blockentity;
+
+import com.ave.simplestationsmason.Config;
+import com.ave.simplestationsmason.SimpleStationsMason;
+import com.ave.simplestationsmason.blockentity.handlers.SifterInputHandler;
+import com.ave.simplestationsmason.blockentity.resources.EnergyResource;
+import com.ave.simplestationsmason.blockentity.resources.ItemResource;
+import com.ave.simplestationsmason.datagen.ModRecipes;
+import com.ave.simplestationsmason.recipes.SifterRecipeInput;
+import com.ave.simplestationsmason.registrations.ModBlockEntities;
+import com.ave.simplestationsmason.registrations.ModBlocks;
+import com.ave.simplestationsmason.screen.SifterMenu;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+
+public class SifterBlockEntity extends BaseStationBlockEntity {
+    public static final int TYPE_SLOT = 2;
+
+    public SifterBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.SIFTER_ENTITY.get(), pos, state);
+        inventory = new SifterInputHandler(3) {
+            @Override
+            protected void onContentsChanged(int slot) {
+                setChanged();
+            }
+        };
+        resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 32));
+        resources.put(TYPE_SLOT, new ItemResource(inventory, TYPE_SLOT, 16));
+    }
+
+    @Override
+    public void tick() {
+        if (level.isClientSide) {
+            addParticle();
+            return;
+        }
+
+        super.tick();
+    }
+
+    @Override
+    public SifterMenu createMenu(int containerId, Inventory inventory, Player player) {
+        return new SifterMenu(containerId, inventory, this);
+    }
+
+    @Override
+    public int getMaxProgress() {
+        return Config.MAX_SIFTER_PROGRESS.getAsInt();
+    }
+
+    @Override
+    public ItemStack getProduct(boolean check) {
+        var type = getCurrentType();
+        if (type <= 0 || check)
+            return ItemStack.EMPTY;
+
+        var input = new SifterRecipeInput(inventory.getStackInSlot(TYPE_SLOT));
+        var recipe = level.getRecipeManager()
+                .getRecipeFor(ModRecipes.SIFTER_TYPE.get(), input, level)
+                .orElse(null);
+
+        if (recipe == null)
+            return ItemStack.EMPTY;
+        var result = recipe.value().roll(RNG);
+        return result;
+    }
+
+    @Override
+    protected int getCurrentType() {
+        var stack = inventory.getStackInSlot(TYPE_SLOT);
+        if (stack.isEmpty())
+            return -1;
+        for (var i = 0; i < ModBlocks.SIFTABLE.length; i++) {
+            if (ModBlocks.SIFTABLE[i].equals(stack.getItem()))
+                return i;
+        }
+        return ModBlocks.SIFTABLE.length;
+    }
+
+    @Override
+    public SoundEvent getWorkSound() {
+        return SoundEvents.GRAVEL_FALL;
+    }
+
+    public static void registerCaps(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.SIFTER_ENTITY.get(),
+                (be, direction) -> be.getItemHandler(direction));
+    }
+
+    protected void addParticle() {
+        particleCooldown = 2;
+        double x = getBlockPos().getX() + 0.5 + (RNG.nextDouble() - 0.5);
+        double y = getBlockPos().getY() + 0.8;
+        double z = getBlockPos().getZ() + 0.5 + (RNG.nextDouble() - 0.5);
+        level.addParticle(ParticleTypes.ASH, x, y, z, 0d, 0.01, 0d);
+    }
+}

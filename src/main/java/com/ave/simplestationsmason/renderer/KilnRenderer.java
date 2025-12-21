@@ -49,6 +49,10 @@ public class KilnRenderer implements BlockEntityRenderer<KilnBlockEntity> {
             return ModBlocks.BLASTING_BLOCKS[0].asItem();
         if (type == KilnType.Terracota.ordinal())
             return ModBlocks.BLASTING_BLOCKS[3].asItem();
+        if (type == KilnType.NetherBricks.ordinal())
+            return ModBlocks.BLASTING_BLOCKS[4].asItem();
+        if (type == KilnType.Stone.ordinal())
+            return ModBlocks.BLASTING_BLOCKS[5].asItem();
         return ModBlocks.BLASTING_BLOCKS[2].asItem();
     }
 

@@ -1,0 +1,36 @@
+{
+  "type": "simplestationsmason:sifter",
+  "from": { "item": "minecraft:clay" },
+  "rolls": [
+    {
+      "output": "minecraft:slime_ball",
+      "count": 1,
+      "chance": 15
+    },
+    {
+      "output": "minecraft:slime_ball",
+      "count": 2,
+      "chance": 30
+    },
+    {
+      "output": "minecraft:slime_ball",
+      "count": 3,
+      "chance": 25
+    },
+    {
+      "output": "minecraft:slime_ball",
+      "count": 4,
+      "chance": 10
+    },
+    {
+      "output": "minecraft:ender_pearl",
+      "count": 1,
+      "chance": 5
+    },
+    {
+      "output": "minecraft:slime_ball",
+      "count": 9,
+      "chance": 5
+    }
+  ]
+}

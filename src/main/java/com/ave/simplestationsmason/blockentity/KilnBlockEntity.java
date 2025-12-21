@@ -29,7 +29,6 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
     public static final int TYPE_SLOT = 2;
     public static final int COLOR_SLOT = 3;
     public boolean hasColor = false;
-    private int particleCooldown = 0;
 
     public KilnBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.KILN_ENTITY.get(), pos, state);
@@ -46,11 +45,6 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
 
     @Override
     public void tick() {
-        if (level.isClientSide) {
-            addParticle();
-            return;
-        }
-
         hasColor = !inventory.getStackInSlot(COLOR_SLOT).isEmpty();
         super.tick();
         if (working)
@@ -69,7 +63,7 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
     }
 
     @Override
-    public ItemStack getProduct() {
+    public ItemStack getProduct(boolean __) {
         var type = getCurrentType();
         if (type <= 0)
             return ItemStack.EMPTY;
@@ -128,13 +122,7 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
                 (be, direction) -> be.getItemHandler(direction));
     }
 
-    private void addParticle() {
-        if (progress == 0)
-            return;
-        if (particleCooldown > 0) {
-            particleCooldown--;
-            return;
-        }
+    protected void addParticle() {
         particleCooldown = 10;
         var dir = getBlockState().getValue(BaseStationBlock.FACING);
         double x = getBlockPos().getX() + 0.5 + (RNG.nextDouble() / 2 - 0.25);

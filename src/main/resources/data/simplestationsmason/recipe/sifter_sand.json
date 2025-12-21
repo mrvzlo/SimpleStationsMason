@@ -1,0 +1,41 @@
+{
+  "type": "simplestationsmason:sifter",
+  "from": { "item": "minecraft:sand" },
+  "rolls": [
+    {
+      "output": "minecraft:gunpowder",
+      "count": 1,
+      "chance": 25
+    },
+    {
+      "output": "minecraft:gunpowder",
+      "count": 2,
+      "chance": 25
+    },
+    {
+      "output": "minecraft:gunpowder",
+      "count": 3,
+      "chance": 25
+    },
+    {
+      "output": "minecraft:ender_pearl",
+      "count": 1,
+      "chance": 5
+    },
+    {
+      "output": "minecraft:prismarine_shard",
+      "count": 1,
+      "chance": 5
+    },
+    {
+      "output": "minecraft:prismarine_crystals",
+      "count": 1,
+      "chance": 5
+    },
+    {
+      "output": "minecraft:amethyst_shard",
+      "count": 1,
+      "chance": 10
+    }
+  ]
+}

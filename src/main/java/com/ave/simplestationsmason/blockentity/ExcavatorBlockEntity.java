@@ -47,7 +47,7 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
     }
 
     @Override
-    public ItemStack getProduct() {
+    public ItemStack getProduct(boolean __) {
         return new ItemStack(EXCAVATABLE[type]);
     }
 
@@ -67,5 +67,9 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.EXCAVATOR_ENTITY.get(),
                 (be, direction) -> be.getItemHandler(direction));
+    }
+
+    @Override
+    protected void addParticle() {
     }
 }

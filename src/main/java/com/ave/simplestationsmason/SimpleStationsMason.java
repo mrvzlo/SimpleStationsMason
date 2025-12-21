@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import com.ave.simplestationsmason.blockentity.partblock.PartBlockEntity;
+import com.ave.simplestationsmason.datagen.ModRecipes;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
 import com.ave.simplestationsmason.registrations.ModBlocks;
 import com.ave.simplestationsmason.screen.ModMenuTypes;
@@ -40,6 +41,7 @@ public class SimpleStationsMason {
                                                 output.accept(ModBlocks.EXCAVATOR_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.MIXER_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.KILN_BLOCK_ITEM.get());
+                                                output.accept(ModBlocks.SIFTER_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.WHEEL.get());
                                                 output.accept(ModBlocks.BUCKET.get());
                                         }).build());
@@ -51,6 +53,7 @@ public class SimpleStationsMason {
                 CREATIVE_MODE_TABS.register(modEventBus);
                 ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
                 ModMenuTypes.register(modEventBus);
+                ModRecipes.register(modEventBus);
                 modEventBus.addListener(this::registerCapabilities);
         }
 

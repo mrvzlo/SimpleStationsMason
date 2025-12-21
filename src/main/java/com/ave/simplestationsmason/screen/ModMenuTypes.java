@@ -24,6 +24,8 @@ public class ModMenuTypes {
                         "mixer_menu", MixerMenu::new);
         public static final DeferredHolder<MenuType<?>, MenuType<KilnMenu>> KILN_MENU = registerMenuType(
                         "kiln_menu", KilnMenu::new);
+        public static final DeferredHolder<MenuType<?>, MenuType<SifterMenu>> SIFTER_MENU = registerMenuType(
+                        "sifter_menu", SifterMenu::new);
 
         private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(
                         String name, IContainerFactory<T> factory) {

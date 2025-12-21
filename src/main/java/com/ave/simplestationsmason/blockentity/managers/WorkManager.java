@@ -16,14 +16,14 @@ public class WorkManager {
         if (slot.getCount() == 0)
             return true;
 
-        var product = station.getProduct();
-        if (slot.getCount() + product.getCount() > slot.getMaxStackSize())
+        var product = station.getProduct(true);
+        if (product.isEmpty() || slot.getCount() + product.getCount() > slot.getMaxStackSize())
             return false;
         return slot.is(product.getItem());
     }
 
     public static void performWorkTick(BaseStationBlockEntity station) {
-        station.toProduce = station.getProduct();
+        station.toProduce = station.getProduct(false);
 
         for (var res : station.resources.values())
             if (res.useEveryTick())
