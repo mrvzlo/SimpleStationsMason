@@ -1,7 +1,8 @@
 package com.ave.simplestationsmason.blockentity.handlers;
 
-import com.ave.simplestationsmason.blockentity.KilnBlockEntity;
+import com.ave.simplestationsmason.blockentity.SifterBlockEntity;
 import com.ave.simplestationsmason.datagen.ModTags;
+import com.ave.simplestationsmason.registrations.ModBlocks;
 
 import net.minecraft.world.item.ItemStack;
 
@@ -12,8 +13,10 @@ public class SifterInputHandler extends BaseSidedItemHandler {
 
     @Override
     public boolean isItemValid(int slot, ItemStack stack) {
-        if (slot == KilnBlockEntity.TYPE_SLOT)
+        if (slot == SifterBlockEntity.TYPE_SLOT)
             return stack.is(ModTags.Items.SIFTABLE_TAG);
+        if (slot == SifterBlockEntity.COIN_SLOT)
+            return stack.is(ModBlocks.COIN.get());
         return super.isItemValid(slot, stack);
     }
 }

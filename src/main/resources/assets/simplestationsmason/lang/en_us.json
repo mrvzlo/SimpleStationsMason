@@ -6,6 +6,7 @@
   "block.simplestationsmason.sifter": "Sifting station",
   "item.simplestationsmason.wheel": "Bucket wheel",
   "item.simplestationsmason.bucket": "Stone bucket",
+  "item.simplestationsmason.coin": "Lucky coin",
 
   "simplestationsmason.configuration.title": "Configs",
   "simplestationsmason.configuration.exc_work_time": "Excavator work time",

@@ -1,8 +1,8 @@
 {
   "variants": {
-    "facing=north": { "model": "simplestationsmason:block/sifter" },
-    "facing=south": { "model": "simplestationsmason:block/sifter", "y": 180 },
-    "facing=east": { "model": "simplestationsmason:block/sifter", "y": 90 },
-    "facing=west": { "model": "simplestationsmason:block/sifter", "y": 270 }
+    "facing=north": { "model": "simplestationsmason:block/sifter", "y": 180 },
+    "facing=south": { "model": "simplestationsmason:block/sifter" },
+    "facing=east": { "model": "simplestationsmason:block/sifter", "y": 270 },
+    "facing=west": { "model": "simplestationsmason:block/sifter", "y": 90 }
   }
 }

@@ -8,8 +8,8 @@
       "chance": 20
     },
     {
-      "output": "minecraft:rotten_flesh",
-      "count": 5,
+      "output": "minecraft:bone_meal",
+      "count": 2,
       "chance": 20
     },
     {
@@ -18,8 +18,8 @@
       "chance": 15
     },
     {
-      "output": "minecraft:bone_meal",
-      "count": 2,
+      "output": "minecraft:rotten_flesh",
+      "count": 5,
       "chance": 20
     },
     {
@@ -29,7 +29,7 @@
     },
     {
       "output": "minecraft:ender_pearl",
-      "count": 1,
+      "count": 2,
       "chance": 5
     }
   ]

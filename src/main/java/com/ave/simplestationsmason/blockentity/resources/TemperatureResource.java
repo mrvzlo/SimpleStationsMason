@@ -1,7 +1,6 @@
 package com.ave.simplestationsmason.blockentity.resources;
 
 import com.ave.simplestationsmason.Config;
-import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.blockentity.managers.TemperatureManager;
 
 import net.minecraft.nbt.CompoundTag;

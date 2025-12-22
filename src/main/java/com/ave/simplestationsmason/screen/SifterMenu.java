@@ -24,6 +24,8 @@ public class SifterMenu extends BaseStationMenu {
     public void addItemSlots() {
         addSlot(new SlotItemHandler(blockEntity.inventory, SifterBlockEntity.TYPE_SLOT, UIBlocks.FILTER_SLOT.left,
                 UIBlocks.FILTER_SLOT.top));
+        addSlot(new SlotItemHandler(blockEntity.inventory, SifterBlockEntity.COIN_SLOT, UIBlocks.FILTER3_SLOT.left,
+                UIBlocks.FILTER3_SLOT.top));
     }
 
     @Override

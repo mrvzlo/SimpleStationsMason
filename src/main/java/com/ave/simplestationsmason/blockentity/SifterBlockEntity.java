@@ -1,10 +1,10 @@
 package com.ave.simplestationsmason.blockentity;
 
 import com.ave.simplestationsmason.Config;
-import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.blockentity.handlers.SifterInputHandler;
 import com.ave.simplestationsmason.blockentity.resources.EnergyResource;
 import com.ave.simplestationsmason.blockentity.resources.ItemResource;
+import com.ave.simplestationsmason.blockentity.resources.ToolResource;
 import com.ave.simplestationsmason.datagen.ModRecipes;
 import com.ave.simplestationsmason.recipes.SifterRecipeInput;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
@@ -24,17 +24,20 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
 public class SifterBlockEntity extends BaseStationBlockEntity {
     public static final int TYPE_SLOT = 2;
+    public static final int COIN_SLOT = 3;
+    public static final int BATCH_SIZE = 16;
 
     public SifterBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SIFTER_ENTITY.get(), pos, state);
-        inventory = new SifterInputHandler(3) {
+        inventory = new SifterInputHandler(4) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
             }
         };
         resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 32));
-        resources.put(TYPE_SLOT, new ItemResource(inventory, TYPE_SLOT, 16));
+        resources.put(TYPE_SLOT, new ItemResource(inventory, TYPE_SLOT, BATCH_SIZE));
+        resources.put(COIN_SLOT, new ToolResource(inventory, COIN_SLOT, 37));
     }
 
     @Override
@@ -60,7 +63,7 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
     @Override
     public ItemStack getProduct(boolean check) {
         var type = getCurrentType();
-        if (type <= 0 || check)
+        if (type < 0 || check)
             return ItemStack.EMPTY;
 
         var input = new SifterRecipeInput(inventory.getStackInSlot(TYPE_SLOT));
@@ -70,7 +73,8 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
 
         if (recipe == null)
             return ItemStack.EMPTY;
-        var result = recipe.value().roll(RNG);
+
+        var result = recipe.value().roll(RNG, hasLuck());
         return result;
     }
 
@@ -89,6 +93,10 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
     @Override
     public SoundEvent getWorkSound() {
         return SoundEvents.GRAVEL_FALL;
+    }
+
+    private boolean hasLuck() {
+        return !inventory.getStackInSlot(COIN_SLOT).isEmpty();
     }
 
     public static void registerCaps(RegisterCapabilitiesEvent event) {

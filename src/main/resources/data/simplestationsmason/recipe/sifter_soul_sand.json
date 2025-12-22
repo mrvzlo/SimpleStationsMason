@@ -8,9 +8,9 @@
       "chance": 25
     },
     {
-      "output": "minecraft:blaze_powder",
-      "count": 2,
-      "chance": 25
+      "output": "minecraft:glowstone_dust",
+      "count": 8,
+      "chance": 15
     },
     {
       "output": "minecraft:blaze_rod",
@@ -18,14 +18,14 @@
       "chance": 15
     },
     {
+      "output": "minecraft:blaze_powder",
+      "count": 2,
+      "chance": 25
+    },
+    {
       "output": "minecraft:blaze_rod",
       "count": 2,
       "chance": 5
-    },
-    {
-      "output": "minecraft:glowstone_dust",
-      "count": 8,
-      "chance": 15
     },
     {
       "output": "minecraft:ghast_tear",

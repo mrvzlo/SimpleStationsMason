@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import com.ave.simplestationsmason.SimpleStationsMason;
+import com.ave.simplestationsmason.blockentity.SifterBlockEntity;
+import com.ave.simplestationsmason.datagen.ModRecipes;
 import com.ave.simplestationsmason.registrations.ModBlocks;
 import com.ave.simplestationsmason.registrations.VanillaBlocks;
 import com.ave.simplestationsmason.screen.ExcavatorScreen;
 import com.ave.simplestationsmason.screen.KilnScreen;
 import com.ave.simplestationsmason.screen.MixerScreen;
+import com.ave.simplestationsmason.screen.SifterScreen;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
 import com.google.common.collect.Lists;
 
@@ -19,6 +22,7 @@ import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
@@ -37,6 +41,7 @@ public class JEIModPlugin implements IModPlugin {
         registration.addRecipeCategories(new KilnRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ExcavatorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new MixerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new SifterRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -52,6 +57,8 @@ public class JEIModPlugin implements IModPlugin {
                         new ItemStack(VanillaBlocks.CONCRETE[x], 32)))
                 .toList();
         registration.addRecipes(MixerRecipeCategory.REGULAR, mixerRecipes);
+
+        registration.addRecipes(SifterRecipeCategory.REGULAR, this.getSifterRecipes());
     }
 
     private List<SimpleRecipe> getKilnRecipes() {
@@ -68,11 +75,25 @@ public class JEIModPlugin implements IModPlugin {
         return list;
     }
 
+    private List<SimpleRecipe> getSifterRecipes() {
+        List<SimpleRecipe> recipes = Lists.newArrayList();
+        var level = Minecraft.getInstance().level;
+        var all = level.getRecipeManager().getAllRecipesFor(ModRecipes.SIFTER_TYPE.get());
+        for (var holder : all) {
+            var recipe = holder.value();
+            var stack = new ItemStack(recipe.from().getItems()[0].getItem(), SifterBlockEntity.BATCH_SIZE);
+            for (var roll : recipe.rolls())
+                recipes.add(new SimpleRecipe(stack, new ItemStack(roll.output(), roll.count()), roll.chance()));
+        }
+        return recipes;
+    }
+
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.EXCAVATOR_BLOCK.get()), ExcavatorRecipeCategory.REGULAR);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.MIXER_BLOCK.get()), MixerRecipeCategory.REGULAR);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.KILN_BLOCK.get()), KilnRecipeCategory.REGULAR);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.SIFTER_BLOCK.get()), SifterRecipeCategory.REGULAR);
     }
 
     @Override
@@ -81,6 +102,8 @@ public class JEIModPlugin implements IModPlugin {
                 UIBlocks.OUT_SLOT.width + 32, UIBlocks.OUT_SLOT.height, ExcavatorRecipeCategory.REGULAR);
         registration.addRecipeClickArea(KilnScreen.class, UIBlocks.OUT_SLOT.left - 16, 6,
                 UIBlocks.OUT_SLOT.width + 32, UIBlocks.OUT_SLOT.height, KilnRecipeCategory.REGULAR);
+        registration.addRecipeClickArea(SifterScreen.class, UIBlocks.OUT_SLOT.left - 16, 6,
+                UIBlocks.OUT_SLOT.width + 32, UIBlocks.OUT_SLOT.height, SifterRecipeCategory.REGULAR);
         registration.addRecipeClickArea(MixerScreen.class, UIBlocks.OUT_SLOT.left - 32, 6,
                 UIBlocks.OUT_SLOT.width + 64, UIBlocks.OUT_SLOT.height, MixerRecipeCategory.REGULAR);
     }

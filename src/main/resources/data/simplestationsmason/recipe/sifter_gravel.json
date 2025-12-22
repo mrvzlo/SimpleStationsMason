@@ -10,12 +10,12 @@
     {
       "output": "minecraft:flint",
       "count": 16,
-      "chance": 25
+      "chance": 30
     },
     {
       "output": "minecraft:bone_meal",
-      "count": 6,
-      "chance": 25
+      "count": 7,
+      "chance": 20
     },
     {
       "output": "minecraft:bone",

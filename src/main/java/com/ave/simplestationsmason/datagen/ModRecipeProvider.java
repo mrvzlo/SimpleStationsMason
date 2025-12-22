@@ -67,5 +67,27 @@ public class ModRecipeProvider extends RecipeProvider {
                                 .define('H', Items.HOPPER)
                                 .unlockedBy("has_h", has(Items.HOPPER))
                                 .save(consumer);
+
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.COIN.get())
+                                .pattern("GEG")
+                                .pattern("ERE")
+                                .pattern("GEG")
+                                .define('G', Items.GOLD_INGOT)
+                                .define('E', Items.EMERALD)
+                                .define('R', Items.RABBIT_FOOT)
+                                .unlockedBy("has_r", has(Items.RABBIT_FOOT))
+                                .save(consumer);
+
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SIFTER_BLOCK.get())
+                                .pattern("HBH")
+                                .pattern("RSR")
+                                .pattern("WBW")
+                                .define('S', Items.REDSTONE)
+                                .define('H', Items.HOPPER)
+                                .define('R', Items.POWERED_RAIL)
+                                .define('B', Items.IRON_BARS)
+                                .define('W', ItemTags.PLANKS)
+                                .unlockedBy("has_r", has(Items.REDSTONE))
+                                .save(consumer);
         }
 }

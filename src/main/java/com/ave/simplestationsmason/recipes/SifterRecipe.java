@@ -3,6 +3,7 @@ package com.ave.simplestationsmason.recipes;
 import java.util.List;
 import java.util.Random;
 
+import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.datagen.ModRecipes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -90,11 +91,15 @@ public record SifterRecipe(Ingredient from, List<SifterRoll> rolls) implements R
         return ItemStack.EMPTY;
     }
 
-    public ItemStack roll(Random random) {
+    public ItemStack roll(Random random, boolean luck) {
         int roll = random.nextInt(100);
+        if (luck)
+            roll += (99 - roll) / 3;
+        SimpleStationsMason.LOGGER.info("Luck " + luck + " " + roll);
+
         int acc = 0;
 
-        for (SifterRoll r : rolls) {
+        for (var r : rolls) {
             acc += r.chance();
             if (roll < acc)
                 return new ItemStack(r.output(), r.count());

@@ -43,6 +43,7 @@ public class SimpleStationsMason {
                                                 output.accept(ModBlocks.KILN_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.SIFTER_BLOCK_ITEM.get());
                                                 output.accept(ModBlocks.WHEEL.get());
+                                                output.accept(ModBlocks.COIN.get());
                                                 output.accept(ModBlocks.BUCKET.get());
                                         }).build());
 
