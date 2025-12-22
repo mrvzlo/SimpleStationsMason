@@ -3,8 +3,10 @@
   "block.simplestationsmason.excavator": "Станция раскопки",
   "item.simplestationsmason.wheel": "Колесо",
   "block.simplestationsmason.mixer": "Станция смешивания",
+  "block.simplestationsmason.sifter": "Станция просеивания",
   "block.simplestationsmason.furnace": "Станция плавки",
   "item.simplestationsmason.bucket": "Каменное ведро",
+  "item.simplestationsmason.coin": "Счастливая монетка",
 
   "simplestationsmason.configuration.title": "Настройки",
   "simplestationsmason.configuration.exc_work_time": "Время раскопки",
@@ -13,6 +15,8 @@
   "simplestationsmason.configuration.mix_work_time.tooltip": "Стандартное время в тиках\nПо умолчанию: 600 (30 сек)",
   "simplestationsmason.configuration.kiln_work_time": "Время плавки",
   "simplestationsmason.configuration.kiln_work_time.tooltip": "Стандартное время в тиках\nПо умолчанию: 120 (6 сек)",
+  "simplestationsmason.configuration.sifter_work_time": "Время просеивания",
+  "simplestationsmason.configuration.sifter_work_time.tooltip": "Стандартное время в тиках\nПо умолчанию: 1200 (60 сек)",
 
   "simplestationsmason.configuration.fuel_rf": "Энергия от угля",
   "simplestationsmason.configuration.fuel_rf.tooltip": "Количество энергии, добавляемое одним углём\n Default: 48000",
@@ -29,7 +33,8 @@
   "screen.simplestationsmason.mixer_recipes": "Рецепты смешивания",
   "screen.simplestationsmason.kiln": "Станция плавки",
   "screen.simplestationsmason.kiln_recipes": "Рецепты плавки",
-
+  "screen.simplestationsmason.sifter": "Станция просеивания",
+  "screen.simplestationsmason.sifter_recipes": "Рецепты просеивания",
   "screen.simplestationsmason.power": "Энергия",
   "screen.simplestationsmason.water": "Вода",
   "screen.simplestationsmason.temperature": "Температура",

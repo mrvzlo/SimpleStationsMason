@@ -95,10 +95,8 @@ public record SifterRecipe(Ingredient from, List<SifterRoll> rolls) implements R
         int roll = random.nextInt(100);
         if (luck)
             roll += (99 - roll) / 3;
-        SimpleStationsMason.LOGGER.info("Luck " + luck + " " + roll);
 
         int acc = 0;
-
         for (var r : rolls) {
             acc += r.chance();
             if (roll < acc)

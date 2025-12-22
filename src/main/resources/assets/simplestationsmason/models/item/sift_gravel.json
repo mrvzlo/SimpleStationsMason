@@ -1,0 +1,7 @@
+{
+  "parent": "simplestationsmason:custom/siftable",
+  "textures": {
+    "1": "minecraft:block/gravel"
+  },
+  "render_type": "transparent"
+}

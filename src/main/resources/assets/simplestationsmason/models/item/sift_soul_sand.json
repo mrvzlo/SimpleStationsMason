@@ -1,0 +1,7 @@
+{
+  "parent": "simplestationsmason:custom/siftable",
+  "textures": {
+    "1": "minecraft:block/soul_sand"
+  },
+  "render_type": "transparent"
+}
