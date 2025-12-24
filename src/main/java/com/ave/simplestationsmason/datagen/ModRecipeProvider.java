@@ -48,10 +48,11 @@ public class ModRecipeProvider extends RecipeProvider {
 
                 ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.MIXER_BLOCK.get())
                                 .pattern("HBH")
-                                .pattern("RBR")
+                                .pattern("RCR")
                                 .pattern("WRW")
                                 .define('B', ModBlocks.BUCKET.get())
                                 .define('R', Items.REDSTONE)
+                                .define('C', Items.CAULDRON)
                                 .define('W', ItemTags.PLANKS)
                                 .define('H', Items.HOPPER)
                                 .unlockedBy("has_h", has(Items.HOPPER))

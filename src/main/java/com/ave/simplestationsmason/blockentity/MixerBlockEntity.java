@@ -46,7 +46,8 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
 
     @Override
     public void tick() {
-        waterValue = resources.get(WATER_SLOT).get();
+        if (!level.isClientSide)
+            waterValue = resources.get(WATER_SLOT).get();
         super.tick();
     }
 
