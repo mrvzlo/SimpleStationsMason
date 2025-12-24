@@ -1,17 +1,17 @@
 package com.ave.simplestationsmason.blockentity.resources;
 
-import com.ave.simplestationsmason.blockentity.handlers.BaseSidedItemHandler;
+import com.ave.simplestationsmason.blockentity.handlers.CommonItemHandler;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class ItemResource implements StationResource {
-    private final BaseSidedItemHandler inventory;
+    private final CommonItemHandler inventory;
     private final int slot;
     private int usage;
 
-    public ItemResource(BaseSidedItemHandler inventory, int slot, int usage) {
+    public ItemResource(CommonItemHandler inventory, int slot, int usage) {
         this.usage = usage;
         this.inventory = inventory;
         this.slot = slot;

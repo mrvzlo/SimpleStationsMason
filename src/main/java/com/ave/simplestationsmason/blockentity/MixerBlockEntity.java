@@ -3,7 +3,7 @@ package com.ave.simplestationsmason.blockentity;
 import java.util.Arrays;
 
 import com.ave.simplestationsmason.Config;
-import com.ave.simplestationsmason.blockentity.handlers.MixerInputHandler;
+import com.ave.simplestationsmason.blockentity.handlers.MixerItemHandler;
 import com.ave.simplestationsmason.blockentity.resources.EnergyResource;
 import com.ave.simplestationsmason.blockentity.resources.ItemResource;
 import com.ave.simplestationsmason.blockentity.resources.WaterResource;
@@ -21,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
 public class MixerBlockEntity extends BaseStationBlockEntity {
     public static final int SAND_SLOT = 2;
@@ -31,7 +32,7 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
 
     public MixerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.MIXER_ENTITY.get(), pos, state);
-        inventory = new MixerInputHandler(6) {
+        inventory = new MixerItemHandler(6) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
@@ -86,6 +87,14 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.MIXER_ENTITY.get(),
                 (be, direction) -> be.getItemHandler(direction));
+    }
+
+    @Override()
+    public FluidTank getWaterStorage() {
+        var resource = resources.get(WATER_SLOT);
+        if (resource instanceof WaterResource res)
+            return res.storage;
+        return null;
     }
 
     protected void addParticle() {

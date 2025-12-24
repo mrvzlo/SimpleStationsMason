@@ -1,11 +1,10 @@
 package com.ave.simplestationsmason.blockentity;
 
-import com.ave.simplestationsmason.blockentity.handlers.InputItemHandler;
-import com.ave.simplestationsmason.blockentity.handlers.OutputItemHandler;
+import com.ave.simplestationsmason.blockentity.handlers.SidedItemHandler;
 
 import java.util.Random;
 
-import com.ave.simplestationsmason.blockentity.handlers.BaseSidedItemHandler;
+import com.ave.simplestationsmason.blockentity.handlers.CommonItemHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -21,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 
 public abstract class StationContainer extends BlockEntity implements MenuProvider {
-    public BaseSidedItemHandler inventory;
+    public CommonItemHandler inventory;
     protected static final Random RNG = new Random();
 
     public StationContainer(BlockEntityType<BlockEntity> entity, BlockPos pos, BlockState state) {
@@ -29,9 +28,9 @@ public abstract class StationContainer extends BlockEntity implements MenuProvid
     }
 
     public IItemHandler getItemHandler(Direction side) {
-        if (side == Direction.DOWN)
-            return new OutputItemHandler(inventory);
-        return new InputItemHandler(inventory);
+        if (side == null)
+            return inventory;
+        return new SidedItemHandler(inventory);
     }
 
     @Override

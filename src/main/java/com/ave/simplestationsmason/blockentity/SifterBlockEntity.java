@@ -1,7 +1,7 @@
 package com.ave.simplestationsmason.blockentity;
 
 import com.ave.simplestationsmason.Config;
-import com.ave.simplestationsmason.blockentity.handlers.SifterInputHandler;
+import com.ave.simplestationsmason.blockentity.handlers.SifterItemHandler;
 import com.ave.simplestationsmason.blockentity.resources.EnergyResource;
 import com.ave.simplestationsmason.blockentity.resources.ItemResource;
 import com.ave.simplestationsmason.blockentity.resources.ToolResource;
@@ -29,7 +29,7 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
 
     public SifterBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SIFTER_ENTITY.get(), pos, state);
-        inventory = new SifterInputHandler(4) {
+        inventory = new SifterItemHandler(4) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();

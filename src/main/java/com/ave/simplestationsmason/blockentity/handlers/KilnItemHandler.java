@@ -7,8 +7,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.neoforge.common.Tags;
 
-public class KilnInputHandler extends BaseSidedItemHandler {
-    public KilnInputHandler(int size) {
+public class KilnItemHandler extends CommonItemHandler {
+    public KilnItemHandler(int size) {
         super(size);
     }
 

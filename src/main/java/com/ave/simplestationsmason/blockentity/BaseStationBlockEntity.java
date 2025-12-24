@@ -17,6 +17,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
 public abstract class BaseStationBlockEntity extends StationContainer {
     public static final int FUEL_SLOT = 0;
@@ -82,6 +83,10 @@ public abstract class BaseStationBlockEntity extends StationContainer {
         var resource = resources.get(BaseStationBlockEntity.FUEL_SLOT);
         if (resource instanceof EnergyResource energy)
             return energy.storage;
+        return null;
+    }
+
+    public FluidTank getWaterStorage() {
         return null;
     }
 

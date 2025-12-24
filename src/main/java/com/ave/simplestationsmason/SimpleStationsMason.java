@@ -65,6 +65,17 @@ public class SimpleStationsMason {
                 event.registerBlock(Capabilities.EnergyStorage.BLOCK,
                                 (level, pos, state, be, side) -> ((MixerBlockEntity) be).getEnergyStorage(),
                                 ModBlocks.MIXER_BLOCK.get());
+                event.registerBlock(Capabilities.EnergyStorage.BLOCK,
+                                (level, pos, state, be, side) -> ((MixerBlockEntity) be).getEnergyStorage(),
+                                ModBlocks.SIFTER_BLOCK.get());
+                event.registerBlock(Capabilities.FluidHandler.BLOCK,
+                                (level, pos, state, be, side) -> ((MixerBlockEntity) be).getWaterStorage(),
+                                ModBlocks.MIXER_BLOCK.get());
+
+                event.registerBlock(
+                                Capabilities.FluidHandler.BLOCK, (level, pos, state, be,
+                                                side) -> ((PartBlockEntity) be).getWaterStorage((PartBlockEntity) be),
+                                ModBlocks.PART.get());
                 event.registerBlock(
                                 Capabilities.EnergyStorage.BLOCK, (level, pos, state, be,
                                                 side) -> ((PartBlockEntity) be).getEnergyStorage((PartBlockEntity) be),

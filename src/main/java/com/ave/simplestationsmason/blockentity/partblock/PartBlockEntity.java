@@ -1,8 +1,6 @@
 package com.ave.simplestationsmason.blockentity.partblock;
 
 import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
-import com.ave.simplestationsmason.blockentity.handlers.InputItemHandler;
-import com.ave.simplestationsmason.blockentity.handlers.OutputItemHandler;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -17,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
 
 public class PartBlockEntity extends BlockEntity {
@@ -54,10 +53,7 @@ public class PartBlockEntity extends BlockEntity {
         var controller = this.getController(be);
         if (controller == null)
             return null;
-        var inventory = controller.inventory;
-        if (side == Direction.DOWN)
-            return new OutputItemHandler(inventory);
-        return new InputItemHandler(inventory);
+        return controller.getItemHandler(side);
     }
 
     public IEnergyStorage getEnergyStorage(PartBlockEntity be) {
@@ -65,6 +61,13 @@ public class PartBlockEntity extends BlockEntity {
         if (controller == null)
             return null;
         return controller.getEnergyStorage();
+    }
+
+    public FluidTank getWaterStorage(PartBlockEntity be) {
+        var controller = this.getController(be);
+        if (controller == null)
+            return null;
+        return controller.getWaterStorage();
     }
 
     private BaseStationBlockEntity getController(PartBlockEntity be) {

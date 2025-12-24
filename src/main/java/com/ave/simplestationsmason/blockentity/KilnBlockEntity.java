@@ -2,7 +2,7 @@ package com.ave.simplestationsmason.blockentity;
 
 import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.blockentity.enums.KilnType;
-import com.ave.simplestationsmason.blockentity.handlers.KilnInputHandler;
+import com.ave.simplestationsmason.blockentity.handlers.KilnItemHandler;
 import com.ave.simplestationsmason.blockentity.resources.ItemResource;
 import com.ave.simplestationsmason.blockentity.resources.OptionalItemResource;
 import com.ave.simplestationsmason.blockentity.resources.TemperatureResource;
@@ -32,7 +32,7 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
 
     public KilnBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.KILN_ENTITY.get(), pos, state);
-        inventory = new KilnInputHandler(4) {
+        inventory = new KilnItemHandler(4) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();

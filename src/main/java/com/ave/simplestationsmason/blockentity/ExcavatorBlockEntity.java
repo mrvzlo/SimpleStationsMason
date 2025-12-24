@@ -3,7 +3,7 @@ package com.ave.simplestationsmason.blockentity;
 import java.util.Arrays;
 
 import com.ave.simplestationsmason.Config;
-import com.ave.simplestationsmason.blockentity.handlers.ExcavatorInputHandler;
+import com.ave.simplestationsmason.blockentity.handlers.ExcavatorItemHandler;
 import com.ave.simplestationsmason.blockentity.resources.EnergyResource;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
 import com.ave.simplestationsmason.registrations.ModBlocks;
@@ -26,7 +26,7 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
 
     public ExcavatorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.EXCAVATOR_ENTITY.get(), pos, state);
-        inventory = new ExcavatorInputHandler(3) {
+        inventory = new ExcavatorItemHandler(3) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();

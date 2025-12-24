@@ -7,9 +7,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-public abstract class BaseSidedItemHandler extends ItemStackHandler {
+public abstract class CommonItemHandler extends ItemStackHandler {
 
-    public BaseSidedItemHandler(int size) {
+    public CommonItemHandler(int size) {
         super(size);
     }
 

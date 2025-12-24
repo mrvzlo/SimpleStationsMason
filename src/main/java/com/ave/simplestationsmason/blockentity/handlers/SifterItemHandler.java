@@ -6,8 +6,8 @@ import com.ave.simplestationsmason.registrations.ModBlocks;
 
 import net.minecraft.world.item.ItemStack;
 
-public class SifterInputHandler extends BaseSidedItemHandler {
-    public SifterInputHandler(int size) {
+public class SifterItemHandler extends CommonItemHandler {
+    public SifterItemHandler(int size) {
         super(size);
     }
 

@@ -6,8 +6,8 @@ import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
 import com.ave.simplestationsmason.registrations.ModBlocks;
 import net.minecraft.world.item.ItemStack;
 
-public class ExcavatorInputHandler extends BaseSidedItemHandler {
-    public ExcavatorInputHandler(int size) {
+public class ExcavatorItemHandler extends CommonItemHandler {
+    public ExcavatorItemHandler(int size) {
         super(size);
     }
 

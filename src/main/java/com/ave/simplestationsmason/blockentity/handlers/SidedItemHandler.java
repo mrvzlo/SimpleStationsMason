@@ -5,10 +5,10 @@ import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.IItemHandler;
 
-public class OutputItemHandler implements IItemHandler {
-    private final BaseSidedItemHandler parent;
+public class SidedItemHandler implements IItemHandler {
+    private final CommonItemHandler parent;
 
-    public OutputItemHandler(BaseSidedItemHandler parent) {
+    public SidedItemHandler(CommonItemHandler parent) {
         this.parent = parent;
     }
 
@@ -24,7 +24,7 @@ public class OutputItemHandler implements IItemHandler {
 
     @Override
     public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-        return stack;
+        return parent.insertItem(slot, stack, simulate);
     }
 
     @Override

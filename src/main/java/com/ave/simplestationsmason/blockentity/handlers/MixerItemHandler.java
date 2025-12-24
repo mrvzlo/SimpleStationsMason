@@ -5,8 +5,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
 
-public class MixerInputHandler extends BaseSidedItemHandler {
-    public MixerInputHandler(int size) {
+public class MixerItemHandler extends CommonItemHandler {
+    public MixerItemHandler(int size) {
         super(size);
     }
 
