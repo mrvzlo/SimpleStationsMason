@@ -6,8 +6,7 @@ import com.ave.simplestationscore.resources.ItemResource;
 import com.ave.simplestationscore.resources.ToolResource;
 import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.blockentity.handlers.SifterItemHandler;
-import com.ave.simplestationsmason.datagen.ModRecipes;
-import com.ave.simplestationsmason.recipes.SifterRecipeInput;
+import com.ave.simplestationsmason.recipes.SifterRecipe;
 import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.screen.SifterMenu;
 
@@ -15,6 +14,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -64,15 +64,16 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
         if (type < 0 || check)
             return ItemStack.EMPTY;
 
-        var input = new SifterRecipeInput(inventory.getStackInSlot(TYPE_SLOT));
+        var inv = new SimpleContainer(1);
+        inv.setItem(0, inventory.getStackInSlot(TYPE_SLOT));
         var recipe = level.getRecipeManager()
-                .getRecipeFor(ModRecipes.SIFTER_TYPE.get(), input, level)
+                .getRecipeFor(SifterRecipe.Type.INSTANCE, inv, level)
                 .orElse(null);
 
         if (recipe == null)
             return ItemStack.EMPTY;
 
-        var result = recipe.value().roll(RNG, hasLuck());
+        var result = recipe.roll(RNG, hasLuck());
         return result;
     }
 

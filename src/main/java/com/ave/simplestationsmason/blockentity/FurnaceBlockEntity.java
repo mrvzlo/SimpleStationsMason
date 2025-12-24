@@ -8,6 +8,7 @@ import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.blockentity.enums.KilnType;
 import com.ave.simplestationsmason.blockentity.handlers.FurnaceItemHandler;
 import com.ave.simplestationsmason.blockentity.temperature.TemperatureResource;
+import com.ave.simplestationsmason.datagen.ModTags;
 import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.registrations.VanillaBlocks;
 import com.ave.simplestationsmason.screen.FurnaceMenu;
@@ -23,7 +24,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
 
 public class FurnaceBlockEntity extends BaseStationBlockEntity {
     public static final int TYPE_SLOT = 2;
@@ -105,7 +105,7 @@ public class FurnaceBlockEntity extends BaseStationBlockEntity {
             return VanillaBlocks.GLASSES[index].asItem();
         if (item.equals(Items.TERRACOTTA))
             return VanillaBlocks.TERRACOTA[index].asItem();
-        if (new ItemStack(item).is(Tags.Items.GLAZED_TERRACOTTAS))
+        if (new ItemStack(item).is(ModTags.Items.GLAZED_TAG))
             return VanillaBlocks.GLAZED_TERRACOTA[index].asItem();
         return item;
     }

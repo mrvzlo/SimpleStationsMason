@@ -11,5 +11,8 @@ public class ModTags {
     public static class Items {
         public static final TagKey<Item> SIFTABLE_TAG = TagKey.create(Registries.ITEM,
                 ResourceLocation.fromNamespaceAndPath(SimpleStationsMason.MODID, "siftable"));
+
+        public static final TagKey<Item> GLAZED_TAG = TagKey.create(Registries.ITEM,
+                ResourceLocation.fromNamespaceAndPath(SimpleStationsMason.MODID, "glazed"));
     }
 }

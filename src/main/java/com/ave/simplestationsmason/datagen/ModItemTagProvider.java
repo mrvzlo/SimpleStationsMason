@@ -27,5 +27,23 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(Items.GRAVEL)
                 .add(Items.SOUL_SAND)
                 .add(Items.DIRT);
+
+        tag(ModTags.Items.GLAZED_TAG)
+                .add(Items.WHITE_GLAZED_TERRACOTTA)
+                .add(Items.ORANGE_GLAZED_TERRACOTTA)
+                .add(Items.MAGENTA_GLAZED_TERRACOTTA)
+                .add(Items.LIGHT_BLUE_GLAZED_TERRACOTTA)
+                .add(Items.YELLOW_GLAZED_TERRACOTTA)
+                .add(Items.LIME_GLAZED_TERRACOTTA)
+                .add(Items.PINK_GLAZED_TERRACOTTA)
+                .add(Items.GRAY_GLAZED_TERRACOTTA)
+                .add(Items.LIGHT_GRAY_GLAZED_TERRACOTTA)
+                .add(Items.CYAN_GLAZED_TERRACOTTA)
+                .add(Items.PURPLE_GLAZED_TERRACOTTA)
+                .add(Items.BLUE_GLAZED_TERRACOTTA)
+                .add(Items.BROWN_GLAZED_TERRACOTTA)
+                .add(Items.GREEN_GLAZED_TERRACOTTA)
+                .add(Items.RED_GLAZED_TERRACOTTA)
+                .add(Items.BLACK_GLAZED_TERRACOTTA);
     }
 }

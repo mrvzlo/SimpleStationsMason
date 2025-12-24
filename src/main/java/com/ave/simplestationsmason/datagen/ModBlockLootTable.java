@@ -1,6 +1,5 @@
 package com.ave.simplestationsmason.datagen;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
@@ -10,9 +9,9 @@ import java.util.Set;
 
 import com.ave.simplestationsmason.registrations.Registrations;
 
-public class ModBlockLootTableProvider extends BlockLootSubProvider {
-    protected ModBlockLootTableProvider(HolderLookup.Provider registries) {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
+public class ModBlockLootTable extends BlockLootSubProvider {
+    protected ModBlockLootTable() {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
     }
 
     @Override
