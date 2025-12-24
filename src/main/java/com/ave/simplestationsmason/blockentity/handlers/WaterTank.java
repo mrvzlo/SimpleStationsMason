@@ -1,9 +1,9 @@
 package com.ave.simplestationsmason.blockentity.handlers;
 
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
-import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class WaterTank extends FluidTank {
     public static WaterTank create(int value, int max) {

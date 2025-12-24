@@ -3,7 +3,7 @@ package com.ave.simplestationsmason.blockentity.handlers;
 import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
 
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandler;
 
 public class OutputItemHandler implements IItemHandler {
     private final BaseSidedItemHandler parent;

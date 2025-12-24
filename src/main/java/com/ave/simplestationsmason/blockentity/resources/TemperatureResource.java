@@ -7,6 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 
 public class TemperatureResource implements StationResource {
     public float value;
@@ -53,7 +54,7 @@ public class TemperatureResource implements StationResource {
     }
 
     public int getIncrement(Item item) {
-        var burn = new ItemStack(item).getBurnTime(RecipeType.SMELTING);
+        var burn = AbstractFurnaceBlockEntity.getFuel().get(item);
         var speed = Config.TEMP_RISE_SPEED.get();
         if (burn < MinBurn) {
             cooldown = 1;

@@ -21,9 +21,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.common.Tags;
+import net.minecraftforge.common.Tags;
 
 public class KilnBlockEntity extends BaseStationBlockEntity {
     public static final int TYPE_SLOT = 2;
@@ -59,7 +57,7 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
 
     @Override
     public int getMaxProgress() {
-        return Config.MAX_KILN_PROGRESS.getAsInt();
+        return Config.MAX_KILN_PROGRESS.get();
     }
 
     @Override
@@ -113,13 +111,6 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
     @Override
     public SoundEvent getWorkSound() {
         return SoundEvents.FURNACE_FIRE_CRACKLE;
-    }
-
-    public static void registerCaps(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-                Capabilities.ItemHandler.BLOCK,
-                ModBlockEntities.KILN_ENTITY.get(),
-                (be, direction) -> be.getItemHandler(direction));
     }
 
     protected void addParticle() {

@@ -1,10 +1,8 @@
 package com.ave.simplestationsmason.blockentity.handlers;
 
-import net.neoforged.neoforge.items.IItemHandler;
-
 import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
-
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.IItemHandler;
 
 public class InputItemHandler implements IItemHandler {
     private final BaseSidedItemHandler parent;

@@ -17,8 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
 public class ExcavatorBlockEntity extends BaseStationBlockEntity {
     private final Item[] EXCAVATABLE = ModBlocks.EXCAVATABLE;
@@ -43,7 +41,7 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
 
     @Override
     public int getMaxProgress() {
-        return Config.MAX_EXC_PROGRESS.getAsInt();
+        return Config.MAX_EXC_PROGRESS.get();
     }
 
     @Override
@@ -60,13 +58,6 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
     @Override
     public SoundEvent getWorkSound() {
         return SoundEvents.SAND_BREAK;
-    }
-
-    public static void registerCaps(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-                Capabilities.ItemHandler.BLOCK,
-                ModBlockEntities.EXCAVATOR_ENTITY.get(),
-                (be, direction) -> be.getItemHandler(direction));
     }
 
     @Override

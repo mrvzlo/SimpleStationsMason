@@ -13,7 +13,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.items.SlotItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 
 public abstract class BaseStationMenu extends AbstractContainerMenu {
     public final Level level;
@@ -72,12 +72,25 @@ public abstract class BaseStationMenu extends AbstractContainerMenu {
         addDataSlot(new DataSlot() {
             @Override
             public int get() {
-                return station.fuelValue;
+                return station.fuelLow;
             }
 
             @Override
             public void set(int value) {
-                station.fuelValue = value;
+                station.fuelLow = value;
+                station.fuelValue = (station.fuelLow & 0xFFFF) | (station.fuelHigh << 16);
+            }
+        });
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return station.fuelHigh;
+            }
+
+            @Override
+            public void set(int value) {
+                station.fuelHigh = value;
+                station.fuelValue = (station.fuelLow & 0xFFFF) | (station.fuelHigh << 16);
             }
         });
     }

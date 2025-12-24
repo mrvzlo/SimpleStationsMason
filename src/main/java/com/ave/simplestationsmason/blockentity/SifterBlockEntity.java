@@ -19,8 +19,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
 public class SifterBlockEntity extends BaseStationBlockEntity {
     public static final int TYPE_SLOT = 2;
@@ -57,7 +55,7 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
 
     @Override
     public int getMaxProgress() {
-        return Config.MAX_SIFTER_PROGRESS.getAsInt();
+        return Config.MAX_SIFTER_PROGRESS.get();
     }
 
     @Override
@@ -97,13 +95,6 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
 
     private boolean hasLuck() {
         return !inventory.getStackInSlot(COIN_SLOT).isEmpty();
-    }
-
-    public static void registerCaps(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-                Capabilities.ItemHandler.BLOCK,
-                ModBlockEntities.SIFTER_ENTITY.get(),
-                (be, direction) -> be.getItemHandler(direction));
     }
 
     protected void addParticle() {

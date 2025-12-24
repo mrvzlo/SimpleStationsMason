@@ -2,9 +2,6 @@ package com.ave.simplestationsmason;
 
 import org.slf4j.Logger;
 
-import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
-import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
-import com.ave.simplestationsmason.blockentity.partblock.PartBlockEntity;
 import com.ave.simplestationsmason.datagen.ModRecipes;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
 import com.ave.simplestationsmason.registrations.ModBlocks;
@@ -15,14 +12,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(SimpleStationsMason.MODID)
@@ -32,7 +27,7 @@ public class SimpleStationsMason {
         public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister
                         .create(Registries.CREATIVE_MODE_TAB, MODID);
 
-        public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS
+        public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS
                         .register("example_tab", () -> CreativeModeTab.builder()
                                         .title(Component.translatable("itemGroup.simplestations.mason"))
                                         .withTabsBefore(CreativeModeTabs.COMBAT)
@@ -47,27 +42,14 @@ public class SimpleStationsMason {
                                                 output.accept(ModBlocks.BUCKET.get());
                                         }).build());
 
-        public SimpleStationsMason(IEventBus modEventBus, ModContainer modContainer) {
-                modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        public SimpleStationsMason(FMLJavaModLoadingContext context) {
+                IEventBus modEventBus = context.getModEventBus();
+                context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
                 ModBlocks.BLOCKS.register(modEventBus);
                 ModBlocks.ITEMS.register(modEventBus);
                 CREATIVE_MODE_TABS.register(modEventBus);
                 ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
                 ModMenuTypes.register(modEventBus);
                 ModRecipes.register(modEventBus);
-                modEventBus.addListener(this::registerCapabilities);
-        }
-
-        private void registerCapabilities(RegisterCapabilitiesEvent event) {
-                event.registerBlock(Capabilities.EnergyStorage.BLOCK,
-                                (level, pos, state, be, side) -> ((ExcavatorBlockEntity) be).getEnergyStorage(),
-                                ModBlocks.EXCAVATOR_BLOCK.get());
-                event.registerBlock(Capabilities.EnergyStorage.BLOCK,
-                                (level, pos, state, be, side) -> ((MixerBlockEntity) be).getEnergyStorage(),
-                                ModBlocks.MIXER_BLOCK.get());
-                event.registerBlock(
-                                Capabilities.EnergyStorage.BLOCK, (level, pos, state, be,
-                                                side) -> ((PartBlockEntity) be).getEnergyStorage((PartBlockEntity) be),
-                                ModBlocks.PART.get());
         }
 }

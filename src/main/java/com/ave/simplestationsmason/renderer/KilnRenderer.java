@@ -44,16 +44,16 @@ public class KilnRenderer implements BlockEntityRenderer<KilnBlockEntity> {
 
     private Item getItem(int type) {
         if (type == KilnType.Glass.ordinal() || type == KilnType.Glass2.ordinal())
-            return ModBlocks.BLASTING_BLOCKS[1].asItem();
+            return ModBlocks.BLASTING_BLOCKS[1].get();
         if (type == KilnType.Bricks.ordinal())
-            return ModBlocks.BLASTING_BLOCKS[0].asItem();
+            return ModBlocks.BLASTING_BLOCKS[0].get();
         if (type == KilnType.Terracota.ordinal())
-            return ModBlocks.BLASTING_BLOCKS[3].asItem();
+            return ModBlocks.BLASTING_BLOCKS[3].get();
         if (type == KilnType.NetherBricks.ordinal())
-            return ModBlocks.BLASTING_BLOCKS[4].asItem();
+            return ModBlocks.BLASTING_BLOCKS[4].get();
         if (type == KilnType.Stone.ordinal())
-            return ModBlocks.BLASTING_BLOCKS[5].asItem();
-        return ModBlocks.BLASTING_BLOCKS[2].asItem();
+            return ModBlocks.BLASTING_BLOCKS[5].get();
+        return ModBlocks.BLASTING_BLOCKS[2].get();
     }
 
     private int getRotation(Direction dir) {

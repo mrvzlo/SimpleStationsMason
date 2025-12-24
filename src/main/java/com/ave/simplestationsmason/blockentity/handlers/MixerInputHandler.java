@@ -3,7 +3,7 @@ package com.ave.simplestationsmason.blockentity.handlers;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.neoforged.neoforge.common.Tags;
+import net.minecraftforge.common.Tags;
 
 public class MixerInputHandler extends BaseSidedItemHandler {
     public MixerInputHandler(int size) {

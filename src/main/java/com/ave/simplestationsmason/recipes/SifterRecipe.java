@@ -3,7 +3,6 @@ package com.ave.simplestationsmason.recipes;
 import java.util.List;
 import java.util.Random;
 
-import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.datagen.ModRecipes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

@@ -5,7 +5,7 @@ import com.ave.simplestationsmason.Config;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.neoforged.neoforge.energy.EnergyStorage;
+import net.minecraftforge.energy.EnergyStorage;
 
 public class EnergyResource implements StationResource {
     public EnergyStorage storage;
@@ -51,7 +51,7 @@ public class EnergyResource implements StationResource {
 
     public int getIncrement(Item item) {
         if (item.equals(Items.COAL_BLOCK))
-            return Config.FUEL_PER_COAL.getAsInt() * 9;
-        return Config.FUEL_PER_COAL.getAsInt();
+            return Config.FUEL_PER_COAL.get() * 9;
+        return Config.FUEL_PER_COAL.get();
     }
 }

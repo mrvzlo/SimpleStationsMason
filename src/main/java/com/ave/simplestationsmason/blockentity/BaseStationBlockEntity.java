@@ -3,12 +3,15 @@ package com.ave.simplestationsmason.blockentity;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.ave.simplestationsmason.blockentity.handlers.InputItemHandler;
+import com.ave.simplestationsmason.blockentity.handlers.OutputItemHandler;
 import com.ave.simplestationsmason.blockentity.managers.ExportManager;
 import com.ave.simplestationsmason.blockentity.managers.WorkManager;
 import com.ave.simplestationsmason.blockentity.resources.EnergyResource;
 import com.ave.simplestationsmason.blockentity.resources.StationResource;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
@@ -16,7 +19,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.items.IItemHandler;
 
 public abstract class BaseStationBlockEntity extends StationContainer {
     public static final int FUEL_SLOT = 0;
@@ -32,6 +41,8 @@ public abstract class BaseStationBlockEntity extends StationContainer {
     protected int particleCooldown = 0;
 
     public ItemStack toProduce;
+    public int fuelLow = 0;
+    public int fuelHigh = 0;
     public int fuelValue = 0;
 
     public BaseStationBlockEntity(BlockEntityType entity, BlockPos pos, BlockState state) {
@@ -55,6 +66,8 @@ public abstract class BaseStationBlockEntity extends StationContainer {
         working = WorkManager.getWorkingState(this);
         ExportManager.pushOutput(this);
         fuelValue = resources.get(BaseStationBlockEntity.FUEL_SLOT).get();
+        fuelHigh = fuelValue >> 16;
+        fuelLow = fuelValue & 0xFFFF;
 
         if (!working)
             return;
@@ -82,6 +95,10 @@ public abstract class BaseStationBlockEntity extends StationContainer {
         var resource = resources.get(BaseStationBlockEntity.FUEL_SLOT);
         if (resource instanceof EnergyResource energy)
             return energy.storage;
+        return null;
+    }
+
+    public FluidTank getWaterStorage() {
         return null;
     }
 
@@ -141,4 +158,21 @@ public abstract class BaseStationBlockEntity extends StationContainer {
     public abstract ItemStack getProduct(boolean check);
 
     protected abstract int getCurrentType();
+
+    private final LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> this.getEnergyStorage());
+    private final LazyOptional<IFluidHandler> fluid = LazyOptional.of(() -> this.getWaterStorage());
+    private final LazyOptional<IItemHandler> outputHandler = LazyOptional.of(() -> new OutputItemHandler(inventory));
+    private final LazyOptional<IItemHandler> inputHandler = LazyOptional.of(() -> new InputItemHandler(inventory));
+
+    @Override
+    public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
+        if (cap == ForgeCapabilities.ENERGY)
+            return energy.cast();
+        if (cap == ForgeCapabilities.FLUID_HANDLER)
+            return fluid.cast();
+        if (cap == ForgeCapabilities.ITEM_HANDLER)
+            return side.equals(Direction.DOWN) ? outputHandler.cast() : inputHandler.cast();
+
+        return super.getCapability(cap, side);
+    }
 }
