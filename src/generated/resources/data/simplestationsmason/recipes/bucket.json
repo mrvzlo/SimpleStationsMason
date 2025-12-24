@@ -3,16 +3,15 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "simplestationsmason:bucket"
+      "tag": "minecraft:stone_crafting_materials"
     }
   },
   "pattern": [
-    "AAA",
     "A A",
-    "AAA"
+    " A "
   ],
   "result": {
-    "count": 1,
-    "id": "simplestationsmason:wheel"
-  }
+    "item": "simplestationsmason:bucket"
+  },
+  "show_notification": true
 }

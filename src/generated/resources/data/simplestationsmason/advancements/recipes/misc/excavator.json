@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "items": "minecraft:hopper"
+            "items": [
+              "minecraft:hopper"
+            ]
           }
         ]
       },
@@ -20,13 +22,14 @@
   },
   "requirements": [
     [
-      "has_the_recipe",
-      "has_h"
+      "has_h",
+      "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
       "simplestationsmason:excavator"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.blockentity.SifterBlockEntity;
-import com.ave.simplestationsmason.datagen.ModRecipes;
+import com.ave.simplestationsmason.datagen.ModTags;
 import com.ave.simplestationsmason.registrations.ModBlocks;
 import com.ave.simplestationsmason.registrations.VanillaBlocks;
 import com.ave.simplestationsmason.screen.ExcavatorScreen;
@@ -68,21 +68,20 @@ public class JEIModPlugin implements IModPlugin {
         list.add(new SimpleRecipe(new ItemStack(Items.RED_SAND), new ItemStack(Items.GLASS)));
         list.add(new SimpleRecipe(new ItemStack(Items.CLAY), new ItemStack(Items.TERRACOTTA)));
 
-        list.add(new SimpleRecipe(new ItemStack(Items.SAND), Tags.Items.GLASS_BLOCKS_CHEAP));
-        list.add(new SimpleRecipe(new ItemStack(Items.RED_SAND), Tags.Items.GLASS_BLOCKS_CHEAP));
+        list.add(new SimpleRecipe(new ItemStack(Items.SAND), Tags.Items.GLASS));
+        list.add(new SimpleRecipe(new ItemStack(Items.RED_SAND), Tags.Items.GLASS));
         list.add(new SimpleRecipe(new ItemStack(Items.CLAY), ItemTags.TERRACOTTA));
-        list.add(new SimpleRecipe(ItemTags.TERRACOTTA, Tags.Items.GLAZED_TERRACOTTAS));
+        list.add(new SimpleRecipe(ItemTags.TERRACOTTA, ModTags.Items.GLAZED_TAG));
         return list;
     }
 
     private List<SimpleRecipe> getSifterRecipes() {
         List<SimpleRecipe> recipes = Lists.newArrayList();
         var level = Minecraft.getInstance().level;
-        var all = level.getRecipeManager().getAllRecipesFor(ModRecipes.SIFTER_TYPE.get());
-        for (var holder : all) {
-            var recipe = holder.value();
-            var stack = new ItemStack(recipe.from().getItems()[0].getItem(), SifterBlockEntity.BATCH_SIZE);
-            for (var roll : recipe.rolls())
+        var all = level.getRecipeManager().getAllRecipesFor(SifterRecipe.Type.INSTANCE);
+        for (var recipe : all) {
+            var stack = new ItemStack(recipe.from.getItems()[0].getItem(), SifterBlockEntity.BATCH_SIZE);
+            for (var roll : recipe.rolls)
                 recipes.add(new SimpleRecipe(stack, new ItemStack(roll.output(), roll.count()), roll.chance()));
         }
         return recipes;

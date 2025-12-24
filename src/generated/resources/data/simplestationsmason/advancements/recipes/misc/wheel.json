@@ -1,11 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_h": {
+    "has_c": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:hopper"
+            "items": [
+              "minecraft:cobblestone"
+            ]
           }
         ]
       },
@@ -13,20 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "simplestationsmason:furnace"
+        "recipe": "simplestationsmason:wheel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_the_recipe",
-      "has_h"
+      "has_c",
+      "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "simplestationsmason:furnace"
+      "simplestationsmason:wheel"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

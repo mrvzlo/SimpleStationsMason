@@ -21,7 +21,7 @@
     "HPW"
   ],
   "result": {
-    "count": 1,
-    "id": "simplestationsmason:furnace"
-  }
+    "item": "simplestationsmason:furnace"
+  },
+  "show_notification": true
 }

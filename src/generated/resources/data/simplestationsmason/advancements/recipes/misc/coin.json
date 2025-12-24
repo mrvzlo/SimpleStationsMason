@@ -1,11 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_c": {
+    "has_r": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:cobblestone"
+            "items": [
+              "minecraft:rabbit_foot"
+            ]
           }
         ]
       },
@@ -13,20 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "simplestationsmason:bucket"
+        "recipe": "simplestationsmason:coin"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_the_recipe",
-      "has_c"
+      "has_r",
+      "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "simplestationsmason:bucket"
+      "simplestationsmason:coin"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

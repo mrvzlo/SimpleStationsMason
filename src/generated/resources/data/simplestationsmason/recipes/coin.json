@@ -18,7 +18,7 @@
     "GEG"
   ],
   "result": {
-    "count": 1,
-    "id": "simplestationsmason:coin"
-  }
+    "item": "simplestationsmason:coin"
+  },
+  "show_notification": true
 }

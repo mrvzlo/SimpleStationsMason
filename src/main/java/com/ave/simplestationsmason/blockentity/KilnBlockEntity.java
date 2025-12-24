@@ -6,6 +6,7 @@ import com.ave.simplestationsmason.blockentity.handlers.KilnInputHandler;
 import com.ave.simplestationsmason.blockentity.resources.ItemResource;
 import com.ave.simplestationsmason.blockentity.resources.OptionalItemResource;
 import com.ave.simplestationsmason.blockentity.resources.TemperatureResource;
+import com.ave.simplestationsmason.datagen.ModTags;
 import com.ave.simplestationsmason.registrations.ModBlockEntities;
 import com.ave.simplestationsmason.registrations.VanillaBlocks;
 import com.ave.simplestationsmason.screen.KilnMenu;
@@ -15,6 +16,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -103,7 +105,7 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
             return VanillaBlocks.GLASSES[index].asItem();
         if (item.equals(Items.TERRACOTTA))
             return VanillaBlocks.TERRACOTA[index].asItem();
-        if (new ItemStack(item).is(Tags.Items.GLAZED_TERRACOTTAS))
+        if (new ItemStack(item).is(ModTags.Items.GLAZED_TAG))
             return VanillaBlocks.GLAZED_TERRACOTA[index].asItem();
         return item;
     }

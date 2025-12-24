@@ -24,7 +24,7 @@
     "HSH"
   ],
   "result": {
-    "count": 1,
-    "id": "simplestationsmason:excavator"
-  }
+    "item": "simplestationsmason:excavator"
+  },
+  "show_notification": true
 }

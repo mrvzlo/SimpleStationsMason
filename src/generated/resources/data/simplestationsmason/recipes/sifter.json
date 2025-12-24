@@ -3,15 +3,15 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "simplestationsmason:bucket"
-    },
-    "C": {
-      "item": "minecraft:cauldron"
+      "item": "minecraft:iron_bars"
     },
     "H": {
       "item": "minecraft:hopper"
     },
     "R": {
+      "item": "minecraft:powered_rail"
+    },
+    "S": {
       "item": "minecraft:redstone"
     },
     "W": {
@@ -20,11 +20,11 @@
   },
   "pattern": [
     "HBH",
-    "RCR",
-    "WRW"
+    "RSR",
+    "WBW"
   ],
   "result": {
-    "count": 1,
-    "id": "simplestationsmason:mixer"
-  }
+    "item": "simplestationsmason:sifter"
+  },
+  "show_notification": true
 }
