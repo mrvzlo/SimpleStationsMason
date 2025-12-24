@@ -58,11 +58,11 @@ public class KilnRenderer implements BlockEntityRenderer<KilnBlockEntity> {
 
     private int getRotation(Direction dir) {
         switch (dir) {
-            case Direction.WEST:
+            case WEST:
                 return 270;
-            case Direction.NORTH:
+            case NORTH:
                 return 180;
-            case Direction.EAST:
+            case EAST:
                 return 90;
             default:
                 return 0;
