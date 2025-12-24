@@ -5,6 +5,9 @@
     "B": {
       "item": "simplestationsmason:bucket"
     },
+    "C": {
+      "item": "minecraft:cauldron"
+    },
     "H": {
       "item": "minecraft:hopper"
     },
@@ -17,7 +20,7 @@
   },
   "pattern": [
     "HBH",
-    "RBR",
+    "RCR",
     "WRW"
   ],
   "result": {
