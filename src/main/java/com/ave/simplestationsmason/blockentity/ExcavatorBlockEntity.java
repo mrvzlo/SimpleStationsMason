@@ -2,11 +2,11 @@ package com.ave.simplestationsmason.blockentity;
 
 import java.util.Arrays;
 
+import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
+import com.ave.simplestationscore.resources.EnergyResource;
 import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.blockentity.handlers.ExcavatorItemHandler;
-import com.ave.simplestationsmason.blockentity.resources.EnergyResource;
-import com.ave.simplestationsmason.registrations.ModBlockEntities;
-import com.ave.simplestationsmason.registrations.ModBlocks;
+import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.screen.ExcavatorMenu;
 
 import net.minecraft.core.BlockPos;
@@ -21,19 +21,19 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
 public class ExcavatorBlockEntity extends BaseStationBlockEntity {
-    private final Item[] EXCAVATABLE = ModBlocks.EXCAVATABLE;
+    private final Item[] EXCAVATABLE = Registrations.EXCAVATABLE;
     public static final int TYPE_SLOT = 2;
 
     public ExcavatorBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.EXCAVATOR_ENTITY.get(), pos, state);
+        super(Registrations.EXCAVATOR.entity.get(), pos, state);
         inventory = new ExcavatorItemHandler(3) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
             }
         };
-
-        resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 64));
+        fuelMax = Config.POWER_MAX.get();
+        resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 64, Config.FUEL_PER_COAL.get()));
     }
 
     @Override
@@ -65,7 +65,7 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
-                ModBlockEntities.EXCAVATOR_ENTITY.get(),
+                Registrations.EXCAVATOR.entity.get(),
                 (be, direction) -> be.getItemHandler(direction));
     }
 

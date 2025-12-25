@@ -3,7 +3,7 @@ package com.ave.simplestationsmason.recipes;
 import org.jetbrains.annotations.Nullable;
 
 import com.ave.simplestationsmason.SimpleStationsMason;
-import com.ave.simplestationsmason.registrations.ModBlocks;
+import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -20,7 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.Tags;
 
-public class KilnRecipeCategory implements IRecipeCategory<SimpleRecipe> {
+public class FurnaceRecipeCategory implements IRecipeCategory<SimpleRecipe> {
         private static final String Path = "kiln";
 
         public final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(SimpleStationsMason.MODID, Path);
@@ -34,7 +34,7 @@ public class KilnRecipeCategory implements IRecipeCategory<SimpleRecipe> {
 
         private final IDrawableStatic bg;
 
-        public KilnRecipeCategory(IGuiHelper guiHelper) {
+        public FurnaceRecipeCategory(IGuiHelper guiHelper) {
                 this.guiHelper = guiHelper;
                 bg = guiHelper.createDrawable(TEXTURE, 0, 0, 176, 80);
         }
@@ -52,7 +52,7 @@ public class KilnRecipeCategory implements IRecipeCategory<SimpleRecipe> {
         @Override
         public @Nullable IDrawable getIcon() {
                 return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
-                                new ItemStack(ModBlocks.EXCAVATOR_BLOCK_ITEM.get()));
+                                new ItemStack(Registrations.EXCAVATOR.item.get()));
         }
 
         @Override

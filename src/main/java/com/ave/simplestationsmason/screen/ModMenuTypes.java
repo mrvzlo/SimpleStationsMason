@@ -22,8 +22,8 @@ public class ModMenuTypes {
                         "excavator_menu", ExcavatorMenu::new);
         public static final DeferredHolder<MenuType<?>, MenuType<MixerMenu>> MIXER_MENU = registerMenuType(
                         "mixer_menu", MixerMenu::new);
-        public static final DeferredHolder<MenuType<?>, MenuType<KilnMenu>> KILN_MENU = registerMenuType(
-                        "kiln_menu", KilnMenu::new);
+        public static final DeferredHolder<MenuType<?>, MenuType<FurnaceMenu>> FURNACE_MENU = registerMenuType(
+                        "furnace_menu", FurnaceMenu::new);
         public static final DeferredHolder<MenuType<?>, MenuType<SifterMenu>> SIFTER_MENU = registerMenuType(
                         "sifter_menu", SifterMenu::new);
 

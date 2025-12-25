@@ -2,12 +2,13 @@ package com.ave.simplestationsmason.blockentity;
 
 import java.util.Arrays;
 
+import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
+import com.ave.simplestationscore.resources.EnergyResource;
+import com.ave.simplestationscore.resources.ItemResource;
+import com.ave.simplestationscore.resources.WaterResource;
 import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.blockentity.handlers.MixerItemHandler;
-import com.ave.simplestationsmason.blockentity.resources.EnergyResource;
-import com.ave.simplestationsmason.blockentity.resources.ItemResource;
-import com.ave.simplestationsmason.blockentity.resources.WaterResource;
-import com.ave.simplestationsmason.registrations.ModBlockEntities;
+import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.registrations.VanillaBlocks;
 import com.ave.simplestationsmason.screen.MixerMenu;
 
@@ -31,18 +32,19 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
     public int waterValue = 0;
 
     public MixerBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.MIXER_ENTITY.get(), pos, state);
+        super(Registrations.MIXER.entity.get(), pos, state);
         inventory = new MixerItemHandler(6) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
             }
         };
-        resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 16));
+        resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 16, Config.FUEL_PER_COAL.get()));
         resources.put(WATER_SLOT, new WaterResource(Config.WATER_MAX.get(), 100));
         resources.put(SAND_SLOT, new ItemResource(inventory, SAND_SLOT, 16));
         resources.put(GRAVEL_SLOT, new ItemResource(inventory, GRAVEL_SLOT, 16));
         resources.put(COLOR_SLOT, new ItemResource(inventory, COLOR_SLOT, 2));
+        fuelMax = Config.POWER_MAX.get();
     }
 
     @Override
@@ -85,7 +87,7 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
-                ModBlockEntities.MIXER_ENTITY.get(),
+                Registrations.MIXER.entity.get(),
                 (be, direction) -> be.getItemHandler(direction));
     }
 

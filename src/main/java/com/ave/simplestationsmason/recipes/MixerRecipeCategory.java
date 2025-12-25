@@ -3,7 +3,7 @@ package com.ave.simplestationsmason.recipes;
 import org.jetbrains.annotations.Nullable;
 
 import com.ave.simplestationsmason.SimpleStationsMason;
-import com.ave.simplestationsmason.registrations.ModBlocks;
+import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -52,7 +52,7 @@ public class MixerRecipeCategory implements IRecipeCategory<SimpleRecipe> {
         @Override
         public @Nullable IDrawable getIcon() {
                 return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
-                                new ItemStack(ModBlocks.MIXER_BLOCK_ITEM.get()));
+                                new ItemStack(Registrations.MIXER.item.get()));
         }
 
         @Override

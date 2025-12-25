@@ -1,14 +1,16 @@
 package com.ave.simplestationsmason.blockentity;
 
+import com.ave.simplestationscore.mainblock.BaseStationBlock;
+import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
+import com.ave.simplestationscore.resources.ItemResource;
+import com.ave.simplestationscore.resources.OptionalItemResource;
+import com.ave.simplestationscore.resources.TemperatureResource;
 import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.blockentity.enums.KilnType;
-import com.ave.simplestationsmason.blockentity.handlers.KilnItemHandler;
-import com.ave.simplestationsmason.blockentity.resources.ItemResource;
-import com.ave.simplestationsmason.blockentity.resources.OptionalItemResource;
-import com.ave.simplestationsmason.blockentity.resources.TemperatureResource;
-import com.ave.simplestationsmason.registrations.ModBlockEntities;
+import com.ave.simplestationsmason.blockentity.handlers.FurnaceItemHandler;
+import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.registrations.VanillaBlocks;
-import com.ave.simplestationsmason.screen.KilnMenu;
+import com.ave.simplestationsmason.screen.FurnaceMenu;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,22 +27,23 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.Tags;
 
-public class KilnBlockEntity extends BaseStationBlockEntity {
+public class FurnaceBlockEntity extends BaseStationBlockEntity {
     public static final int TYPE_SLOT = 2;
     public static final int COLOR_SLOT = 3;
     public boolean hasColor = false;
 
-    public KilnBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.KILN_ENTITY.get(), pos, state);
-        inventory = new KilnItemHandler(4) {
+    public FurnaceBlockEntity(BlockPos pos, BlockState state) {
+        super(Registrations.FURNACE.entity.get(), pos, state);
+        inventory = new FurnaceItemHandler(4) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
             }
         };
-        resources.put(FUEL_SLOT, new TemperatureResource());
+        resources.put(FUEL_SLOT, new TemperatureResource(Config.TEMP_RISE_SPEED.get()));
         resources.put(TYPE_SLOT, new ItemResource(inventory, TYPE_SLOT, 8));
         resources.put(COLOR_SLOT, new OptionalItemResource(inventory, COLOR_SLOT, 1));
+        fuelMax = Config.POWER_MAX.get();
     }
 
     @Override
@@ -53,8 +56,8 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
     }
 
     @Override
-    public KilnMenu createMenu(int containerId, Inventory inventory, Player player) {
-        return new KilnMenu(containerId, inventory, this);
+    public FurnaceMenu createMenu(int containerId, Inventory inventory, Player player) {
+        return new FurnaceMenu(containerId, inventory, this);
     }
 
     @Override
@@ -118,7 +121,7 @@ public class KilnBlockEntity extends BaseStationBlockEntity {
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
-                ModBlockEntities.KILN_ENTITY.get(),
+                Registrations.FURNACE.entity.get(),
                 (be, direction) -> be.getItemHandler(direction));
     }
 

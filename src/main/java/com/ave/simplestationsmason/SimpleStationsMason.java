@@ -2,12 +2,13 @@ package com.ave.simplestationsmason;
 
 import org.slf4j.Logger;
 
+import com.ave.simplestationscore.partblock.PartBlockEntity;
+import com.ave.simplestationscore.registrations.RegistrationManager;
 import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
-import com.ave.simplestationsmason.blockentity.partblock.PartBlockEntity;
+import com.ave.simplestationsmason.blockentity.SifterBlockEntity;
 import com.ave.simplestationsmason.datagen.ModRecipes;
-import com.ave.simplestationsmason.registrations.ModBlockEntities;
-import com.ave.simplestationsmason.registrations.ModBlocks;
+import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.screen.ModMenuTypes;
 import com.mojang.logging.LogUtils;
 
@@ -36,23 +37,23 @@ public class SimpleStationsMason {
                         .register("example_tab", () -> CreativeModeTab.builder()
                                         .title(Component.translatable("itemGroup.simplestations.mason"))
                                         .withTabsBefore(CreativeModeTabs.COMBAT)
-                                        .icon(() -> ModBlocks.EXCAVATOR_BLOCK_ITEM.get().getDefaultInstance())
+                                        .icon(() -> Registrations.EXCAVATOR.item.get().getDefaultInstance())
                                         .displayItems((parameters, output) -> {
-                                                output.accept(ModBlocks.EXCAVATOR_BLOCK_ITEM.get());
-                                                output.accept(ModBlocks.MIXER_BLOCK_ITEM.get());
-                                                output.accept(ModBlocks.KILN_BLOCK_ITEM.get());
-                                                output.accept(ModBlocks.SIFTER_BLOCK_ITEM.get());
-                                                output.accept(ModBlocks.WHEEL.get());
-                                                output.accept(ModBlocks.COIN.get());
-                                                output.accept(ModBlocks.BUCKET.get());
+                                                output.accept(Registrations.EXCAVATOR.item.get());
+                                                output.accept(Registrations.MIXER.item.get());
+                                                output.accept(Registrations.FURNACE.item.get());
+                                                output.accept(Registrations.SIFTER.item.get());
+                                                output.accept(Registrations.WHEEL.get());
+                                                output.accept(Registrations.COIN.get());
+                                                output.accept(Registrations.BUCKET.get());
                                         }).build());
 
         public SimpleStationsMason(IEventBus modEventBus, ModContainer modContainer) {
                 modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-                ModBlocks.BLOCKS.register(modEventBus);
-                ModBlocks.ITEMS.register(modEventBus);
+                Registrations.MANAGER.BLOCKS.register(modEventBus);
+                Registrations.MANAGER.ITEMS.register(modEventBus);
+                Registrations.MANAGER.BLOCK_ENTITIES.register(modEventBus);
                 CREATIVE_MODE_TABS.register(modEventBus);
-                ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
                 ModMenuTypes.register(modEventBus);
                 ModRecipes.register(modEventBus);
                 modEventBus.addListener(this::registerCapabilities);
@@ -61,24 +62,24 @@ public class SimpleStationsMason {
         private void registerCapabilities(RegisterCapabilitiesEvent event) {
                 event.registerBlock(Capabilities.EnergyStorage.BLOCK,
                                 (level, pos, state, be, side) -> ((ExcavatorBlockEntity) be).getEnergyStorage(),
-                                ModBlocks.EXCAVATOR_BLOCK.get());
+                                Registrations.EXCAVATOR.block.get());
                 event.registerBlock(Capabilities.EnergyStorage.BLOCK,
                                 (level, pos, state, be, side) -> ((MixerBlockEntity) be).getEnergyStorage(),
-                                ModBlocks.MIXER_BLOCK.get());
+                                Registrations.MIXER.block.get());
                 event.registerBlock(Capabilities.EnergyStorage.BLOCK,
-                                (level, pos, state, be, side) -> ((MixerBlockEntity) be).getEnergyStorage(),
-                                ModBlocks.SIFTER_BLOCK.get());
+                                (level, pos, state, be, side) -> ((SifterBlockEntity) be).getEnergyStorage(),
+                                Registrations.SIFTER.block.get());
                 event.registerBlock(Capabilities.FluidHandler.BLOCK,
                                 (level, pos, state, be, side) -> ((MixerBlockEntity) be).getWaterStorage(),
-                                ModBlocks.MIXER_BLOCK.get());
+                                Registrations.MIXER.block.get());
 
                 event.registerBlock(
                                 Capabilities.FluidHandler.BLOCK, (level, pos, state, be,
                                                 side) -> ((PartBlockEntity) be).getWaterStorage((PartBlockEntity) be),
-                                ModBlocks.PART.get());
+                                RegistrationManager.PART.block.get());
                 event.registerBlock(
                                 Capabilities.EnergyStorage.BLOCK, (level, pos, state, be,
                                                 side) -> ((PartBlockEntity) be).getEnergyStorage((PartBlockEntity) be),
-                                ModBlocks.PART.get());
+                                RegistrationManager.PART.block.get());
         }
 }

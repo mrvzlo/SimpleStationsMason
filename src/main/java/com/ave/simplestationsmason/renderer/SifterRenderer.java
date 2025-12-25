@@ -1,8 +1,8 @@
 package com.ave.simplestationsmason.renderer;
 
-import com.ave.simplestationsmason.blockentity.BaseStationBlock;
+import com.ave.simplestationsmason.blockentity.SifterBlock;
 import com.ave.simplestationsmason.blockentity.SifterBlockEntity;
-import com.ave.simplestationsmason.registrations.ModBlocks;
+import com.ave.simplestationsmason.registrations.Registrations;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
@@ -28,7 +28,7 @@ public class SifterRenderer implements BlockEntityRenderer<SifterBlockEntity> {
 
         pose.pushPose();
         var itemRenderer = Minecraft.getInstance().getItemRenderer();
-        var direction = be.getBlockState().getValue(BaseStationBlock.FACING);
+        var direction = be.getBlockState().getValue(SifterBlock.FACING);
 
         var rotation = getRotation(direction);
         pose.translate(0.5, 0.5, 0.5);
@@ -42,9 +42,9 @@ public class SifterRenderer implements BlockEntityRenderer<SifterBlockEntity> {
     }
 
     private Item getItem(int type) {
-        if (type >= ModBlocks.SIFTABLE.length)
+        if (type >= Registrations.SIFTABLE.length)
             type = 2;
-        return ModBlocks.SIFTABLE_BLOCKS[type].get();
+        return Registrations.SIFTABLE_BLOCKS[type].get();
     }
 
     private int getRotation(Direction dir) {

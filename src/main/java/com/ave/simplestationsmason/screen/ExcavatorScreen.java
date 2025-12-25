@@ -1,7 +1,9 @@
 package com.ave.simplestationsmason.screen;
 
+import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
+import com.ave.simplestationscore.screen.BaseStationMenu;
+import com.ave.simplestationscore.screen.BaseStationScreen;
 import com.ave.simplestationsmason.SimpleStationsMason;
-import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
 
 import net.minecraft.client.gui.GuiGraphics;
@@ -32,5 +34,16 @@ public class ExcavatorScreen extends BaseStationScreen {
         if (station.type < 0 && UIBlocks.FILTER_SLOT.isHovered(mouseX - x, mouseY - y)) {
             gfx.renderTooltip(font, Component.translatable("screen.simplestationsmason.filter"), mouseX, mouseY);
         }
+        renderProgressTooltip(gfx, UIBlocks.PROGRESS_BAR, mouseX, mouseY, station);
+        renderPowerTooltip(gfx, UIBlocks.POWER_BAR, mouseX, mouseY, station);
+    }
+
+    @Override
+    protected void renderBg(GuiGraphics graphics, float tick, int mx, int my) {
+        super.renderBg(graphics, tick, mx, my);
+        if (!(menu.blockEntity instanceof BaseStationBlockEntity station))
+            return;
+        renderProgressBar(graphics, station, UIBlocks.PROGRESS_BAR);
+        renderPowerBar(graphics, station, UIBlocks.POWER_BAR, UIBlocks.FUEL_SLOT);
     }
 }

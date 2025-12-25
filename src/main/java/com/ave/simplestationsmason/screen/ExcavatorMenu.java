@@ -1,15 +1,15 @@
 package com.ave.simplestationsmason.screen;
 
+import com.ave.simplestationscore.mainblock.StationContainer;
+import com.ave.simplestationscore.screen.BaseStationMenu;
 import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
-import com.ave.simplestationsmason.blockentity.StationContainer;
-import com.ave.simplestationsmason.registrations.ModBlocks;
+import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class ExcavatorMenu extends BaseStationMenu {
     public ExcavatorMenu(int containerId, Inventory inventory, FriendlyByteBuf data) {
@@ -22,13 +22,14 @@ public class ExcavatorMenu extends BaseStationMenu {
 
     @Override
     public void addItemSlots() {
-        addSlot(new SlotItemHandler(blockEntity.inventory, ExcavatorBlockEntity.TYPE_SLOT, UIBlocks.FILTER_SLOT.left,
-                UIBlocks.FILTER_SLOT.top));
+        addItemSlot(blockEntity.inventory, ExcavatorBlockEntity.FUEL_SLOT, UIBlocks.FUEL_SLOT);
+        addItemSlot(blockEntity.inventory, ExcavatorBlockEntity.OUTPUT_SLOT, UIBlocks.OUT_SLOT);
+        addItemSlot(blockEntity.inventory, ExcavatorBlockEntity.TYPE_SLOT, UIBlocks.FILTER_SLOT);
     }
 
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player,
-                ModBlocks.EXCAVATOR_BLOCK.get());
+                Registrations.EXCAVATOR.block.get());
     }
 }

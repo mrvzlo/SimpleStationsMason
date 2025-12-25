@@ -3,11 +3,13 @@ package com.ave.simplestationsmason.screen;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
+import com.ave.simplestationscore.screen.BaseStationMenu;
+import com.ave.simplestationscore.screen.BaseStationScreen;
+import com.ave.simplestationscore.uihelpers.NumToString;
 import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.SimpleStationsMason;
-import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
-import com.ave.simplestationsmason.uihelpers.NumToString;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
 
 import net.minecraft.client.gui.GuiGraphics;
@@ -47,6 +49,8 @@ public class MixerScreen extends BaseStationScreen {
                     Component.literal(waterPart));
             gfx.renderComponentTooltip(font, text, mouseX, mouseY);
         }
+        renderProgressTooltip(gfx, UIBlocks.PROGRESS_BAR, mouseX, mouseY, station);
+        renderPowerTooltip(gfx, UIBlocks.POWER_BAR, mouseX, mouseY, station);
     }
 
     @Override
@@ -59,6 +63,8 @@ public class MixerScreen extends BaseStationScreen {
         UIBlocks.WATER_BAR.drawProgressToTop(graphics, getStartX(), getStartY(), waterPart, 0xAA222299);
         if (station.waterValue == 0)
             UIBlocks.WATER_SLOT.drawBorder(graphics, getStartX(), getStartY(), getWarningColor());
-    }
 
+        renderProgressBar(graphics, station, UIBlocks.PROGRESS_BAR);
+        renderPowerBar(graphics, station, UIBlocks.POWER_BAR, UIBlocks.FUEL_SLOT);
+    }
 }

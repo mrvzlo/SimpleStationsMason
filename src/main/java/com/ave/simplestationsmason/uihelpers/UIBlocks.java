@@ -1,5 +1,7 @@
 package com.ave.simplestationsmason.uihelpers;
 
+import com.ave.simplestationscore.uihelpers.Square;
+
 public class UIBlocks {
     public static final Square FUEL_SLOT = new Square(8, 52, 16, 16);
     public static final Square POWER_BAR = new Square(8, 15, 16, 35);

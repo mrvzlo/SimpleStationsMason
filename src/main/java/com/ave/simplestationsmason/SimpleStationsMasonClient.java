@@ -1,18 +1,18 @@
 package com.ave.simplestationsmason;
 
+import com.ave.simplestationscore.partblock.PartBlockEntity;
 import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
-import com.ave.simplestationsmason.blockentity.KilnBlockEntity;
+import com.ave.simplestationsmason.blockentity.FurnaceBlockEntity;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import com.ave.simplestationsmason.blockentity.SifterBlockEntity;
-import com.ave.simplestationsmason.blockentity.partblock.PartBlockEntity;
-import com.ave.simplestationsmason.registrations.ModBlockEntities;
+import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.renderer.ExcavatorRenderer;
-import com.ave.simplestationsmason.renderer.KilnRenderer;
+import com.ave.simplestationsmason.renderer.FurnaceRenderer;
 import com.ave.simplestationsmason.renderer.SifterRenderer;
 import com.ave.simplestationsmason.screen.ModMenuTypes;
 import com.ave.simplestationsmason.screen.SifterScreen;
 import com.ave.simplestationsmason.screen.ExcavatorScreen;
-import com.ave.simplestationsmason.screen.KilnScreen;
+import com.ave.simplestationsmason.screen.FurnaceScreen;
 import com.ave.simplestationsmason.screen.MixerScreen;
 
 import net.neoforged.api.distmarker.Dist;
@@ -51,7 +51,7 @@ public class SimpleStationsMasonClient {
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenuTypes.EXCAVATOR_MENU.get(), ExcavatorScreen::new);
         event.register(ModMenuTypes.MIXER_MENU.get(), MixerScreen::new);
-        event.register(ModMenuTypes.KILN_MENU.get(), KilnScreen::new);
+        event.register(ModMenuTypes.FURNACE_MENU.get(), FurnaceScreen::new);
         event.register(ModMenuTypes.SIFTER_MENU.get(), SifterScreen::new);
     }
 
@@ -59,15 +59,15 @@ public class SimpleStationsMasonClient {
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         ExcavatorBlockEntity.registerCaps(event);
         MixerBlockEntity.registerCaps(event);
-        KilnBlockEntity.registerCaps(event);
+        FurnaceBlockEntity.registerCaps(event);
         SifterBlockEntity.registerCaps(event);
         PartBlockEntity.registerCaps(event);
     }
 
     @SubscribeEvent // on the mod event bus only on the physical client
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(ModBlockEntities.EXCAVATOR_ENTITY.get(), ExcavatorRenderer::new);
-        event.registerBlockEntityRenderer(ModBlockEntities.SIFTER_ENTITY.get(), SifterRenderer::new);
-        event.registerBlockEntityRenderer(ModBlockEntities.KILN_ENTITY.get(), KilnRenderer::new);
+        event.registerBlockEntityRenderer(Registrations.EXCAVATOR.entity.get(), ExcavatorRenderer::new);
+        event.registerBlockEntityRenderer(Registrations.SIFTER.entity.get(), SifterRenderer::new);
+        event.registerBlockEntityRenderer(Registrations.FURNACE.entity.get(), FurnaceRenderer::new);
     }
 }

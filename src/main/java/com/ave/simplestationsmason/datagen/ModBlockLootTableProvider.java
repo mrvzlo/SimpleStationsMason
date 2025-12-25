@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.Block;
 import java.util.List;
 import java.util.Set;
 
-import com.ave.simplestationsmason.registrations.ModBlocks;
+import com.ave.simplestationsmason.registrations.Registrations;
 
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected ModBlockLootTableProvider(HolderLookup.Provider registries) {
@@ -17,11 +17,15 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(ModBlocks.EXCAVATOR_BLOCK.get());
+        dropSelf(Registrations.EXCAVATOR.block.get());
+        dropSelf(Registrations.SIFTER.block.get());
+        dropSelf(Registrations.FURNACE.block.get());
+        dropSelf(Registrations.MIXER.block.get());
     }
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return List.of(ModBlocks.EXCAVATOR_BLOCK.get());
+        return List.of(Registrations.EXCAVATOR.block.get(), Registrations.SIFTER.block.get(),
+                Registrations.FURNACE.block.get(), Registrations.MIXER.block.get());
     }
 }

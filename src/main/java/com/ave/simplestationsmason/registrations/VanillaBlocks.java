@@ -45,26 +45,6 @@ public class VanillaBlocks {
                         Blocks.GLASS
         };
 
-        public static final Block[] GLASS_PANES = new Block[] {
-                        Blocks.WHITE_STAINED_GLASS_PANE,
-                        Blocks.ORANGE_STAINED_GLASS_PANE,
-                        Blocks.MAGENTA_STAINED_GLASS_PANE,
-                        Blocks.LIGHT_BLUE_STAINED_GLASS_PANE,
-                        Blocks.YELLOW_STAINED_GLASS_PANE,
-                        Blocks.LIME_STAINED_GLASS_PANE,
-                        Blocks.PINK_STAINED_GLASS_PANE,
-                        Blocks.GRAY_STAINED_GLASS_PANE,
-                        Blocks.LIGHT_GRAY_STAINED_GLASS_PANE,
-                        Blocks.CYAN_STAINED_GLASS_PANE,
-                        Blocks.PURPLE_STAINED_GLASS_PANE,
-                        Blocks.BLUE_STAINED_GLASS_PANE,
-                        Blocks.BROWN_STAINED_GLASS_PANE,
-                        Blocks.GREEN_STAINED_GLASS_PANE,
-                        Blocks.RED_STAINED_GLASS_PANE,
-                        Blocks.BLACK_STAINED_GLASS_PANE,
-                        Blocks.GLASS_PANE
-        };
-
         public static final Block[] TERRACOTA = new Block[] {
                         Blocks.WHITE_TERRACOTTA,
                         Blocks.ORANGE_TERRACOTTA,

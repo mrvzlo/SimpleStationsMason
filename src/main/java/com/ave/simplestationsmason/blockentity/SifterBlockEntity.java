@@ -1,14 +1,14 @@
 package com.ave.simplestationsmason.blockentity;
 
+import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
+import com.ave.simplestationscore.resources.EnergyResource;
+import com.ave.simplestationscore.resources.ItemResource;
+import com.ave.simplestationscore.resources.ToolResource;
 import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.blockentity.handlers.SifterItemHandler;
-import com.ave.simplestationsmason.blockentity.resources.EnergyResource;
-import com.ave.simplestationsmason.blockentity.resources.ItemResource;
-import com.ave.simplestationsmason.blockentity.resources.ToolResource;
 import com.ave.simplestationsmason.datagen.ModRecipes;
 import com.ave.simplestationsmason.recipes.SifterRecipeInput;
-import com.ave.simplestationsmason.registrations.ModBlockEntities;
-import com.ave.simplestationsmason.registrations.ModBlocks;
+import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.screen.SifterMenu;
 
 import net.minecraft.core.BlockPos;
@@ -28,16 +28,17 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
     public static final int BATCH_SIZE = 16;
 
     public SifterBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.SIFTER_ENTITY.get(), pos, state);
+        super(Registrations.SIFTER.entity.get(), pos, state);
         inventory = new SifterItemHandler(4) {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
             }
         };
-        resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 32));
+        resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 32, Config.FUEL_PER_COAL.get()));
         resources.put(TYPE_SLOT, new ItemResource(inventory, TYPE_SLOT, BATCH_SIZE));
         resources.put(COIN_SLOT, new ToolResource(inventory, COIN_SLOT, 37));
+        fuelMax = Config.POWER_MAX.get();
     }
 
     @Override
@@ -83,11 +84,11 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
         var stack = inventory.getStackInSlot(TYPE_SLOT);
         if (stack.isEmpty())
             return -1;
-        for (var i = 0; i < ModBlocks.SIFTABLE.length; i++) {
-            if (ModBlocks.SIFTABLE[i].equals(stack.getItem()))
+        for (var i = 0; i < Registrations.SIFTABLE.length; i++) {
+            if (Registrations.SIFTABLE[i].equals(stack.getItem()))
                 return i;
         }
-        return ModBlocks.SIFTABLE.length;
+        return Registrations.SIFTABLE.length;
     }
 
     @Override
@@ -102,7 +103,7 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
-                ModBlockEntities.SIFTER_ENTITY.get(),
+                Registrations.SIFTER.entity.get(),
                 (be, direction) -> be.getItemHandler(direction));
     }
 

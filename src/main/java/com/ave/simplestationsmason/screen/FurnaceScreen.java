@@ -3,10 +3,12 @@ package com.ave.simplestationsmason.screen;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
+import com.ave.simplestationscore.managers.TemperatureManager;
+import com.ave.simplestationscore.screen.BaseStationMenu;
+import com.ave.simplestationscore.screen.BaseStationScreen;
 import com.ave.simplestationsmason.SimpleStationsMason;
-import com.ave.simplestationsmason.blockentity.BaseStationBlockEntity;
-import com.ave.simplestationsmason.blockentity.KilnBlockEntity;
-import com.ave.simplestationsmason.blockentity.managers.TemperatureManager;
+import com.ave.simplestationsmason.blockentity.FurnaceBlockEntity;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
 
 import net.minecraft.client.gui.GuiGraphics;
@@ -14,11 +16,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class KilnScreen extends BaseStationScreen {
+public class FurnaceScreen extends BaseStationScreen {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(SimpleStationsMason.MODID,
             "textures/gui/kiln_gui.png");
 
-    public KilnScreen(BaseStationMenu menu, Inventory inventory, Component title) {
+    public FurnaceScreen(BaseStationMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
     }
 
@@ -34,19 +36,27 @@ public class KilnScreen extends BaseStationScreen {
     protected void renderMoreTooltips(GuiGraphics gfx, int mouseX, int mouseY, BaseStationBlockEntity station) {
         int x = getStartX();
         int y = getStartY();
-        var kiln = (KilnBlockEntity) station;
+        var kiln = (FurnaceBlockEntity) station;
         if (!kiln.hasColor && UIBlocks.FILTER3_SLOT.isHovered(mouseX - x, mouseY - y)) {
             gfx.renderTooltip(font, Component.translatable("screen.simplestationsmason.color"), mouseX, mouseY);
         }
+
+        renderPowerTooltip(gfx, mouseX, mouseY, station);
+        renderProgressTooltip(gfx, UIBlocks.PROGRESS_BAR, mouseX, mouseY, station);
     }
 
     @Override
     protected void renderBg(GuiGraphics graphics, float tick, int mx, int my) {
         super.renderBg(graphics, tick, mx, my);
+
+        if (!(menu.blockEntity instanceof FurnaceBlockEntity station))
+            return;
+
+        renderPowerBar(graphics, station);
+        renderProgressBar(graphics, station, UIBlocks.PROGRESS_BAR);
     }
 
-    @Override
-    protected void renderPowerTooltip(GuiGraphics gfx, int mouseX, int mouseY, BaseStationBlockEntity station) {
+    private void renderPowerTooltip(GuiGraphics gfx, int mouseX, int mouseY, BaseStationBlockEntity station) {
         if (!UIBlocks.POWER_BAR.isHovered(mouseX - getStartX(), mouseY - getStartY()))
             return;
         String powerPart = station.fuelValue + "° / " + (int) TemperatureManager.MaxTemp + "°";
@@ -56,8 +66,9 @@ public class KilnScreen extends BaseStationScreen {
         gfx.renderComponentTooltip(font, powerText, mouseX, mouseY);
     }
 
-    @Override
-    protected void renderPowerBar(GuiGraphics graphics, BaseStationBlockEntity station, int x, int y) {
+    private void renderPowerBar(GuiGraphics graphics, BaseStationBlockEntity station) {
+        int x = getStartX();
+        int y = getStartY();
         float powerPart = (float) station.fuelValue / TemperatureManager.MaxTemp;
         var color = 0xAA000000 | temperatureToRGB(powerPart);
 

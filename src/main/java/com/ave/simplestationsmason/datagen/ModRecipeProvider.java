@@ -2,7 +2,7 @@ package com.ave.simplestationsmason.datagen;
 
 import java.util.concurrent.CompletableFuture;
 
-import com.ave.simplestationsmason.registrations.ModBlocks;
+import com.ave.simplestationsmason.registrations.Registrations;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -19,38 +19,38 @@ public class ModRecipeProvider extends RecipeProvider {
 
         @Override
         protected void buildRecipes(RecipeOutput consumer) {
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.BUCKET.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.BUCKET.get())
                                 .pattern("A A")
                                 .pattern(" A ")
                                 .define('A', ItemTags.STONE_CRAFTING_MATERIALS)
                                 .unlockedBy("has_c", has(Items.COBBLESTONE))
                                 .save(consumer);
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.WHEEL.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.WHEEL.get())
                                 .pattern("AAA")
                                 .pattern("A A")
                                 .pattern("AAA")
-                                .define('A', ModBlocks.BUCKET.get())
+                                .define('A', Registrations.BUCKET.get())
                                 .unlockedBy("has_c", has(Items.COBBLESTONE))
                                 .save(consumer);
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.EXCAVATOR_BLOCK.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.EXCAVATOR.block.get())
                                 .pattern("CCC")
                                 .pattern("WRW")
                                 .pattern("HSH")
                                 .define('C', ItemTags.STONE_CRAFTING_MATERIALS)
-                                .define('W', ModBlocks.WHEEL.get())
+                                .define('W', Registrations.WHEEL.get())
                                 .define('S', Items.REDSTONE)
                                 .define('R', Items.POWERED_RAIL)
                                 .define('H', Items.HOPPER)
                                 .unlockedBy("has_h", has(Items.HOPPER))
                                 .save(consumer);
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.MIXER_BLOCK.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.MIXER.block.get())
                                 .pattern("HBH")
                                 .pattern("RCR")
                                 .pattern("WRW")
-                                .define('B', ModBlocks.BUCKET.get())
+                                .define('B', Registrations.BUCKET.get())
                                 .define('R', Items.REDSTONE)
                                 .define('C', Items.CAULDRON)
                                 .define('W', ItemTags.PLANKS)
@@ -58,7 +58,7 @@ public class ModRecipeProvider extends RecipeProvider {
                                 .unlockedBy("has_h", has(Items.HOPPER))
                                 .save(consumer);
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.KILN_BLOCK.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.FURNACE.block.get())
                                 .pattern("WPH")
                                 .pattern("FFF")
                                 .pattern("HPW")
@@ -69,7 +69,7 @@ public class ModRecipeProvider extends RecipeProvider {
                                 .unlockedBy("has_h", has(Items.HOPPER))
                                 .save(consumer);
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.COIN.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.COIN.get())
                                 .pattern("GEG")
                                 .pattern("ERE")
                                 .pattern("GEG")
@@ -79,7 +79,7 @@ public class ModRecipeProvider extends RecipeProvider {
                                 .unlockedBy("has_r", has(Items.RABBIT_FOOT))
                                 .save(consumer);
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SIFTER_BLOCK.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.SIFTER.block.get())
                                 .pattern("HBH")
                                 .pattern("RSR")
                                 .pattern("WBW")

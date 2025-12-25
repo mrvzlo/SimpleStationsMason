@@ -1,8 +1,8 @@
 package com.ave.simplestationsmason.renderer;
 
-import com.ave.simplestationsmason.blockentity.BaseStationBlock;
+import com.ave.simplestationsmason.blockentity.ExcavatorBlock;
 import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
-import com.ave.simplestationsmason.registrations.ModBlocks;
+import com.ave.simplestationsmason.registrations.Registrations;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
@@ -31,10 +31,10 @@ public class ExcavatorRenderer implements BlockEntityRenderer<ExcavatorBlockEnti
             int overlay) {
 
         var itemRenderer = Minecraft.getInstance().getItemRenderer();
-        var direction = be.getBlockState().getValue(BaseStationBlock.FACING);
+        var direction = be.getBlockState().getValue(ExcavatorBlock.FACING);
         var gameTime = be.getLevel().getGameTime();
         var wheelRotation = be.type < 0 ? 0 : ((gameTime) % 360);
-        var wheel = be.type < 0 ? ModBlocks.WHEEL.get() : ModBlocks.EXCAVATABLE_BLOCKS[be.type].get();
+        var wheel = be.type < 0 ? Registrations.WHEEL.get() : Registrations.EXCAVATABLE_BLOCKS[be.type].get();
         drawBlock(pose, itemRenderer, wheel, be, buf, -0.5f, 0.5f, direction, wheelRotation);
         drawBlock(pose, itemRenderer, wheel, be, buf, 1.5f, 0.5f, direction, wheelRotation);
     }
