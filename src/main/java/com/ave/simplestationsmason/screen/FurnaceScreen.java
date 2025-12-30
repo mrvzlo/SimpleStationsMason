@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
-import com.ave.simplestationscore.managers.TemperatureManager;
+import com.ave.simplestationsmason.blockentity.temperature.TemperatureManager;
 import com.ave.simplestationscore.screen.BaseStationMenu;
 import com.ave.simplestationscore.screen.BaseStationScreen;
 import com.ave.simplestationsmason.SimpleStationsMason;
