@@ -52,6 +52,6 @@ public class MixerMenu extends BaseStationMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player,
-                Registrations.MIXER.block.get());
+                Registrations.MIXER.getBlock());
     }
 }

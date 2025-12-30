@@ -30,6 +30,6 @@ public class ExcavatorMenu extends BaseStationMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player,
-                Registrations.EXCAVATOR.block.get());
+                Registrations.EXCAVATOR.getBlock());
     }
 }

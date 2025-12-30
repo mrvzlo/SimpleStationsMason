@@ -33,7 +33,7 @@ public class FurnaceBlockEntity extends BaseStationBlockEntity {
     public boolean hasColor = false;
 
     public FurnaceBlockEntity(BlockPos pos, BlockState state) {
-        super(Registrations.FURNACE.entity.get(), pos, state);
+        super(Registrations.FURNACE.getEntity(), pos, state);
         inventory = new FurnaceItemHandler(4) {
             @Override
             protected void onContentsChanged(int slot) {
@@ -121,7 +121,7 @@ public class FurnaceBlockEntity extends BaseStationBlockEntity {
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
-                Registrations.FURNACE.entity.get(),
+                Registrations.FURNACE.getEntity(),
                 (be, direction) -> be.getItemHandler(direction));
     }
 

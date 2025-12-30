@@ -31,6 +31,6 @@ public class SifterMenu extends BaseStationMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player,
-                Registrations.SIFTER.block.get());
+                Registrations.SIFTER.getBlock());
     }
 }

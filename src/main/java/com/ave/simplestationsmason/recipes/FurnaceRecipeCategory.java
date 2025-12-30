@@ -52,7 +52,7 @@ public class FurnaceRecipeCategory implements IRecipeCategory<SimpleRecipe> {
         @Override
         public @Nullable IDrawable getIcon() {
                 return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
-                                new ItemStack(Registrations.EXCAVATOR.item.get()));
+                                new ItemStack(Registrations.EXCAVATOR.getItem()));
         }
 
         @Override

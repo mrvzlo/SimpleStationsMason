@@ -90,10 +90,10 @@ public class JEIModPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
-        registry.addRecipeCatalyst(new ItemStack(Registrations.EXCAVATOR.block.get()), ExcavatorRecipeCategory.REGULAR);
-        registry.addRecipeCatalyst(new ItemStack(Registrations.MIXER.block.get()), MixerRecipeCategory.REGULAR);
-        registry.addRecipeCatalyst(new ItemStack(Registrations.FURNACE.block.get()), FurnaceRecipeCategory.REGULAR);
-        registry.addRecipeCatalyst(new ItemStack(Registrations.SIFTER.block.get()), SifterRecipeCategory.REGULAR);
+        registry.addRecipeCatalyst(new ItemStack(Registrations.EXCAVATOR.getBlock()), ExcavatorRecipeCategory.REGULAR);
+        registry.addRecipeCatalyst(new ItemStack(Registrations.MIXER.getBlock()), MixerRecipeCategory.REGULAR);
+        registry.addRecipeCatalyst(new ItemStack(Registrations.FURNACE.getBlock()), FurnaceRecipeCategory.REGULAR);
+        registry.addRecipeCatalyst(new ItemStack(Registrations.SIFTER.getBlock()), SifterRecipeCategory.REGULAR);
     }
 
     @Override

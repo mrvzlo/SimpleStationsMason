@@ -37,12 +37,12 @@ public class SimpleStationsMason {
                         .register("example_tab", () -> CreativeModeTab.builder()
                                         .title(Component.translatable("itemGroup.simplestations.mason"))
                                         .withTabsBefore(CreativeModeTabs.COMBAT)
-                                        .icon(() -> Registrations.EXCAVATOR.item.get().getDefaultInstance())
+                                        .icon(() -> Registrations.EXCAVATOR.getItem().getDefaultInstance())
                                         .displayItems((parameters, output) -> {
-                                                output.accept(Registrations.EXCAVATOR.item.get());
-                                                output.accept(Registrations.MIXER.item.get());
-                                                output.accept(Registrations.FURNACE.item.get());
-                                                output.accept(Registrations.SIFTER.item.get());
+                                                output.accept(Registrations.EXCAVATOR.getItem());
+                                                output.accept(Registrations.MIXER.getItem());
+                                                output.accept(Registrations.FURNACE.getItem());
+                                                output.accept(Registrations.SIFTER.getItem());
                                                 output.accept(Registrations.WHEEL.get());
                                                 output.accept(Registrations.COIN.get());
                                                 output.accept(Registrations.BUCKET.get());
@@ -50,9 +50,7 @@ public class SimpleStationsMason {
 
         public SimpleStationsMason(IEventBus modEventBus, ModContainer modContainer) {
                 modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-                Registrations.MANAGER.BLOCKS.register(modEventBus);
-                Registrations.MANAGER.ITEMS.register(modEventBus);
-                Registrations.MANAGER.BLOCK_ENTITIES.register(modEventBus);
+                Registrations.MANAGER.register(modEventBus);
                 CREATIVE_MODE_TABS.register(modEventBus);
                 ModMenuTypes.register(modEventBus);
                 ModRecipes.register(modEventBus);
@@ -62,24 +60,24 @@ public class SimpleStationsMason {
         private void registerCapabilities(RegisterCapabilitiesEvent event) {
                 event.registerBlock(Capabilities.EnergyStorage.BLOCK,
                                 (level, pos, state, be, side) -> ((ExcavatorBlockEntity) be).getEnergyStorage(),
-                                Registrations.EXCAVATOR.block.get());
+                                Registrations.EXCAVATOR.getBlock());
                 event.registerBlock(Capabilities.EnergyStorage.BLOCK,
                                 (level, pos, state, be, side) -> ((MixerBlockEntity) be).getEnergyStorage(),
-                                Registrations.MIXER.block.get());
+                                Registrations.MIXER.getBlock());
                 event.registerBlock(Capabilities.EnergyStorage.BLOCK,
                                 (level, pos, state, be, side) -> ((SifterBlockEntity) be).getEnergyStorage(),
-                                Registrations.SIFTER.block.get());
+                                Registrations.SIFTER.getBlock());
                 event.registerBlock(Capabilities.FluidHandler.BLOCK,
                                 (level, pos, state, be, side) -> ((MixerBlockEntity) be).getWaterStorage(),
-                                Registrations.MIXER.block.get());
+                                Registrations.MIXER.getBlock());
 
                 event.registerBlock(
                                 Capabilities.FluidHandler.BLOCK, (level, pos, state, be,
                                                 side) -> ((PartBlockEntity) be).getWaterStorage((PartBlockEntity) be),
-                                RegistrationManager.PART.block.get());
+                                RegistrationManager.PART.getBlock());
                 event.registerBlock(
                                 Capabilities.EnergyStorage.BLOCK, (level, pos, state, be,
                                                 side) -> ((PartBlockEntity) be).getEnergyStorage((PartBlockEntity) be),
-                                RegistrationManager.PART.block.get());
+                                RegistrationManager.PART.getBlock());
         }
 }

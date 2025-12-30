@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
 import com.ave.simplestationscore.resources.EnergyResource;
+import com.ave.simplestationscore.resources.FluidResource;
 import com.ave.simplestationscore.resources.ItemResource;
-import com.ave.simplestationscore.resources.WaterResource;
 import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.blockentity.handlers.MixerItemHandler;
 import com.ave.simplestationsmason.registrations.Registrations;
@@ -20,6 +20,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
@@ -32,7 +33,7 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
     public int waterValue = 0;
 
     public MixerBlockEntity(BlockPos pos, BlockState state) {
-        super(Registrations.MIXER.entity.get(), pos, state);
+        super(Registrations.MIXER.getEntity(), pos, state);
         inventory = new MixerItemHandler(6) {
             @Override
             protected void onContentsChanged(int slot) {
@@ -40,7 +41,7 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
             }
         };
         resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 16, Config.FUEL_PER_COAL.get()));
-        resources.put(WATER_SLOT, new WaterResource(Config.WATER_MAX.get(), 100));
+        resources.put(WATER_SLOT, new FluidResource(Fluids.WATER, Config.WATER_MAX.get(), 100));
         resources.put(SAND_SLOT, new ItemResource(inventory, SAND_SLOT, 16));
         resources.put(GRAVEL_SLOT, new ItemResource(inventory, GRAVEL_SLOT, 16));
         resources.put(COLOR_SLOT, new ItemResource(inventory, COLOR_SLOT, 2));
@@ -87,14 +88,14 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
-                Registrations.MIXER.entity.get(),
+                Registrations.MIXER.getEntity(),
                 (be, direction) -> be.getItemHandler(direction));
     }
 
     @Override()
     public FluidTank getWaterStorage() {
         var resource = resources.get(WATER_SLOT);
-        if (resource instanceof WaterResource res)
+        if (resource instanceof FluidResource res)
             return res.storage;
         return null;
     }

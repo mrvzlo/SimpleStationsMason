@@ -33,7 +33,7 @@ public class FurnaceMenu extends BaseStationMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player,
-                Registrations.FURNACE.block.get());
+                Registrations.FURNACE.getBlock());
     }
 
     @Override

@@ -28,7 +28,7 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
     public static final int BATCH_SIZE = 16;
 
     public SifterBlockEntity(BlockPos pos, BlockState state) {
-        super(Registrations.SIFTER.entity.get(), pos, state);
+        super(Registrations.SIFTER.getEntity(), pos, state);
         inventory = new SifterItemHandler(4) {
             @Override
             protected void onContentsChanged(int slot) {
@@ -103,7 +103,7 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
-                Registrations.SIFTER.entity.get(),
+                Registrations.SIFTER.getEntity(),
                 (be, direction) -> be.getItemHandler(direction));
     }
 

@@ -52,7 +52,7 @@ public class SifterRecipeCategory implements IRecipeCategory<SimpleRecipe> {
         @Override
         public @Nullable IDrawable getIcon() {
                 return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
-                                new ItemStack(Registrations.SIFTER.item.get()));
+                                new ItemStack(Registrations.SIFTER.getItem()));
         }
 
         @Override

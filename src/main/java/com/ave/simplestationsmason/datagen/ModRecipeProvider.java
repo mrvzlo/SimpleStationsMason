@@ -34,7 +34,7 @@ public class ModRecipeProvider extends RecipeProvider {
                                 .unlockedBy("has_c", has(Items.COBBLESTONE))
                                 .save(consumer);
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.EXCAVATOR.block.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.EXCAVATOR.getBlock())
                                 .pattern("CCC")
                                 .pattern("WRW")
                                 .pattern("HSH")
@@ -46,7 +46,7 @@ public class ModRecipeProvider extends RecipeProvider {
                                 .unlockedBy("has_h", has(Items.HOPPER))
                                 .save(consumer);
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.MIXER.block.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.MIXER.getBlock())
                                 .pattern("HBH")
                                 .pattern("RCR")
                                 .pattern("WRW")
@@ -58,7 +58,7 @@ public class ModRecipeProvider extends RecipeProvider {
                                 .unlockedBy("has_h", has(Items.HOPPER))
                                 .save(consumer);
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.FURNACE.block.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.FURNACE.getBlock())
                                 .pattern("WPH")
                                 .pattern("FFF")
                                 .pattern("HPW")
@@ -79,7 +79,7 @@ public class ModRecipeProvider extends RecipeProvider {
                                 .unlockedBy("has_r", has(Items.RABBIT_FOOT))
                                 .save(consumer);
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.SIFTER.block.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Registrations.SIFTER.getBlock())
                                 .pattern("HBH")
                                 .pattern("RSR")
                                 .pattern("WBW")

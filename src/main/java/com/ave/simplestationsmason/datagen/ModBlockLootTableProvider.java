@@ -17,15 +17,15 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(Registrations.EXCAVATOR.block.get());
-        dropSelf(Registrations.SIFTER.block.get());
-        dropSelf(Registrations.FURNACE.block.get());
-        dropSelf(Registrations.MIXER.block.get());
+        dropSelf(Registrations.EXCAVATOR.getBlock());
+        dropSelf(Registrations.SIFTER.getBlock());
+        dropSelf(Registrations.FURNACE.getBlock());
+        dropSelf(Registrations.MIXER.getBlock());
     }
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return List.of(Registrations.EXCAVATOR.block.get(), Registrations.SIFTER.block.get(),
-                Registrations.FURNACE.block.get(), Registrations.MIXER.block.get());
+        return List.of(Registrations.EXCAVATOR.getBlock(), Registrations.SIFTER.getBlock(),
+                Registrations.FURNACE.getBlock(), Registrations.MIXER.getBlock());
     }
 }

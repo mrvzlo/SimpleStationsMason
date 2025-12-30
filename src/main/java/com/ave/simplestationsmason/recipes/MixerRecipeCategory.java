@@ -52,7 +52,7 @@ public class MixerRecipeCategory implements IRecipeCategory<SimpleRecipe> {
         @Override
         public @Nullable IDrawable getIcon() {
                 return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
-                                new ItemStack(Registrations.MIXER.item.get()));
+                                new ItemStack(Registrations.MIXER.getItem()));
         }
 
         @Override

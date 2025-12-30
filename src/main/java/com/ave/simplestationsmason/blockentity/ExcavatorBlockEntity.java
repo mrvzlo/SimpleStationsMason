@@ -25,7 +25,7 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
     public static final int TYPE_SLOT = 2;
 
     public ExcavatorBlockEntity(BlockPos pos, BlockState state) {
-        super(Registrations.EXCAVATOR.entity.get(), pos, state);
+        super(Registrations.EXCAVATOR.getEntity(), pos, state);
         inventory = new ExcavatorItemHandler(3) {
             @Override
             protected void onContentsChanged(int slot) {
@@ -65,7 +65,7 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
-                Registrations.EXCAVATOR.entity.get(),
+                Registrations.EXCAVATOR.getEntity(),
                 (be, direction) -> be.getItemHandler(direction));
     }
 
