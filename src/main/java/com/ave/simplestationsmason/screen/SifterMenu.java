@@ -13,11 +13,11 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 
 public class SifterMenu extends BaseStationMenu {
     public SifterMenu(int containerId, Inventory inventory, FriendlyByteBuf data) {
-        super(containerId, inventory, data, ModMenuTypes.SIFTER_MENU.get());
+        super(containerId, inventory, data, Registrations.SIFTER_MENU.get());
     }
 
     public SifterMenu(int containerId, Inventory inventory, StationContainer be) {
-        super(containerId, inventory, be, ModMenuTypes.SIFTER_MENU.get());
+        super(containerId, inventory, be, Registrations.SIFTER_MENU.get());
     }
 
     @Override

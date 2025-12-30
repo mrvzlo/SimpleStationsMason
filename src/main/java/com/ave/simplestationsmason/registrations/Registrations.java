@@ -11,9 +11,15 @@ import com.ave.simplestationsmason.blockentity.MixerBlock;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import com.ave.simplestationsmason.blockentity.SifterBlock;
 import com.ave.simplestationsmason.blockentity.SifterBlockEntity;
+import com.ave.simplestationsmason.screen.ExcavatorMenu;
+import com.ave.simplestationsmason.screen.MixerMenu;
+import com.ave.simplestationsmason.screen.SifterMenu;
+import com.ave.simplestationsmason.screen.FurnaceMenu;
 
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 public class Registrations {
@@ -62,4 +68,13 @@ public class Registrations {
         private static final String[] SIFTABLE_TYPES = { "clay", "dirt", "gravel", "red_sand", "sand", "soul_sand" };
         public static final DeferredItem<Item>[] SIFTABLE_BLOCKS = MANAGER.registerEmptyItems("sift_",
                         SIFTABLE_TYPES);
+
+        public static final DeferredHolder<MenuType<?>, MenuType<ExcavatorMenu>> EXCAVATOR_MENU = MANAGER
+                        .registerMenuType("excavator_menu", ExcavatorMenu::new);
+        public static final DeferredHolder<MenuType<?>, MenuType<MixerMenu>> MIXER_MENU = MANAGER
+                        .registerMenuType("mixer_menu", MixerMenu::new);
+        public static final DeferredHolder<MenuType<?>, MenuType<FurnaceMenu>> FURNACE_MENU = MANAGER
+                        .registerMenuType("furnace_menu", FurnaceMenu::new);
+        public static final DeferredHolder<MenuType<?>, MenuType<SifterMenu>> SIFTER_MENU = MANAGER
+                        .registerMenuType("sifter_menu", SifterMenu::new);
 }

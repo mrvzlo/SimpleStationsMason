@@ -9,52 +9,40 @@ import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import com.ave.simplestationsmason.blockentity.SifterBlockEntity;
 import com.ave.simplestationsmason.datagen.ModRecipes;
 import com.ave.simplestationsmason.registrations.Registrations;
-import com.ave.simplestationsmason.screen.ModMenuTypes;
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(SimpleStationsMason.MODID)
 public class SimpleStationsMason {
         public static final String MODID = "simplestationsmason";
         public static final Logger LOGGER = LogUtils.getLogger();
-        public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister
-                        .create(Registries.CREATIVE_MODE_TAB, MODID);
-
-        public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS
-                        .register("example_tab", () -> CreativeModeTab.builder()
-                                        .title(Component.translatable("itemGroup.simplestations.mason"))
-                                        .withTabsBefore(CreativeModeTabs.COMBAT)
-                                        .icon(() -> Registrations.EXCAVATOR.getItem().getDefaultInstance())
-                                        .displayItems((parameters, output) -> {
-                                                output.accept(Registrations.EXCAVATOR.getItem());
-                                                output.accept(Registrations.MIXER.getItem());
-                                                output.accept(Registrations.FURNACE.getItem());
-                                                output.accept(Registrations.SIFTER.getItem());
-                                                output.accept(Registrations.WHEEL.get());
-                                                output.accept(Registrations.COIN.get());
-                                                output.accept(Registrations.BUCKET.get());
-                                        }).build());
 
         public SimpleStationsMason(IEventBus modEventBus, ModContainer modContainer) {
                 modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
                 Registrations.MANAGER.register(modEventBus);
-                CREATIVE_MODE_TABS.register(modEventBus);
-                ModMenuTypes.register(modEventBus);
                 ModRecipes.register(modEventBus);
+                modEventBus.addListener(this::addCreative);
                 modEventBus.addListener(this::registerCapabilities);
+        }
+
+        private void addCreative(BuildCreativeModeTabContentsEvent event) {
+                if (!event.getTab().equals(Registrations.MANAGER.CREATIVE_TAB.get()))
+                        return;
+                event.accept(Registrations.EXCAVATOR.getItem());
+                event.accept(Registrations.MIXER.getItem());
+                event.accept(Registrations.FURNACE.getItem());
+                event.accept(Registrations.SIFTER.getItem());
+                event.accept(Registrations.WHEEL.get());
+                event.accept(Registrations.COIN.get());
+                event.accept(Registrations.BUCKET.get());
         }
 
         private void registerCapabilities(RegisterCapabilitiesEvent event) {

@@ -15,11 +15,11 @@ import net.minecraft.world.inventory.DataSlot;
 
 public class FurnaceMenu extends BaseStationMenu {
     public FurnaceMenu(int containerId, Inventory inventory, FriendlyByteBuf data) {
-        super(containerId, inventory, data, ModMenuTypes.FURNACE_MENU.get());
+        super(containerId, inventory, data, Registrations.FURNACE_MENU.get());
     }
 
     public FurnaceMenu(int containerId, Inventory inventory, StationContainer be) {
-        super(containerId, inventory, be, ModMenuTypes.FURNACE_MENU.get());
+        super(containerId, inventory, be, Registrations.FURNACE_MENU.get());
     }
 
     @Override

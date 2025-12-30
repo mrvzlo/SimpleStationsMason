@@ -9,7 +9,6 @@ import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.renderer.ExcavatorRenderer;
 import com.ave.simplestationsmason.renderer.FurnaceRenderer;
 import com.ave.simplestationsmason.renderer.SifterRenderer;
-import com.ave.simplestationsmason.screen.ModMenuTypes;
 import com.ave.simplestationsmason.screen.SifterScreen;
 import com.ave.simplestationsmason.screen.ExcavatorScreen;
 import com.ave.simplestationsmason.screen.FurnaceScreen;
@@ -49,10 +48,10 @@ public class SimpleStationsMasonClient {
 
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(ModMenuTypes.EXCAVATOR_MENU.get(), ExcavatorScreen::new);
-        event.register(ModMenuTypes.MIXER_MENU.get(), MixerScreen::new);
-        event.register(ModMenuTypes.FURNACE_MENU.get(), FurnaceScreen::new);
-        event.register(ModMenuTypes.SIFTER_MENU.get(), SifterScreen::new);
+        event.register(Registrations.EXCAVATOR_MENU.get(), ExcavatorScreen::new);
+        event.register(Registrations.MIXER_MENU.get(), MixerScreen::new);
+        event.register(Registrations.FURNACE_MENU.get(), FurnaceScreen::new);
+        event.register(Registrations.SIFTER_MENU.get(), SifterScreen::new);
     }
 
     @SubscribeEvent

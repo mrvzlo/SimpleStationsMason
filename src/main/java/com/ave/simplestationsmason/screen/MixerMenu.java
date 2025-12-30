@@ -15,11 +15,11 @@ import net.minecraft.world.inventory.DataSlot;
 
 public class MixerMenu extends BaseStationMenu {
     public MixerMenu(int containerId, Inventory inventory, FriendlyByteBuf data) {
-        super(containerId, inventory, data, ModMenuTypes.MIXER_MENU.get());
+        super(containerId, inventory, data, Registrations.MIXER_MENU.get());
     }
 
     public MixerMenu(int containerId, Inventory inventory, StationContainer be) {
-        super(containerId, inventory, be, ModMenuTypes.MIXER_MENU.get());
+        super(containerId, inventory, be, Registrations.MIXER_MENU.get());
     }
 
     @Override

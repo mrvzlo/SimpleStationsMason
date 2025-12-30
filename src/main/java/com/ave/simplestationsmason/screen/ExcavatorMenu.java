@@ -13,11 +13,11 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 
 public class ExcavatorMenu extends BaseStationMenu {
     public ExcavatorMenu(int containerId, Inventory inventory, FriendlyByteBuf data) {
-        super(containerId, inventory, data, ModMenuTypes.EXCAVATOR_MENU.get());
+        super(containerId, inventory, data, Registrations.EXCAVATOR_MENU.get());
     }
 
     public ExcavatorMenu(int containerId, Inventory inventory, StationContainer be) {
-        super(containerId, inventory, be, ModMenuTypes.EXCAVATOR_MENU.get());
+        super(containerId, inventory, be, Registrations.EXCAVATOR_MENU.get());
     }
 
     @Override
