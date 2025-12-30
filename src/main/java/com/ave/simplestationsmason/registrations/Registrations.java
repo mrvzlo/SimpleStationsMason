@@ -28,10 +28,8 @@ public class Registrations {
         public static final Station<SifterBlockEntity, SifterBlock> SIFTER = MANAGER.registerStation(
                         "sifter", (p) -> new SifterBlock(p), SifterBlockEntity::new);
 
-        public static final DeferredItem<Item> WHEEL = MANAGER.ITEMS.registerItem("wheel", Item::new,
-                        new Item.Properties());
-        public static final DeferredItem<Item> BUCKET = MANAGER.ITEMS.registerItem("bucket", Item::new,
-                        new Item.Properties());
+        public static final DeferredItem<Item> WHEEL = MANAGER.registerItem("wheel");
+        public static final DeferredItem<Item> BUCKET = MANAGER.registerItem("bucket");
         public static final DeferredItem<Item> COIN = MANAGER.ITEMS.registerItem("coin", Item::new,
                         new Item.Properties().durability(777));
 
