@@ -3,6 +3,8 @@ package com.ave.simplestationsmason.screen;
 import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
 import com.ave.simplestationscore.mainblock.StationContainer;
 import com.ave.simplestationscore.screen.BaseStationMenu;
+import com.ave.simplestationscore.screen.DataSlotHelper;
+import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import com.ave.simplestationsmason.registrations.Registrations;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
@@ -11,7 +13,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.DataSlot;
 
 public class MixerMenu extends BaseStationMenu {
     public MixerMenu(int containerId, Inventory inventory, FriendlyByteBuf data) {
@@ -36,17 +37,7 @@ public class MixerMenu extends BaseStationMenu {
     public void addDataSlots(BaseStationBlockEntity station) {
         var mixer = (MixerBlockEntity) station;
         super.addDataSlots(station);
-        addDataSlot(new DataSlot() {
-            @Override
-            public int get() {
-                return mixer.waterValue;
-            }
-
-            @Override
-            public void set(int value) {
-                mixer.waterValue = value;
-            }
-        });
+        addDataSlot(DataSlotHelper.fromInt(() -> mixer.getWaterResource().get(), x -> mixer.getWaterResource().set(x)));
     }
 
     @Override

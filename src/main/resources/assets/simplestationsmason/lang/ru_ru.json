@@ -1,5 +1,4 @@
 {
-  "itemGroup.simplestations.mason": "Простые станции каменьщика",
   "block.simplestationsmason.excavator": "Станция раскопки",
   "item.simplestationsmason.wheel": "Колесо",
   "block.simplestationsmason.mixer": "Станция смешивания",
@@ -35,7 +34,6 @@
   "screen.simplestationsmason.kiln_recipes": "Рецепты плавки",
   "screen.simplestationsmason.sifter": "Станция просеивания",
   "screen.simplestationsmason.sifter_recipes": "Рецепты просеивания",
-  "screen.simplestationsmason.power": "Энергия",
   "screen.simplestationsmason.water": "Вода",
   "screen.simplestationsmason.temperature": "Температура",
   "screen.simplestationsmason.color": "Краситель",

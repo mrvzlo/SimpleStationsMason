@@ -34,7 +34,7 @@ public class SimpleStationsMason {
         }
 
         private void addCreative(BuildCreativeModeTabContentsEvent event) {
-                if (!event.getTab().equals(Registrations.MANAGER.CREATIVE_TAB.get()))
+                if (!event.getTab().equals(RegistrationManager.CREATIVE_TAB.get()))
                         return;
                 event.accept(Registrations.EXCAVATOR.getItem());
                 event.accept(Registrations.MIXER.getItem());
@@ -61,11 +61,11 @@ public class SimpleStationsMason {
 
                 event.registerBlock(
                                 Capabilities.FluidHandler.BLOCK, (level, pos, state, be,
-                                                side) -> ((PartBlockEntity) be).getWaterStorage((PartBlockEntity) be),
+                                                side) -> PartBlockEntity.getWaterStorage((PartBlockEntity) be),
                                 RegistrationManager.PART.getBlock());
                 event.registerBlock(
                                 Capabilities.EnergyStorage.BLOCK, (level, pos, state, be,
-                                                side) -> ((PartBlockEntity) be).getEnergyStorage((PartBlockEntity) be),
+                                                side) -> PartBlockEntity.getEnergyStorage((PartBlockEntity) be),
                                 RegistrationManager.PART.getBlock());
         }
 }

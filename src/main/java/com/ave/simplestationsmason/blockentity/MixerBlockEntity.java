@@ -6,6 +6,7 @@ import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
 import com.ave.simplestationscore.resources.EnergyResource;
 import com.ave.simplestationscore.resources.FluidResource;
 import com.ave.simplestationscore.resources.ItemResource;
+import com.ave.simplestationscore.resources.StationResource;
 import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.blockentity.handlers.MixerItemHandler;
 import com.ave.simplestationsmason.registrations.Registrations;
@@ -30,7 +31,6 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
     public static final int GRAVEL_SLOT = 4;
     public static final int COLOR_SLOT = 3;
     public static final int WATER_SLOT = 5;
-    public int waterValue = 0;
 
     public MixerBlockEntity(BlockPos pos, BlockState state) {
         super(Registrations.MIXER.getEntity(), pos, state);
@@ -45,14 +45,6 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
         resources.put(SAND_SLOT, new ItemResource(inventory, SAND_SLOT, 16));
         resources.put(GRAVEL_SLOT, new ItemResource(inventory, GRAVEL_SLOT, 16));
         resources.put(COLOR_SLOT, new ItemResource(inventory, COLOR_SLOT, 2));
-        fuelMax = Config.POWER_MAX.get();
-    }
-
-    @Override
-    public void tick() {
-        if (!level.isClientSide)
-            waterValue = resources.get(WATER_SLOT).get();
-        super.tick();
     }
 
     @Override
@@ -83,6 +75,10 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
     @Override
     public SoundEvent getWorkSound() {
         return SoundEvents.LAVA_AMBIENT;
+    }
+
+    public StationResource getWaterResource() {
+        return resources.get(WATER_SLOT);
     }
 
     public static void registerCaps(RegisterCapabilitiesEvent event) {

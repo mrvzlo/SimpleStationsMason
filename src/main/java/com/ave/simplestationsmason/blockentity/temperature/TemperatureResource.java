@@ -26,6 +26,10 @@ public class TemperatureResource implements StationResource {
         value = tag.getFloat("temp");
     }
 
+    public void set(int newValue) {
+        value = newValue;
+    }
+
     public void save(CompoundTag tag) {
         tag.putFloat("temp", value);
     }

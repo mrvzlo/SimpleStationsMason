@@ -59,7 +59,7 @@ public class FurnaceScreen extends BaseStationScreen {
     private void renderPowerTooltip(GuiGraphics gfx, int mouseX, int mouseY, BaseStationBlockEntity station) {
         if (!UIBlocks.POWER_BAR.isHovered(mouseX - getStartX(), mouseY - getStartY()))
             return;
-        String powerPart = station.fuelValue + "° / " + (int) TemperatureManager.MaxTemp + "°";
+        String powerPart = station.getEnergyResource().get() + "° / " + (int) TemperatureManager.MaxTemp + "°";
         List<Component> powerText = Arrays.asList(
                 Component.translatable("screen.simplestationsmason.temperature"),
                 Component.literal(powerPart));
@@ -69,11 +69,11 @@ public class FurnaceScreen extends BaseStationScreen {
     private void renderPowerBar(GuiGraphics graphics, BaseStationBlockEntity station) {
         int x = getStartX();
         int y = getStartY();
-        float powerPart = (float) station.fuelValue / TemperatureManager.MaxTemp;
+        float powerPart = station.getEnergyResource().getPercent();
         var color = 0xAA000000 | temperatureToRGB(powerPart);
 
         UIBlocks.POWER_BAR.drawProgressToTop(graphics, x, y, powerPart, color);
-        if (station.fuelValue == 0)
+        if (!station.getEnergyResource().isEnough())
             UIBlocks.FUEL_SLOT.drawBorder(graphics, x, y, getWarningColor());
     }
 

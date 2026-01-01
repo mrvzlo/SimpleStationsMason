@@ -32,7 +32,6 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
                 setChanged();
             }
         };
-        fuelMax = Config.POWER_MAX.get();
         resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 64, Config.FUEL_PER_COAL.get()));
     }
 

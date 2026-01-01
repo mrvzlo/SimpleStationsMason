@@ -43,7 +43,6 @@ public class FurnaceBlockEntity extends BaseStationBlockEntity {
         resources.put(FUEL_SLOT, new TemperatureResource(Config.TEMP_RISE_SPEED.get()));
         resources.put(TYPE_SLOT, new ItemResource(inventory, TYPE_SLOT, 8));
         resources.put(COLOR_SLOT, new OptionalItemResource(inventory, COLOR_SLOT, 1));
-        fuelMax = Config.POWER_MAX.get();
     }
 
     @Override

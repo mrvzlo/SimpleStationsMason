@@ -38,7 +38,6 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
         resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 32, Config.FUEL_PER_COAL.get()));
         resources.put(TYPE_SLOT, new ItemResource(inventory, TYPE_SLOT, BATCH_SIZE));
         resources.put(COIN_SLOT, new ToolResource(inventory, COIN_SLOT, 37));
-        fuelMax = Config.POWER_MAX.get();
     }
 
     @Override

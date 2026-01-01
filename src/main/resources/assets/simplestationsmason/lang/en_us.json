@@ -1,5 +1,4 @@
 {
-  "itemGroup.simplestations.mason": "Simple Masonry Stations",
   "block.simplestationsmason.excavator": "Excavation station",
   "block.simplestationsmason.mixer": "Concrete mixing station",
   "block.simplestationsmason.furnace": "Blasting station",
@@ -35,7 +34,6 @@
   "screen.simplestationsmason.kiln_recipes": "Blasting recipes",
   "screen.simplestationsmason.sifter": "Sifter station",
   "screen.simplestationsmason.sifter_recipes": "Sifting recipes",
-  "screen.simplestationsmason.power": "Energy",
   "screen.simplestationsmason.water": "Water",
   "screen.simplestationsmason.temperature": "Temperature",
   "screen.simplestationsmason.color": "Dye slot",

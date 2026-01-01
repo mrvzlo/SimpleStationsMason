@@ -42,7 +42,7 @@ public class MixerScreen extends BaseStationScreen {
             gfx.renderTooltip(font, Component.translatable("screen.simplestationsmason.color"), mouseX, mouseY);
         }
         if (UIBlocks.WATER_BAR.isHovered(mouseX - x, mouseY - y)) {
-            String waterPart = NumToString.parse(mixer.waterValue / 1000f, "B / ")
+            String waterPart = NumToString.parse(mixer.getWaterResource().get() / 1000f, "B / ")
                     + NumToString.parse(Config.WATER_MAX.get(), "B");
             List<Component> text = Arrays.asList(
                     Component.translatable("screen.simplestationsmason.water"),
@@ -59,9 +59,9 @@ public class MixerScreen extends BaseStationScreen {
 
         if (!(menu.blockEntity instanceof MixerBlockEntity station))
             return;
-        float waterPart = (float) station.waterValue / Config.WATER_MAX.get();
+        float waterPart = station.getWaterResource().getPercent();
         UIBlocks.WATER_BAR.drawProgressToTop(graphics, getStartX(), getStartY(), waterPart, 0xAA222299);
-        if (station.waterValue == 0)
+        if (!station.getWaterResource().isEnough())
             UIBlocks.WATER_SLOT.drawBorder(graphics, getStartX(), getStartY(), getWarningColor());
 
         renderProgressBar(graphics, station, UIBlocks.PROGRESS_BAR);
