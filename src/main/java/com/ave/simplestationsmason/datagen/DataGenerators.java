@@ -2,13 +2,8 @@ package com.ave.simplestationsmason.datagen;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-
 import com.ave.simplestationsmason.SimpleStationsMason;
 
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -21,9 +16,9 @@ public class DataGenerators {
     private static void gatherData(GatherDataEvent event) {
         if (!event.includeServer())
             return;
-        DataGenerator generator = event.getGenerator();
-        PackOutput out = generator.getPackOutput();
-        CompletableFuture<HolderLookup.Provider> lookup = event.getLookupProvider();
+        var generator = event.getGenerator();
+        var out = generator.getPackOutput();
+        var lookup = event.getLookupProvider();
         var helper = event.getExistingFileHelper();
         var blockTags = new ModBlockTagProvider(out, lookup, helper);
         generator.addProvider(true, blockTags);
