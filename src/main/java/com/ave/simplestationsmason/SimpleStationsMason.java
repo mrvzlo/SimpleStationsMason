@@ -3,7 +3,7 @@ package com.ave.simplestationsmason;
 import org.slf4j.Logger;
 
 import com.ave.simplestationscore.partblock.PartBlockEntity;
-import com.ave.simplestationscore.registrations.RegistrationManager;
+import com.ave.simplestationscore.registrations.CoreRegistrations;
 import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import com.ave.simplestationsmason.blockentity.SifterBlockEntity;
@@ -34,7 +34,7 @@ public class SimpleStationsMason {
         }
 
         private void addCreative(BuildCreativeModeTabContentsEvent event) {
-                if (!event.getTab().equals(RegistrationManager.CREATIVE_TAB.get()))
+                if (!event.getTab().equals(CoreRegistrations.CREATIVE_TAB.get()))
                         return;
                 event.accept(Registrations.EXCAVATOR.getItem());
                 event.accept(Registrations.MIXER.getItem());
@@ -62,10 +62,10 @@ public class SimpleStationsMason {
                 event.registerBlock(
                                 Capabilities.FluidHandler.BLOCK, (level, pos, state, be,
                                                 side) -> PartBlockEntity.getWaterStorage((PartBlockEntity) be),
-                                RegistrationManager.PART.getBlock());
+                                CoreRegistrations.PART.getBlock());
                 event.registerBlock(
                                 Capabilities.EnergyStorage.BLOCK, (level, pos, state, be,
                                                 side) -> PartBlockEntity.getEnergyStorage((PartBlockEntity) be),
-                                RegistrationManager.PART.getBlock());
+                                CoreRegistrations.PART.getBlock());
         }
 }
