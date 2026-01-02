@@ -99,13 +99,6 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
         return !inventory.getStackInSlot(COIN_SLOT).isEmpty();
     }
 
-    public static void registerCaps(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-                Capabilities.ItemHandler.BLOCK,
-                Registrations.SIFTER.getEntity(),
-                (be, direction) -> be.getItemHandler(direction));
-    }
-
     protected void addParticle() {
         particleCooldown = 2;
         double x = getBlockPos().getX() + 0.5 + (RNG.nextDouble() - 0.5);

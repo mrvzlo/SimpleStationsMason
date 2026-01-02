@@ -81,13 +81,6 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
         return resources.get(WATER_SLOT);
     }
 
-    public static void registerCaps(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-                Capabilities.ItemHandler.BLOCK,
-                Registrations.MIXER.getEntity(),
-                (be, direction) -> be.getItemHandler(direction));
-    }
-
     @Override()
     public FluidTank getWaterStorage() {
         var resource = resources.get(WATER_SLOT);

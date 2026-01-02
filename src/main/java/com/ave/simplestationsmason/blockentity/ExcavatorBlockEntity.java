@@ -61,13 +61,6 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
         return SoundEvents.SAND_BREAK;
     }
 
-    public static void registerCaps(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-                Capabilities.ItemHandler.BLOCK,
-                Registrations.EXCAVATOR.getEntity(),
-                (be, direction) -> be.getItemHandler(direction));
-    }
-
     @Override
     protected void addParticle() {
     }

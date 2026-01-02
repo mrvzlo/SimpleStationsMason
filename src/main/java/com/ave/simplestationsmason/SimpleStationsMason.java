@@ -30,7 +30,6 @@ public class SimpleStationsMason {
                 Registrations.MANAGER.register(modEventBus);
                 ModRecipes.register(modEventBus);
                 modEventBus.addListener(this::addCreative);
-                modEventBus.addListener(this::registerCapabilities);
         }
 
         private void addCreative(BuildCreativeModeTabContentsEvent event) {
@@ -43,29 +42,5 @@ public class SimpleStationsMason {
                 event.accept(Registrations.WHEEL.get());
                 event.accept(Registrations.COIN.get());
                 event.accept(Registrations.BUCKET.get());
-        }
-
-        private void registerCapabilities(RegisterCapabilitiesEvent event) {
-                event.registerBlock(Capabilities.EnergyStorage.BLOCK,
-                                (level, pos, state, be, side) -> ((ExcavatorBlockEntity) be).getEnergyStorage(),
-                                Registrations.EXCAVATOR.getBlock());
-                event.registerBlock(Capabilities.EnergyStorage.BLOCK,
-                                (level, pos, state, be, side) -> ((MixerBlockEntity) be).getEnergyStorage(),
-                                Registrations.MIXER.getBlock());
-                event.registerBlock(Capabilities.EnergyStorage.BLOCK,
-                                (level, pos, state, be, side) -> ((SifterBlockEntity) be).getEnergyStorage(),
-                                Registrations.SIFTER.getBlock());
-                event.registerBlock(Capabilities.FluidHandler.BLOCK,
-                                (level, pos, state, be, side) -> ((MixerBlockEntity) be).getWaterStorage(),
-                                Registrations.MIXER.getBlock());
-
-                event.registerBlock(
-                                Capabilities.FluidHandler.BLOCK, (level, pos, state, be,
-                                                side) -> PartBlockEntity.getWaterStorage((PartBlockEntity) be),
-                                CoreRegistrations.PART.getBlock());
-                event.registerBlock(
-                                Capabilities.EnergyStorage.BLOCK, (level, pos, state, be,
-                                                side) -> PartBlockEntity.getEnergyStorage((PartBlockEntity) be),
-                                CoreRegistrations.PART.getBlock());
         }
 }

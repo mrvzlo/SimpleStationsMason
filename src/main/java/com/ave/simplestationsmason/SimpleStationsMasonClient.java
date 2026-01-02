@@ -1,6 +1,7 @@
 package com.ave.simplestationsmason;
 
 import com.ave.simplestationscore.partblock.PartBlockEntity;
+import com.ave.simplestationscore.registrations.RegistrationManager;
 import com.ave.simplestationsmason.blockentity.ExcavatorBlockEntity;
 import com.ave.simplestationsmason.blockentity.FurnaceBlockEntity;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
@@ -56,11 +57,10 @@ public class SimpleStationsMasonClient {
 
     @SubscribeEvent
     public static void registerCaps(RegisterCapabilitiesEvent event) {
-        ExcavatorBlockEntity.registerCaps(event);
-        MixerBlockEntity.registerCaps(event);
-        FurnaceBlockEntity.registerCaps(event);
-        SifterBlockEntity.registerCaps(event);
-        PartBlockEntity.registerCaps(event);
+        RegistrationManager.registerCaps(event, Registrations.EXCAVATOR.getEntity());
+        RegistrationManager.registerCaps(event, Registrations.MIXER.getEntity());
+        RegistrationManager.registerCaps(event, Registrations.FURNACE.getEntity());
+        RegistrationManager.registerCaps(event, Registrations.SIFTER.getEntity());
     }
 
     @SubscribeEvent // on the mod event bus only on the physical client

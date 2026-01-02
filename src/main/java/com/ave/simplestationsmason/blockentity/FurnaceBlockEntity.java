@@ -117,13 +117,6 @@ public class FurnaceBlockEntity extends BaseStationBlockEntity {
         return SoundEvents.FURNACE_FIRE_CRACKLE;
     }
 
-    public static void registerCaps(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-                Capabilities.ItemHandler.BLOCK,
-                Registrations.FURNACE.getEntity(),
-                (be, direction) -> be.getItemHandler(direction));
-    }
-
     protected void addParticle() {
         particleCooldown = 10;
         var dir = getBlockState().getValue(BaseStationBlock.FACING);
