@@ -40,7 +40,7 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
 
     @Override
     public int getMaxProgress() {
-        return Config.MAX_EXC_PROGRESS.getAsInt();
+        return Config.MAX_EXC_PROGRESS.get();
     }
 
     @Override

@@ -44,16 +44,16 @@ public class FurnaceRenderer implements BlockEntityRenderer<FurnaceBlockEntity> 
 
     private Item getItem(int type) {
         if (type == KilnType.Glass.ordinal() || type == KilnType.Glass2.ordinal())
-            return Registrations.BLASTING_BLOCKS[1].asItem();
+            return Registrations.BLASTING_BLOCKS[1].get();
         if (type == KilnType.Bricks.ordinal())
-            return Registrations.BLASTING_BLOCKS[0].asItem();
+            return Registrations.BLASTING_BLOCKS[0].get();
         if (type == KilnType.Terracota.ordinal())
-            return Registrations.BLASTING_BLOCKS[3].asItem();
+            return Registrations.BLASTING_BLOCKS[3].get();
         if (type == KilnType.NetherBricks.ordinal())
-            return Registrations.BLASTING_BLOCKS[4].asItem();
+            return Registrations.BLASTING_BLOCKS[4].get();
         if (type == KilnType.Stone.ordinal())
-            return Registrations.BLASTING_BLOCKS[5].asItem();
-        return Registrations.BLASTING_BLOCKS[2].asItem();
+            return Registrations.BLASTING_BLOCKS[5].get();
+        return Registrations.BLASTING_BLOCKS[2].get();
     }
 
     private int getRotation(Direction dir) {

@@ -1,26 +1,23 @@
 package com.ave.simplestationsmason;
 
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.config.ModConfigEvent;
-import net.neoforged.neoforge.common.ModConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 
-// An example config class. This is not required, but it's a good idea to have one to keep your config organized.
-// Demonstrates how to use Neo's config APIs
-@SuppressWarnings("removal")
-@EventBusSubscriber(modid = SimpleStationsMason.MODID, bus = EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = SimpleStationsMason.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Config {
-        private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
-        static ModConfigSpec SPEC;
+        private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+        static ForgeConfigSpec SPEC;
 
-        public static ModConfigSpec.IntValue MAX_EXC_PROGRESS;
-        public static ModConfigSpec.IntValue MAX_MIX_PROGRESS;
-        public static ModConfigSpec.IntValue MAX_KILN_PROGRESS;
-        public static ModConfigSpec.IntValue MAX_SIFTER_PROGRESS;
-        public static ModConfigSpec.IntValue WATER_MAX;
-        public static ModConfigSpec.IntValue FUEL_PER_COAL;
-        public static ModConfigSpec.IntValue POWER_MAX;
-        public static ModConfigSpec.IntValue TEMP_RISE_SPEED;
+        public static ForgeConfigSpec.IntValue MAX_EXC_PROGRESS;
+        public static ForgeConfigSpec.IntValue MAX_MIX_PROGRESS;
+        public static ForgeConfigSpec.IntValue MAX_KILN_PROGRESS;
+        public static ForgeConfigSpec.IntValue MAX_SIFTER_PROGRESS;
+        public static ForgeConfigSpec.IntValue WATER_MAX;
+        public static ForgeConfigSpec.IntValue FUEL_PER_COAL;
+        public static ForgeConfigSpec.IntValue POWER_MAX;
+        public static ForgeConfigSpec.IntValue TEMP_RISE_SPEED;
 
         static {
                 setupGenerationConfig();

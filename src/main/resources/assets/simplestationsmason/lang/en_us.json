@@ -1,8 +1,8 @@
 {
-  "block.simplestationsmason.excavator": "Excavation station",
-  "block.simplestationsmason.mixer": "Concrete mixing station",
-  "block.simplestationsmason.furnace": "Blasting station",
-  "block.simplestationsmason.sifter": "Sifting station",
+  "item.simplestationsmason.excavator": "Excavation station",
+  "item.simplestationsmason.mixer": "Concrete mixing station",
+  "item.simplestationsmason.furnace": "Blasting station",
+  "item.simplestationsmason.sifter": "Sifting station",
   "item.simplestationsmason.wheel": "Bucket wheel",
   "item.simplestationsmason.bucket": "Stone bucket",
   "item.simplestationsmason.coin": "Lucky coin",

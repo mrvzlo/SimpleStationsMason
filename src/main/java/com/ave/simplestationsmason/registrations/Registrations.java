@@ -19,8 +19,7 @@ import com.ave.simplestationsmason.screen.FurnaceMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Registrations {
         public static final RegistrationManager MANAGER = new RegistrationManager(SimpleStationsMason.MODID);
@@ -34,10 +33,10 @@ public class Registrations {
         public static final Station<SifterBlockEntity, SifterBlock> SIFTER = MANAGER.registerStation(
                         "sifter", (p) -> new SifterBlock(p), SifterBlockEntity::new);
 
-        public static final DeferredItem<Item> WHEEL = MANAGER.registerItem("wheel");
-        public static final DeferredItem<Item> BUCKET = MANAGER.registerItem("bucket");
-        public static final DeferredItem<Item> COIN = MANAGER.ITEMS.registerItem("coin", Item::new,
-                        new Item.Properties().durability(777));
+        public static final RegistryObject<Item> WHEEL = MANAGER.registerItem("wheel");
+        public static final RegistryObject<Item> BUCKET = MANAGER.registerItem("bucket");
+        public static final RegistryObject<Item> COIN = MANAGER.ITEMS.register("coin",
+                        () -> new Item(new Item.Properties().durability(777)));
 
         public static final Item[] EXCAVATABLE = new Item[] {
                         Items.CLAY,
@@ -49,11 +48,11 @@ public class Registrations {
         };
 
         private static final String[] EXCAVATABLE_TYPES = { "clay", "dirt", "gravel", "red_sand", "sand", "snow" };
-        public static final DeferredItem<Item>[] EXCAVATABLE_BLOCKS = MANAGER.registerEmptyItems("ex_",
+        public static final RegistryObject<Item>[] EXCAVATABLE_BLOCKS = MANAGER.registerEmptyItems("ex_",
                         EXCAVATABLE_TYPES);
 
         private static final String[] BLASTING_TYPES = { "brick", "glass", "glazed", "terracota", "nether", "stone" };
-        public static final DeferredItem<Item>[] BLASTING_BLOCKS = MANAGER.registerEmptyItems("blast_",
+        public static final RegistryObject<Item>[] BLASTING_BLOCKS = MANAGER.registerEmptyItems("blast_",
                         BLASTING_TYPES);
 
         public static final Item[] SIFTABLE = new Item[] {
@@ -66,15 +65,15 @@ public class Registrations {
         };
 
         private static final String[] SIFTABLE_TYPES = { "clay", "dirt", "gravel", "red_sand", "sand", "soul_sand" };
-        public static final DeferredItem<Item>[] SIFTABLE_BLOCKS = MANAGER.registerEmptyItems("sift_",
+        public static final RegistryObject<Item>[] SIFTABLE_BLOCKS = MANAGER.registerEmptyItems("sift_",
                         SIFTABLE_TYPES);
 
-        public static final DeferredHolder<MenuType<?>, MenuType<ExcavatorMenu>> EXCAVATOR_MENU = MANAGER
+        public static final RegistryObject<MenuType<ExcavatorMenu>> EXCAVATOR_MENU = MANAGER
                         .registerMenuType("excavator_menu", ExcavatorMenu::new);
-        public static final DeferredHolder<MenuType<?>, MenuType<MixerMenu>> MIXER_MENU = MANAGER
+        public static final RegistryObject<MenuType<MixerMenu>> MIXER_MENU = MANAGER
                         .registerMenuType("mixer_menu", MixerMenu::new);
-        public static final DeferredHolder<MenuType<?>, MenuType<FurnaceMenu>> FURNACE_MENU = MANAGER
+        public static final RegistryObject<MenuType<FurnaceMenu>> FURNACE_MENU = MANAGER
                         .registerMenuType("furnace_menu", FurnaceMenu::new);
-        public static final DeferredHolder<MenuType<?>, MenuType<SifterMenu>> SIFTER_MENU = MANAGER
+        public static final RegistryObject<MenuType<SifterMenu>> SIFTER_MENU = MANAGER
                         .registerMenuType("sifter_menu", SifterMenu::new);
 }

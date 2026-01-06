@@ -22,7 +22,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 public class MixerBlockEntity extends BaseStationBlockEntity {
     public static final int SAND_SLOT = 2;
@@ -52,7 +52,7 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
 
     @Override
     public int getMaxProgress() {
-        return Config.MAX_MIX_PROGRESS.getAsInt();
+        return Config.MAX_MIX_PROGRESS.get();
     }
 
     @Override

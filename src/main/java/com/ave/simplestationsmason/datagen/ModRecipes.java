@@ -3,22 +3,22 @@ package com.ave.simplestationsmason.datagen;
 import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.recipes.SifterRecipe;
 
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister
-            .create(Registries.RECIPE_SERIALIZER, SimpleStationsMason.MODID);
-    public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE,
-            SimpleStationsMason.MODID);
+            .create(ForgeRegistries.RECIPE_SERIALIZERS, SimpleStationsMason.MODID);
+    public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister
+            .create(ForgeRegistries.RECIPE_TYPES, SimpleStationsMason.MODID);
 
-    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<SifterRecipe>> SIFTER_SERIALIZER = SERIALIZERS
+    public static final RegistryObject<RecipeSerializer<SifterRecipe>> SIFTER_SERIALIZER = SERIALIZERS
             .register("sifter", SifterRecipe.Serializer::new);
-    public static final DeferredHolder<RecipeType<?>, RecipeType<SifterRecipe>> SIFTER_TYPE = TYPES
+    public static final RegistryObject<RecipeType<SifterRecipe>> SIFTER_TYPE = TYPES
             .register("sifter", () -> new RecipeType<SifterRecipe>() {
                 @Override
                 public String toString() {

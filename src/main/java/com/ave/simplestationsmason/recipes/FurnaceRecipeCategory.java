@@ -18,7 +18,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.neoforged.neoforge.common.Tags;
+import net.minecraftforge.common.Tags;
 
 public class FurnaceRecipeCategory implements IRecipeCategory<SimpleRecipe> {
         private static final String Path = "kiln";

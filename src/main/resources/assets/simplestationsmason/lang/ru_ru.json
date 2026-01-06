@@ -1,9 +1,9 @@
 {
-  "block.simplestationsmason.excavator": "Станция раскопки",
+  "item.simplestationsmason.excavator": "Станция раскопки",
   "item.simplestationsmason.wheel": "Колесо",
-  "block.simplestationsmason.mixer": "Станция смешивания",
-  "block.simplestationsmason.sifter": "Станция просеивания",
-  "block.simplestationsmason.furnace": "Станция плавки",
+  "item.simplestationsmason.mixer": "Станция смешивания",
+  "item.simplestationsmason.sifter": "Станция просеивания",
+  "item.simplestationsmason.furnace": "Станция плавки",
   "item.simplestationsmason.bucket": "Каменное ведро",
   "item.simplestationsmason.coin": "Счастливая монетка",
 

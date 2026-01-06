@@ -5,7 +5,7 @@ import com.ave.simplestationscore.resources.StationResource;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 
 public class TemperatureResource implements StationResource {
     public float value;
@@ -58,7 +58,7 @@ public class TemperatureResource implements StationResource {
     }
 
     public int getIncrement(Item item) {
-        var burn = new ItemStack(item).getBurnTime(RecipeType.SMELTING);
+        var burn = AbstractFurnaceBlockEntity.getFuel().get(item);
         if (burn < MinBurn) {
             cooldown = 1;
             return RiseSpeed * burn / MinBurn;

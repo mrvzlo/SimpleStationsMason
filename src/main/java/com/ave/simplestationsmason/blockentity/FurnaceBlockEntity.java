@@ -23,7 +23,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.Tags;
+import net.minecraftforge.common.Tags;
 
 public class FurnaceBlockEntity extends BaseStationBlockEntity {
     public static final int TYPE_SLOT = 2;
@@ -59,7 +59,7 @@ public class FurnaceBlockEntity extends BaseStationBlockEntity {
 
     @Override
     public int getMaxProgress() {
-        return Config.MAX_KILN_PROGRESS.getAsInt();
+        return Config.MAX_KILN_PROGRESS.get();
     }
 
     @Override

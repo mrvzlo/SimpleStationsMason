@@ -6,14 +6,14 @@ import com.ave.simplestationsmason.SimpleStationsMason;
 
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = SimpleStationsMason.MODID)
 public class DataGenerators {
     @SubscribeEvent
-    private static void gatherData(GatherDataEvent event) {
+    public static void gatherData(GatherDataEvent event) {
         if (!event.includeServer())
             return;
         var generator = event.getGenerator();

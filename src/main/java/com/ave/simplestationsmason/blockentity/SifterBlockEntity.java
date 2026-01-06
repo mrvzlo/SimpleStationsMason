@@ -55,7 +55,7 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
 
     @Override
     public int getMaxProgress() {
-        return Config.MAX_SIFTER_PROGRESS.getAsInt();
+        return Config.MAX_SIFTER_PROGRESS.get();
     }
 
     @Override
