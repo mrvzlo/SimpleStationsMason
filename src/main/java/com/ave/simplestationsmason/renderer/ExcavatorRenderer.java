@@ -64,13 +64,13 @@ public class ExcavatorRenderer implements BlockEntityRenderer<ExcavatorBlockEnti
 
     private Axis getRotationAxis(Direction direction) {
         switch (direction) {
-            case Direction.WEST:
+            case WEST:
                 return Axis.ZN;
-            case Direction.EAST:
+            case EAST:
                 return Axis.ZP;
-            case Direction.NORTH:
+            case NORTH:
                 return Axis.XP;
-            case Direction.SOUTH:
+            case SOUTH:
                 return Axis.XN;
             default:
                 return null;
