@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_bars"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "R": {
+      "item": "minecraft:powered_rail"
+    },
+    "S": {
+      "item": "minecraft:redstone"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "HBH",
+    "RSR",
+    "WBW"
+  ],
+  "result": {
+    "item": "simplestationsmason:sifter"
+  },
+  "show_notification": true
+}

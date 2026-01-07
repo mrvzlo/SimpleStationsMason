@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "minecraft:stone_crafting_materials"
+    }
+  },
+  "pattern": [
+    "A A",
+    " A "
+  ],
+  "result": {
+    "item": "simplestationsmason:bucket"
+  },
+  "show_notification": true
+}

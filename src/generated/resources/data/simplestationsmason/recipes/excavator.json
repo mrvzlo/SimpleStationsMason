@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "minecraft:stone_crafting_materials"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "R": {
+      "item": "minecraft:powered_rail"
+    },
+    "S": {
+      "item": "minecraft:redstone"
+    },
+    "W": {
+      "item": "simplestationsmason:wheel"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "WRW",
+    "HSH"
+  ],
+  "result": {
+    "item": "simplestationsmason:excavator"
+  },
+  "show_notification": true
+}

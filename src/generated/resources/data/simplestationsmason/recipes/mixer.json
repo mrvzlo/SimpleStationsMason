@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "simplestationsmason:bucket"
+    },
+    "C": {
+      "item": "minecraft:cauldron"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "HBH",
+    "RCR",
+    "WRW"
+  ],
+  "result": {
+    "item": "simplestationsmason:mixer"
+  },
+  "show_notification": true
+}

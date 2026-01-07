@@ -13,9 +13,6 @@ public class MixerItemHandler extends CommonItemHandler {
 
     @Override
     public boolean isItemValid(int slot, ItemStack stack) {
-        if (slot == MixerBlockEntity.OUTPUT_SLOT)
-            return false;
-
         if (slot == MixerBlockEntity.SAND_SLOT)
             return stack.is(Items.SAND);
         if (slot == MixerBlockEntity.GRAVEL_SLOT)
