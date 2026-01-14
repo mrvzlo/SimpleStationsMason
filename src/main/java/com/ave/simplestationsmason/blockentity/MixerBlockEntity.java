@@ -2,6 +2,7 @@ package com.ave.simplestationsmason.blockentity;
 
 import java.util.Arrays;
 
+import com.ave.simplestationscore.CoreConfig;
 import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
 import com.ave.simplestationscore.resources.EnergyResource;
 import com.ave.simplestationscore.resources.FluidResource;
@@ -38,8 +39,8 @@ public class MixerBlockEntity extends BaseStationBlockEntity {
                 setChanged();
             }
         };
-        resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 16, Config.FUEL_PER_COAL.get()));
-        resources.put(WATER_SLOT, new FluidResource(Fluids.WATER, Config.WATER_MAX.get(), 100));
+        resources.put(FUEL_SLOT, new EnergyResource(CoreConfig.POWER_MAX.get(), 16, CoreConfig.POWER_PER_COAL.get()));
+        resources.put(WATER_SLOT, new FluidResource(Fluids.WATER, CoreConfig.FLUID_MAX.get(), 100));
         resources.put(SAND_SLOT, new ItemResource(inventory, SAND_SLOT, 16));
         resources.put(GRAVEL_SLOT, new ItemResource(inventory, GRAVEL_SLOT, 16));
         resources.put(COLOR_SLOT, new ItemResource(inventory, COLOR_SLOT, 2));

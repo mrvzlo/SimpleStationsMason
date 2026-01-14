@@ -128,8 +128,8 @@ configurations {
 dependencies {
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
     localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
-    compileOnly "com.github.mrvzlo:SimpleStationsCore:${core_version}"
-    localRuntime "com.github.mrvzlo:SimpleStationsCore:${core_version}"
+    compileOnly "com.ave.simplestationscore:core:${core_version}"
+    localRuntime "com.ave.simplestationscore:core:${core_version}"
 }
 
 
@@ -141,6 +141,7 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             minecraft_version_range: minecraft_version_range,
             neo_version            : neo_version,
             loader_version_range   : loader_version_range,
+            core_min_version       : core_min_version,
             mod_id                 : mod_id,
             mod_name               : mod_name,
             mod_license            : mod_license,

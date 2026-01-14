@@ -2,6 +2,7 @@ package com.ave.simplestationsmason.blockentity;
 
 import java.util.Arrays;
 
+import com.ave.simplestationscore.CoreConfig;
 import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
 import com.ave.simplestationscore.resources.EnergyResource;
 import com.ave.simplestationsmason.Config;
@@ -30,7 +31,7 @@ public class ExcavatorBlockEntity extends BaseStationBlockEntity {
                 setChanged();
             }
         };
-        resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 64, Config.FUEL_PER_COAL.get()));
+        resources.put(FUEL_SLOT, new EnergyResource(CoreConfig.POWER_MAX.get(), 64, CoreConfig.POWER_PER_COAL.get()));
     }
 
     @Override

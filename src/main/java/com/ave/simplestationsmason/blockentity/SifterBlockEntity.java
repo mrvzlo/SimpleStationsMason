@@ -1,5 +1,6 @@
 package com.ave.simplestationsmason.blockentity;
 
+import com.ave.simplestationscore.CoreConfig;
 import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
 import com.ave.simplestationscore.resources.EnergyResource;
 import com.ave.simplestationscore.resources.ItemResource;
@@ -33,7 +34,7 @@ public class SifterBlockEntity extends BaseStationBlockEntity {
                 setChanged();
             }
         };
-        resources.put(FUEL_SLOT, new EnergyResource(Config.POWER_MAX.get(), 32, Config.FUEL_PER_COAL.get()));
+        resources.put(FUEL_SLOT, new EnergyResource(CoreConfig.POWER_MAX.get(), 32, CoreConfig.POWER_PER_COAL.get()));
         resources.put(TYPE_SLOT, new ItemResource(inventory, TYPE_SLOT, BATCH_SIZE));
         resources.put(COIN_SLOT, new ToolResource(inventory, COIN_SLOT, 37));
     }

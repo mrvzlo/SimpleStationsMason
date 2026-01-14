@@ -17,14 +17,8 @@
   "simplestationsmason.configuration.sifter_work_time": "Время просеивания",
   "simplestationsmason.configuration.sifter_work_time.tooltip": "Стандартное время в тиках\nПо умолчанию: 1200 (60 сек)",
 
-  "simplestationsmason.configuration.fuel_rf": "Энергия от угля",
-  "simplestationsmason.configuration.fuel_rf.tooltip": "Количество энергии, добавляемое одним углём\n Default: 48000",
-  "simplestationsmason.configuration.power_max": "Ёмкость энергии",
-  "simplestationsmason.configuration.power_max.tooltip": "Максимальный запас энергии\nDefault: 24000",
   "simplestationsmason.configuration.temp_rise_speed": "Скорость роста температуры",
   "simplestationsmason.configuration.temp_rise_speed.tooltip": "Количество градусов за тик.\nDefault: 10",
-  "simplestationsmason.configuration.water_max": "Ёмкость бака воды",
-  "simplestationsmason.configuration.water_max.tooltip": "Максимальная объём воды, которая может хранить машина.\nПо умолчанию: 10000 mB",
 
   "screen.simplestationsmason.excavator": "Станция раскопки",
   "screen.simplestationsmason.excavator_recipes": "Рецепты раскопок",

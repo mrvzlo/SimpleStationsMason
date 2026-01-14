@@ -3,11 +3,11 @@ package com.ave.simplestationsmason.screen;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ave.simplestationscore.CoreConfig;
 import com.ave.simplestationscore.mainblock.BaseStationBlockEntity;
 import com.ave.simplestationscore.screen.BaseStationMenu;
 import com.ave.simplestationscore.screen.BaseStationScreen;
 import com.ave.simplestationscore.uihelpers.NumToString;
-import com.ave.simplestationsmason.Config;
 import com.ave.simplestationsmason.SimpleStationsMason;
 import com.ave.simplestationsmason.blockentity.MixerBlockEntity;
 import com.ave.simplestationsmason.uihelpers.UIBlocks;
@@ -43,7 +43,7 @@ public class MixerScreen extends BaseStationScreen {
         }
         if (UIBlocks.WATER_BAR.isHovered(mouseX - x, mouseY - y)) {
             String waterPart = NumToString.parse(mixer.getWaterResource().get() / 1000f, "B / ")
-                    + NumToString.parse(Config.WATER_MAX.get(), "B");
+                    + NumToString.parse(CoreConfig.FLUID_MAX.get(), "B");
             List<Component> text = Arrays.asList(
                     Component.translatable("screen.simplestationsmason.water"),
                     Component.literal(waterPart));

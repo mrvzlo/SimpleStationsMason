@@ -17,12 +17,6 @@
   "simplestationsmason.configuration.sifter_work_time": "Sifter work time",
   "simplestationsmason.configuration.sifter_work_time.tooltip": "Default sifter working time in ticks\n Default: 1200 (60 sec)",
 
-  "simplestationsmason.configuration.water_max": "Water tank capacity",
-  "simplestationsmason.configuration.water_max.tooltip": "Maximum amount of water the machine can store.\nDefault: 10000 mB",
-  "simplestationsmason.configuration.fuel_rf": "RF from fuel",
-  "simplestationsmason.configuration.fuel_rf.tooltip": "Base RF amount received from 1 coal\n Default: 48000",
-  "simplestationsmason.configuration.power_max": "RF capacity",
-  "simplestationsmason.configuration.power_max.tooltip": "Maximum RF power.\nDefault: 24000",
   "simplestationsmason.configuration.temp_rise_speed": "Temperature rising speed",
   "simplestationsmason.configuration.temp_rise_speed.tooltip": "Temperature increase per tick.\nDefault: 10",
 
